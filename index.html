@@ -4,33 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>100 Reclutadores</title>
-<!-- Fuente principal: Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Espejo alternativo: Bunny Fonts (GDPR, sin tracking) -->
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=cormorant-garamond:300,300i,400,400i,500,500i,600,600i|jost:300,400,500" rel="stylesheet">
 <style>
-  /* Fallback tipográfico de alta calidad para uso sin internet */
-  @font-face {
-    font-family: 'Cormorant Garamond';
-    src: local('Cormorant Garamond'), local('Cormorant'), local('CormorantGaramond');
-    font-weight: 300 600;
-    font-style: normal italic;
-  }
-  @font-face {
-    font-family: 'Jost';
-    src: local('Jost'), local('Futura'), local('Century Gothic');
-    font-weight: 300 500;
-  }
+@font-face{font-family:'Cormorant Garamond';src:local('Cormorant Garamond'),local('Cormorant');font-weight:300 600;font-style:normal italic;}
+@font-face{font-family:'Jost';src:local('Jost'),local('Futura'),local('Century Gothic');font-weight:300 500;}
 </style>
-
 <style>
 /* ══════════════════════════════════════
    TOKENS
 ══════════════════════════════════════ */
-:root {
+:root{
   --bg:       #FAFAF7;
   --bg-alt:   #F3F0E8;
   --bg-dark:  #0C0C0A;
@@ -45,35 +32,226 @@
   --gold-hi:  #D4AE3A;
   --gold-lo:  #A8842A;
   --gold-bg:  rgba(184,150,46,0.06);
-  --gold-pale:#F0E4B8;
   --outer:    7vw;
   --max:      1180px;
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  background:var(--bg);
+  background:var(--bg-dark);
   color:var(--ink);
-  font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;
+  font-family:'Jost','Futura','Century Gothic',Optima,sans-serif;
   font-weight:300;
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
 }
+
+/* ══════════════════════════════════════
+   PANTALLA DE ENTRADA — cubre todo
+══════════════════════════════════════ */
+#entry-screen{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:var(--bg-dark);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px var(--outer);
+  transition:opacity 0.7s ease, visibility 0.7s ease;
+}
+#entry-screen.exit{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+/* Grid dorado de fondo en entry */
+#entry-screen::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(184,150,46,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,150,46,0.025) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+/* Glow dorado sutil */
+#entry-screen::after{
+  content:'';position:absolute;
+  top:-100px;left:50%;transform:translateX(-50%);
+  width:600px;height:400px;z-index:0;
+  background:radial-gradient(ellipse,rgba(184,150,46,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+.entry-inner{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;
+  align-items:center;
+}
+
+/* Logo en entry */
+.entry-logo{
+  display:flex;flex-direction:column;align-items:center;
+  margin-bottom:52px;
+  opacity:0;animation:fadeUp 1s ease 0.2s forwards;
+}
+.entry-logo-num{
+  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
+  font-size:clamp(80px,14vw,140px);
+  font-weight:300;line-height:0.9;
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--gold);
+  letter-spacing:-0.02em;
+  display:block;
+}
+.entry-logo-word{
+  font-size:10px;letter-spacing:0.55em;
+  color:var(--gold-lo);text-transform:uppercase;
+  font-weight:400;margin-top:10px;
+  display:flex;align-items:center;gap:16px;
+}
+.entry-logo-word::before,
+.entry-logo-word::after{
+  content:'';width:32px;height:1px;background:var(--gold-lo);opacity:0.5;
+}
+
+/* Ciudad label */
+.entry-cities{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(15px,1.8vw,22px);
+  font-weight:300;font-style:italic;
+  letter-spacing:0.18em;
+  color:#C9A84C;
+  margin-top:12px;
+  text-transform:none;
+}
+/* Separador entre ciudades más elegante */
+.entry-cities .sep{
+  color:var(--gold-lo);
+  font-style:normal;
+  margin:0 6px;
+  opacity:0.6;
+}
+
+/* Separador ornamental */
+.entry-orn{
+  display:flex;align-items:center;gap:14px;
+  margin:0 0 48px;
+  opacity:0;animation:fadeUp 1s ease 0.6s forwards;
+}
+.orn-line{width:52px;height:1px;background:var(--gold-lo);}
+.orn-dot{
+  width:6px;height:6px;background:var(--gold);
+  transform:rotate(45deg);
+  box-shadow:0 0 10px rgba(184,150,46,0.4);
+}
+
+/* Pregunta */
+.entry-q{
+  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
+  font-size:clamp(13px,1.5vw,16px);
+  font-weight:300;letter-spacing:0.32em;
+  color:#5A5A48;text-transform:uppercase;
+  margin-bottom:36px;
+  opacity:0;animation:fadeUp 1s ease 0.7s forwards;
+}
+
+/* Botones de elección */
+.entry-choices{
+  display:flex;gap:1px;
+  background:var(--rule-dk);
+  opacity:0;animation:fadeUp 1s ease 0.85s forwards;
+}
+.entry-btn{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(17px,1.8vw,23px);
+  font-style:italic;font-weight:300;
+  letter-spacing:-0.01em;
+  background:var(--bg-dark);
+  border:none;cursor:pointer;
+  padding:36px 60px;
+  position:relative;overflow:hidden;
+  transition:background 0.35s,color 0.35s;
+  color:#8A8A70;
+  text-align:center;
+  min-width:320px;
+  white-space:normal;
+  line-height:1.35;
+}
+.entry-btn::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:transparent;transition:background 0.4s;
+}
+.entry-btn::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:transparent;transition:background 0.4s;
+}
+.entry-btn:hover{ background:#111110; }
+/* Empresa — verde */
+.entry-btn.empresa:hover{ color:#8DC5A4; }
+.entry-btn.empresa:hover::before{ background:var(--green-lt); }
+.entry-btn.empresa:hover::after{ background:rgba(26,122,74,0.2); }
+/* Reclutador — dorado */
+.entry-btn.reclutador:hover{ color:var(--gold-hi); }
+.entry-btn.reclutador:hover::before{ background:var(--gold); }
+.entry-btn.reclutador:hover::after{ background:rgba(184,150,46,0.15); }
+
+.entry-btn-icon{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'Jost',sans-serif;
+  font-size:10px;letter-spacing:0.38em;
+  text-transform:uppercase;font-style:normal;font-weight:500;
+  margin-top:14px;
+  opacity:0.55;transition:opacity 0.35s, color 0.35s;
+  color:#B0AA90;
+}
+.entry-btn-icon::after{
+  content:'→';
+  font-size:11px;
+  letter-spacing:0;
+  opacity:0.7;
+  transition:transform 0.3s;
+}
+.entry-btn:hover .entry-btn-icon{ opacity:1; }
+.entry-btn:hover .entry-btn-icon::after{ transform:translateX(4px); }
+/* colores por tipo en reposo */
+.entry-btn.empresa .entry-btn-icon{ color:#6A9E80; }
+.entry-btn.reclutador .entry-btn-icon{ color:#C9A84C; }
+
+/* Nota discreta */
+.entry-note{
+  font-size:9px;letter-spacing:0.22em;
+  color:#6A6050;text-transform:uppercase;
+  margin-top:32px;
+  opacity:0;animation:fadeUp 1s ease 1.1s forwards;
+}
+
+/* ══════════════════════════════════════
+   SITIO PRINCIPAL — oculto hasta elección
+══════════════════════════════════════ */
+#site-wrapper{
+  opacity:0;
+  transition:opacity 0.6s ease 0.3s;
+  background:var(--bg);
+}
+#site-wrapper.visible{
+  opacity:1;
+}
+/* Previene scroll en body mientras entry está activa */
+body.entry-active{overflow:hidden;}
 
 /* ══════════════════════════════════════
    NAV
 ══════════════════════════════════════ */
 nav{
-  position:fixed;
-  inset:0 0 auto 0;
-  z-index:200;
-  height:68px;
-  display:grid;
+  position:fixed;inset:0 0 auto 0;z-index:200;
+  height:68px;display:grid;
   grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  padding:0 var(--outer);
+  align-items:center;padding:0 var(--outer);
   background:rgba(250,250,247,0.97);
   backdrop-filter:blur(16px);
   border-bottom:1px solid var(--rule);
@@ -83,27 +261,23 @@ nav.on-dark{
   background:rgba(12,12,10,0.97);
   border-bottom-color:var(--rule-dk);
 }
-
 .nav-left{display:flex;align-items:center;gap:40px;}
 .nav-lnk{
   font-size:11px;letter-spacing:0.14em;
   color:var(--ink-low);text-transform:uppercase;
   text-decoration:none;background:none;border:none;
-  cursor:pointer;font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;font-weight:400;
+  cursor:pointer;font-family:'Jost','Futura',sans-serif;font-weight:400;
   transition:color 0.2s;
 }
 .nav-lnk:hover{color:var(--ink);}
 nav.on-dark .nav-lnk{color:#555;}
 nav.on-dark .nav-lnk:hover{color:#ccc;}
-
-/* Logo centrado */
 .nav-logo{
   display:flex;flex-direction:column;
-  align-items:center;line-height:1;
-  text-decoration:none;
+  align-items:center;line-height:1;text-decoration:none;
 }
 .nl-num{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:24px;font-weight:500;
   color:var(--gold);letter-spacing:0.08em;
 }
@@ -114,14 +288,13 @@ nav.on-dark .nav-lnk:hover{color:#ccc;}
 }
 nav.on-dark .nl-num{color:var(--gold-hi);}
 nav.on-dark .nl-word{color:#444;}
-
 .nav-right{
   display:flex;align-items:center;
   justify-content:flex-end;gap:24px;
 }
 .nav-cta{
   font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  font-weight:400;font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;
+  font-weight:400;font-family:'Jost','Futura',sans-serif;
   color:var(--gold);background:none;
   border:1px solid var(--gold-lo);
   padding:9px 24px;cursor:pointer;
@@ -132,119 +305,94 @@ nav.on-dark .nav-cta{color:var(--gold-hi);border-color:#3A2E10;}
 nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
 
 /* ══════════════════════════════════════
-   HERO — fondo oscuro, texto claro
+   HERO — empresa o reclutador
 ══════════════════════════════════════ */
 .hero{
-  min-height:100vh;
-  background:var(--bg-dark);
+  min-height:100vh;background:var(--bg-dark);
   display:flex;flex-direction:column;
   position:relative;overflow:hidden;
 }
-
-/* Grid de fondo muy sutil */
 .hero-grid{
-  content:'';position:absolute;inset:0;z-index:1;
+  position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:
     linear-gradient(rgba(184,150,46,0.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(184,150,46,0.025) 1px,transparent 1px);
   background-size:72px 72px;
-  pointer-events:none;
 }
-/* Glow dorado arriba */
-.hero::after{
-  content:'';position:absolute;
-  top:-120px;left:50%;transform:translateX(-50%);
-  width:700px;height:500px;z-index:1;
+.hero-glow{
+  position:absolute;top:-120px;left:50%;
+  transform:translateX(-50%);
+  width:700px;height:500px;z-index:0;
   background:radial-gradient(ellipse,rgba(184,150,46,0.08) 0%,transparent 65%);
   pointer-events:none;
 }
-
 .hero-body{
   flex:1;display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px var(--outer) 60px;
+  text-align:center;padding:120px var(--outer) 60px;
   position:relative;z-index:1;
 }
-
-/* Label apertura */
 .hero-label{
   display:flex;align-items:center;gap:18px;
   margin-bottom:56px;
-  opacity:0;animation:riseIn 1s ease 0.2s forwards;
 }
 .hl-bar{width:28px;height:1px;background:var(--gold-lo);}
+.hl-block{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .hl-txt{
   font-size:10px;letter-spacing:0.42em;
   color:#A08840;text-transform:uppercase;font-weight:400;
 }
-
-/* 100 — grande, dorado outline */
+.hl-cities{
+  font-size:9px;letter-spacing:0.28em;
+  color:#5A4A20;text-transform:uppercase;font-weight:300;
+}
 .hero-100{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
+  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
   font-size:clamp(140px,22vw,240px);
   font-weight:300;line-height:0.88;
   color:transparent;
   -webkit-text-stroke:1.5px var(--gold);
   letter-spacing:-0.02em;
   display:block;user-select:none;
-  opacity:0;animation:riseIn 1.4s cubic-bezier(0.16,1,0.3,1) 0.35s forwards;
-  text-shadow:0 0 80px rgba(184,150,46,0.12);
 }
-
 .hero-sub-label{
   display:flex;align-items:center;gap:20px;
   justify-content:center;margin-top:14px;
-  opacity:0;animation:riseIn 1s ease 0.7s forwards;
 }
 .hsl-line{width:44px;height:1px;background:var(--gold-lo);}
 .hsl-txt{
   font-size:11px;letter-spacing:0.5em;
   color:var(--gold-lo);text-transform:uppercase;font-weight:400;
 }
-
-/* Claim */
 .hero-claim{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
+  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
   font-size:clamp(32px,5vw,60px);
   font-weight:400;font-style:italic;
-  color:#F5F2EB;line-height:1.12;
-  letter-spacing:-0.015em;
+  line-height:1.12;letter-spacing:-0.015em;
   max-width:700px;margin:56px auto 0;
-  opacity:0;animation:riseIn 1s ease 0.85s forwards;
 }
+/* Claim por tipo */
+.hero-claim.empresa{color:#C8E8D8;}
+.hero-claim.reclutador{color:#EDE8DC;}
 
 .hero-sub{
-  font-size:15px;color:#A8A89E;
+  font-size:15px;color:#6A6A60;
   line-height:2;max-width:480px;
   margin:22px auto 0;font-weight:300;
-  opacity:0;animation:riseIn 1s ease 1s forwards;
 }
-
-/* Separador ornamental dorado */
 .hero-orn{
   display:flex;align-items:center;gap:14px;
   justify-content:center;margin:40px 0;
-  opacity:0;animation:riseIn 1s ease 1.08s forwards;
 }
-.orn-line{width:56px;height:1px;background:var(--gold-lo);}
-.orn-dot{
-  width:6px;height:6px;
-  background:var(--gold);
-  transform:rotate(45deg);
-  box-shadow:0 0 8px rgba(184,150,46,0.4);
-}
-
-/* CTAs */
 .hero-ctas{
   display:flex;flex-direction:column;
   align-items:center;gap:14px;
-  opacity:0;animation:riseIn 1s ease 1.12s forwards;
 }
 .hero-row{display:flex;gap:12px;}
 
+/* Botones */
 .btn-gold{
-  font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;font-size:12px;
+  font-family:'Jost','Futura',sans-serif;font-size:12px;
   letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
   color:var(--bg-dark);background:var(--gold);
   border:1px solid var(--gold);
@@ -256,34 +404,61 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
   transform:translateY(-1px);
   box-shadow:0 8px 28px rgba(184,150,46,0.22);
 }
-
 .btn-outline-gold{
-  font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;font-size:12px;
+  font-family:'Jost','Futura',sans-serif;font-size:12px;
   letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
   color:var(--gold);background:transparent;
   border:1px solid var(--gold-lo);
   padding:16px 44px;cursor:pointer;border-radius:2px;
   transition:all 0.3s;
 }
-.btn-outline-gold:hover{
-  border-color:var(--gold);color:var(--gold-hi);
-  background:var(--gold-bg);
+.btn-outline-gold:hover{border-color:var(--gold);color:var(--gold-hi);background:var(--gold-bg);}
+.btn-green{
+  font-family:'Jost','Futura',sans-serif;font-size:12px;
+  letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
+  color:#fff;background:var(--green);
+  border:1px solid var(--green);
+  padding:16px 44px;cursor:pointer;border-radius:2px;
+  transition:all 0.3s;
 }
-
+.btn-green:hover{background:var(--green-lt);border-color:var(--green-lt);transform:translateY(-1px);}
+.btn-outline-green{
+  font-family:'Jost','Futura',sans-serif;font-size:12px;
+  letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
+  color:var(--green);background:transparent;
+  border:1px solid rgba(0,92,53,0.3);
+  padding:16px 44px;cursor:pointer;border-radius:2px;
+  transition:all 0.3s;
+}
+.btn-outline-green:hover{border-color:var(--green);background:rgba(0,92,53,0.04);}
 .hero-invite{
   font-size:10px;letter-spacing:0.22em;
-  color:#8A8A7A;text-transform:uppercase;
+  color:#3A3A30;text-transform:uppercase;
   text-decoration:none;
   border-bottom:1px solid #2A2A20;padding-bottom:2px;
   transition:color 0.2s,border-color 0.2s;
 }
 .hero-invite:hover{color:#6A6A58;border-bottom-color:#6A6A58;}
 
+/* Badge "entrando como" */
+.hero-mode-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+  color:#3A3A2E;margin-bottom:52px;
+  cursor:pointer;transition:color 0.2s;
+  border-bottom:1px solid #2A2A20;padding-bottom:2px;
+  background:none;border-top:none;border-left:none;border-right:none;
+  font-family:'Jost',sans-serif;
+}
+.hero-mode-badge:hover{color:#6A6A58;}
+.hero-mode-badge::before{
+  content:'←';font-size:9px;opacity:0.5;
+}
+
 /* Stats bar */
 .hero-stats{
   display:flex;border-top:1px solid var(--rule-dk);
   position:relative;z-index:1;
-  opacity:0;animation:riseIn 1s ease 1.3s forwards;
 }
 .hs-item{
   flex:1;padding:26px 20px;text-align:center;
@@ -293,7 +468,7 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
 .hs-item:last-child{border-right:none;}
 .hs-item:hover{background:rgba(184,150,46,0.03);}
 .hs-n{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:36px;font-weight:300;
   color:var(--gold);display:block;
   letter-spacing:-0.02em;margin-bottom:6px;
@@ -307,621 +482,184 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
    BASE LAYOUT
 ══════════════════════════════════════ */
 .wrap{max-width:var(--max);margin:0 auto;}
-.section{padding:108px var(--outer);border-top:1px solid var(--rule);}
+.section{padding:108px var(--outer);border-top:1px solid var(--rule);background:var(--bg);}
 .section-alt{padding:108px var(--outer);background:var(--bg-alt);border-top:1px solid var(--rule);}
 .section-dk{padding:108px var(--outer);background:var(--bg-dark);border-top:1px solid var(--rule-dk);}
 
-/* Eyebrows */
 .eyebrow{
-  font-size:10px;letter-spacing:0.38em;
-  color:var(--ink-low);text-transform:uppercase;font-weight:400;
+  font-size:10px;letter-spacing:0.38em;color:var(--ink-low);
+  text-transform:uppercase;font-weight:400;
   display:flex;align-items:center;gap:14px;margin-bottom:22px;
 }
-.eyebrow::after{
-  content:'';width:28px;height:1px;background:var(--rule);
-}
+.eyebrow::after{content:'';width:28px;height:1px;background:var(--rule);}
 .eyebrow.gold{color:var(--gold-lo);}
 .eyebrow.gold::after{background:var(--gold-lo);}
 .eyebrow.green{color:var(--green);}
 .eyebrow.green::after{background:var(--green);opacity:0.4;}
-
 .eyebrow-dk{
-  font-size:10px;letter-spacing:0.38em;
-  color:#4A8060;text-transform:uppercase;font-weight:400;
+  font-size:10px;letter-spacing:0.38em;color:#3A5040;
+  text-transform:uppercase;font-weight:400;
   display:flex;align-items:center;gap:14px;margin-bottom:22px;
 }
 .eyebrow-dk::after{content:'';width:28px;height:1px;background:#1E2E25;}
 
-/* Titles */
 .s-title{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(34px,4.5vw,58px);
-  font-weight:400;line-height:1.08;
-  color:var(--ink);letter-spacing:-0.02em;
-  max-width:720px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4.5vw,58px);font-weight:400;
+  line-height:1.08;color:var(--ink);letter-spacing:-0.02em;max-width:720px;
 }
 .s-title em{font-style:italic;color:var(--green);}
-.s-title .gold{color:var(--gold);}
-
 .s-title-dk{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(34px,4.5vw,58px);
-  font-weight:400;line-height:1.08;
-  color:#F5F2EB;letter-spacing:-0.02em;
-  max-width:720px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4.5vw,58px);font-weight:400;
+  line-height:1.08;color:#EDE8DC;letter-spacing:-0.02em;max-width:720px;
 }
 .s-title-dk em{font-style:italic;color:var(--gold-hi);}
+.s-body{font-size:15px;color:var(--ink-mid);line-height:1.9;max-width:560px;font-weight:300;margin-top:22px;}
 
-.s-body{
-  font-size:15px;color:var(--ink-mid);
-  line-height:1.9;max-width:560px;
-  font-weight:300;margin-top:22px;
-}
-.s-body-dk{
-  font-size:15px;color:#909088;
-  line-height:1.9;max-width:560px;
-  font-weight:300;margin-top:22px;
-}
-
-/* Reveal */
-.reveal{
-  opacity:0;transform:translateY(28px);
-  transition:opacity 0.85s ease,transform 0.85s cubic-bezier(0.16,1,0.3,1);
-}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.85s ease,transform 0.85s cubic-bezier(0.16,1,0.3,1);}
 .reveal.in{opacity:1;transform:translateY(0);}
 
-/* ══════════════════════════════════════
-   QUÉ ES LA RED — 2 cards
-══════════════════════════════════════ */
-.concept-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:1px;background:var(--rule);margin-top:56px;
-}
-.concept-card{
-  background:var(--bg);padding:52px 44px;
-  position:relative;overflow:hidden;transition:background 0.3s;
-}
+/* ── Cards concepto ── */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);margin-top:56px;}
+.concept-card{background:var(--bg);padding:52px 44px;position:relative;transition:background 0.3s;}
 .concept-card:hover{background:#F4F0E4;}
-/* Acento dorado top */
 .concept-card::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2px;
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
   opacity:0;transition:opacity 0.4s;
 }
 .concept-card:hover::before{opacity:1;}
-
 .cc-badge{
-  display:inline-block;
-  font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
-  color:var(--gold);
-  border:1px solid rgba(184,150,46,0.3);
-  border-radius:2px;padding:5px 14px;
-  margin-bottom:22px;font-weight:400;
-  background:var(--gold-bg);
+  display:inline-block;font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(184,150,46,0.3);border-radius:2px;
+  padding:5px 14px;margin-bottom:22px;font-weight:400;background:var(--gold-bg);
 }
 .cc-title{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:26px;font-weight:500;
-  color:var(--ink);line-height:1.2;
-  letter-spacing:-0.01em;margin-bottom:16px;
+  font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;
+  color:var(--ink);line-height:1.2;letter-spacing:-0.01em;margin-bottom:16px;
 }
 .cc-body{font-size:14px;color:var(--ink-mid);line-height:1.88;font-weight:300;}
 .cc-foot{
-  margin-top:28px;padding-top:22px;
-  border-top:1px solid var(--rule);
-  font-size:10px;color:var(--ink-low);
-  letter-spacing:0.12em;display:flex;
-  align-items:center;gap:10px;
+  margin-top:28px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:10px;color:var(--ink-low);letter-spacing:0.12em;
+  display:flex;align-items:center;gap:10px;
 }
-.cc-foot::before{
-  content:'◆';font-size:6px;color:var(--gold);
-  opacity:0.7;flex-shrink:0;
-}
+.cc-foot::before{content:'◆';font-size:6px;color:var(--gold);opacity:0.7;flex-shrink:0;}
 
-/* ══════════════════════════════════════
-   PARA EMPRESAS
-══════════════════════════════════════ */
-.emp-layout{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:88px;align-items:start;margin-top:56px;
+/* ── Logos strip ── */
+.logos-strip{padding:32px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg);overflow:hidden;}
+.logos-label{text-align:center;font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--ink-low);margin-bottom:24px;font-weight:400;}
+.logos-track{overflow:hidden;}
+.logos-inner{display:flex;align-items:center;gap:64px;width:max-content;animation:scrollLogos 28s linear infinite;}
+.logo-item{display:flex;align-items:center;color:#C8C4BA;height:32px;flex-shrink:0;transition:color 0.3s;}
+.logo-item:hover{color:#888880;}
+.logo-item svg{height:100%;width:auto;}
+@keyframes scrollLogos{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── Market strip ── */
+.market-strip{background:var(--bg-dark);border-top:1px solid var(--rule-dk);}
+.market-grid{max-width:var(--max);margin:0 auto;display:flex;align-items:stretch;}
+.market-item{flex:1;padding:52px 36px;text-align:center;}
+.market-divider{width:1px;background:var(--rule-dk);flex-shrink:0;}
+.market-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,60px);font-weight:300;
+  color:var(--gold);display:block;letter-spacing:-0.02em;margin-bottom:14px;
 }
+.market-d{font-size:13px;color:#A0A090;line-height:1.7;font-weight:300;margin-bottom:10px;}
+.market-src{font-size:8.5px;letter-spacing:0.28em;color:#5A5A48;text-transform:uppercase;}
+
+/* ── Para empresas ── */
+.emp-layout{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start;margin-top:56px;}
 .emp-quote{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:clamp(20px,2.4vw,28px);font-style:italic;
   color:var(--ink-mid);line-height:1.5;
-  border-left:2px solid var(--gold);
-  padding-left:24px;margin:28px 0 36px;
+  border-left:2px solid var(--gold);padding-left:24px;margin:28px 0 36px;
 }
 .emp-list{display:flex;flex-direction:column;}
-.emp-item{
-  display:grid;grid-template-columns:44px 1fr;
-  gap:22px;align-items:start;
-  padding:28px 0;border-bottom:1px solid var(--rule);
-}
+.emp-item{display:grid;grid-template-columns:44px 1fr;gap:22px;align-items:start;padding:28px 0;border-bottom:1px solid var(--rule);}
 .emp-item:first-child{border-top:1px solid var(--rule);}
-.emp-n{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:14px;font-weight:300;
-  color:var(--gold-lo);padding-top:2px;
-}
+.emp-n{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;color:var(--gold-lo);padding-top:2px;}
 .emp-t{font-size:15px;font-weight:400;color:var(--ink);margin-bottom:7px;}
 .emp-p{font-size:13px;color:var(--ink-mid);line-height:1.85;font-weight:300;}
-.emp-tag{
-  display:inline-block;font-size:9px;
-  letter-spacing:0.25em;text-transform:uppercase;
-  color:var(--gold-lo);margin-top:9px;
-}
+.emp-tag{display:inline-block;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-lo);margin-top:9px;}
 
-/* ══════════════════════════════════════
-   CÓMO OPERA — dark cards
-══════════════════════════════════════ */
-.mech-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:1px;background:var(--rule-dk);margin-top:56px;
-}
-.mech-card{
-  background:var(--bg-dark);padding:48px 42px;
-  transition:background 0.3s;position:relative;
-}
+/* ── Mech grid ── */
+.mech-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule-dk);margin-top:56px;}
+.mech-card{background:var(--bg-dark);padding:48px 42px;transition:background 0.3s;position:relative;}
 .mech-card:hover{background:#101010;}
-/* Línea dorada en hover */
-.mech-card::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold-lo),transparent);
-  opacity:0;transition:opacity 0.4s;
-}
+.mech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo),transparent);opacity:0;transition:opacity 0.4s;}
 .mech-card:hover::before{opacity:1;}
+.mech-n{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-lo);line-height:1;opacity:0.3;margin-bottom:22px;display:block;}
+.mech-t{font-size:16px;font-weight:400;color:#D8D4C8;margin-bottom:13px;line-height:1.3;}
+.mech-p{font-size:13px;color:#5A5A52;line-height:1.88;font-weight:300;}
+.mech-foot{margin-top:26px;font-size:9.5px;letter-spacing:0.22em;color:var(--gold-lo);text-transform:uppercase;padding-top:18px;border-top:1px solid #1A1A16;opacity:0.7;}
 
-.mech-n{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:52px;font-weight:300;
-  color:var(--gold-lo);line-height:1;
-  opacity:0.3;margin-bottom:22px;display:block;
-}
-.mech-t{
-  font-size:16px;font-weight:400;
-  color:#F0EDE6;margin-bottom:13px;line-height:1.3;
-}
-.mech-p{font-size:13px;color:#909088;line-height:1.88;font-weight:300;}
-.mech-foot{
-  margin-top:26px;font-size:9.5px;
-  letter-spacing:0.22em;color:var(--gold-lo);
-  text-transform:uppercase;padding-top:18px;
-  border-top:1px solid #1A1A16;opacity:0.7;
-}
+/* ── Índice ── */
+.indice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin-top:56px;}
+.indice-item{background:var(--bg);padding:44px 36px;border-top:2px solid transparent;transition:border-color 0.3s,background 0.3s;}
+.indice-item:hover{background:#F4F0E4;border-top-color:var(--gold);}
+.indice-pct{display:block;font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;color:var(--gold);line-height:1;letter-spacing:-0.02em;margin-bottom:14px;}
+.indice-label{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px;letter-spacing:0.02em;}
+.indice-desc{font-size:13px;color:var(--ink-mid);line-height:1.8;font-weight:300;}
+.indice-formula{margin-top:48px;padding:36px;background:var(--bg-alt);border:1px solid var(--rule);text-align:center;}
+.indice-eq{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--ink);display:block;margin-bottom:14px;}
+.indice-eq em{font-style:normal;color:var(--gold);}
+.indice-note{font-size:12px;color:var(--ink-mid);line-height:1.8;font-weight:300;max-width:520px;margin:0 auto;}
 
-/* ══════════════════════════════════════
-   EL ESTÁNDAR
-══════════════════════════════════════ */
-.perm-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--rule);margin-top:56px;
-}
-.perm-card{
-  background:var(--bg);padding:40px 30px;
-  transition:background 0.3s;
-}
+/* ── Perm grid ── */
+.perm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);margin-top:56px;}
+.perm-card{background:var(--bg);padding:40px 30px;transition:background 0.3s;}
 .perm-card:hover{background:#F4F0E4;}
-.perm-lbl{
-  font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;
-  color:var(--gold);font-weight:500;
-  display:block;margin-bottom:14px;
-}
+.perm-lbl{font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:500;display:block;margin-bottom:14px;}
 .perm-val{font-size:13px;color:var(--ink-mid);line-height:1.88;font-weight:300;}
 .perm-val strong{color:var(--ink);font-weight:500;}
 
-.perm-statement{
-  text-align:center;margin-top:72px;padding:56px;
-  background:var(--bg-alt);
-  border:1px solid var(--rule);
-  position:relative;overflow:hidden;
-}
-/* Ornamento dorado */
-.perm-statement::before{
-  content:'';position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:180px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-.perm-statement::after{
-  content:'';position:absolute;
-  bottom:0;left:50%;transform:translateX(-50%);
-  width:180px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-.ps-quote{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(22px,3vw,38px);font-style:italic;
-  font-weight:300;color:var(--ink);
-  line-height:1.4;letter-spacing:-0.01em;
-}
-.ps-quote span{color:var(--gold);}
-.ps-rule{width:28px;height:1px;background:var(--gold);margin:24px auto;}
-.ps-attr{font-size:9px;letter-spacing:0.38em;color:var(--ink-low);text-transform:uppercase;}
-
-/* ══════════════════════════════════════
-   EL MOMENTO — claro, editorial
-══════════════════════════════════════ */
-.moment-section{
-  padding:130px var(--outer);
-  text-align:center;
-  border-top:1px solid var(--rule);
-  background:var(--bg);
-  position:relative;
-}
-.moment-orn{
-  display:flex;align-items:center;gap:14px;
-  justify-content:center;margin-bottom:48px;
-}
-.moment-orn span{width:60px;height:1px;background:var(--rule);}
-.moment-orn i{
-  width:7px;height:7px;background:var(--gold);
-  transform:rotate(45deg);display:block;
-  box-shadow:0 0 10px rgba(184,150,46,0.3);
-}
-.moment-text{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(26px,3.8vw,50px);
-  font-weight:300;color:var(--ink);
-  line-height:1.3;letter-spacing:-0.02em;
-  max-width:680px;margin:0 auto 36px;
-}
-.moment-rule{width:1px;height:52px;background:var(--rule);margin:0 auto 36px;}
-.moment-body{
-  font-size:15px;color:var(--ink-mid);
-  line-height:2;font-weight:300;
-  max-width:440px;margin:0 auto;
-}
-.moment-coda{
-  font-size:11px;letter-spacing:0.38em;
-  color:var(--gold);text-transform:uppercase;
-  margin-top:32px;font-weight:400;
-}
-
-/* ══════════════════════════════════════
-   QUOTE — claro con ornamento
-══════════════════════════════════════ */
+/* ── Quote ── */
 .quote-section{
   padding:108px var(--outer);text-align:center;
-  background:var(--bg-alt);
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
+  background:var(--bg-alt);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
   position:relative;overflow:hidden;
 }
-/* Ornamento esquinas */
-.quote-section::before{
-  content:'';position:absolute;
-  top:32px;left:var(--outer);right:var(--outer);
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:0.4;
-}
-.quote-section::after{
-  content:'';position:absolute;
-  bottom:32px;left:var(--outer);right:var(--outer);
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:0.4;
-}
-.the-quote{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(24px,4vw,52px);font-style:italic;
-  font-weight:300;color:var(--ink);
-  line-height:1.3;letter-spacing:-0.02em;
-  max-width:720px;margin:0 auto 28px;
-}
-.q-diamond{
-  width:8px;height:8px;background:var(--gold);
-  transform:rotate(45deg);margin:0 auto 20px;
-  box-shadow:0 0 12px rgba(184,150,46,0.35);
-}
+.quote-section::before{content:'';position:absolute;top:32px;left:var(--outer);right:var(--outer);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4;}
+.quote-section::after{content:'';position:absolute;bottom:32px;left:var(--outer);right:var(--outer);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4;}
+.the-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,52px);font-style:italic;font-weight:300;color:var(--ink);line-height:1.3;letter-spacing:-0.02em;max-width:720px;margin:0 auto 28px;}
+.q-diamond{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);margin:0 auto 20px;box-shadow:0 0 12px rgba(184,150,46,0.35);}
 .q-attr{font-size:9.5px;letter-spacing:0.38em;color:var(--ink-low);text-transform:uppercase;}
 
-/* ══════════════════════════════════════
-   FINAL CTA
-══════════════════════════════════════ */
-.final-section{
-  padding:130px var(--outer);text-align:center;
-  background:var(--bg);border-top:1px solid var(--rule);
-  position:relative;overflow:hidden;
-}
-.final-section::before{
-  content:'';position:absolute;
-  top:-80px;left:50%;transform:translateX(-50%);
-  width:600px;height:400px;
-  background:radial-gradient(ellipse,rgba(184,150,46,0.07) 0%,transparent 65%);
-  pointer-events:none;
-}
-.final-eyebrow{
-  font-size:10px;letter-spacing:0.38em;
-  color:var(--gold-lo);text-transform:uppercase;
-  margin-bottom:24px;font-weight:400;
-}
-.final-title{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(38px,6vw,72px);font-weight:300;
-  color:var(--ink);line-height:1.05;letter-spacing:-0.03em;
-  margin-bottom:22px;
-}
+/* ── Final CTA ── */
+.final-section{padding:130px var(--outer);text-align:center;background:var(--bg);border-top:1px solid var(--rule);position:relative;overflow:hidden;}
+.final-section::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(184,150,46,0.07) 0%,transparent 65%);pointer-events:none;}
+.final-eyebrow{font-size:10px;letter-spacing:0.38em;color:var(--gold-lo);text-transform:uppercase;margin-bottom:24px;font-weight:400;}
+.final-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,72px);font-weight:300;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin-bottom:22px;}
 .final-title em{font-style:italic;color:var(--green);}
-.final-body{
-  font-size:15px;color:var(--ink-mid);
-  line-height:1.95;font-weight:300;
-  max-width:380px;margin:0 auto 44px;
-}
+.final-body{font-size:15px;color:var(--ink-mid);line-height:1.95;font-weight:300;max-width:380px;margin:0 auto 44px;}
 .final-ctas{display:flex;gap:14px;justify-content:center;margin-bottom:24px;}
 .final-note{font-size:10px;letter-spacing:0.22em;color:var(--ink-low);text-transform:uppercase;}
 
-/* ══════════════════════════════════════
-   INVITACIÓN
-══════════════════════════════════════ */
-.invite-section{
-  padding:80px var(--outer);
-  border-top:1px solid var(--rule);
-  display:flex;flex-direction:column;
-  align-items:center;text-align:center;
-  background:var(--bg-alt);
-}
-.invite-orn{
-  display:flex;align-items:center;gap:14px;margin-bottom:36px;
-}
+/* ── Invite ── */
+.invite-section{padding:80px var(--outer);border-top:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--bg-alt);}
+.invite-orn{display:flex;align-items:center;gap:14px;margin-bottom:36px;}
 .invite-orn span{width:48px;height:1px;background:var(--rule);}
-.invite-orn i{font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;font-style:normal;font-size:12px;color:var(--gold-lo);letter-spacing:0.2em;}
-.invite-quote{
-  font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',Georgia,serif;
-  font-size:clamp(20px,2.8vw,32px);font-style:italic;
-  font-weight:300;color:var(--ink);line-height:1.4;
-  margin-bottom:16px;max-width:500px;
-}
-.invite-sub{
-  font-size:13px;color:var(--ink-low);line-height:1.85;
-  font-weight:300;max-width:400px;margin-bottom:32px;
-}
+.invite-orn i{font-family:'Cormorant Garamond',serif;font-style:normal;font-size:12px;color:var(--gold-lo);letter-spacing:0.2em;}
+.invite-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,32px);font-style:italic;font-weight:300;color:var(--ink);line-height:1.4;margin-bottom:16px;max-width:500px;}
+.invite-sub{font-size:13px;color:var(--ink-low);line-height:1.85;font-weight:300;max-width:400px;margin-bottom:32px;}
 
-/* ══════════════════════════════════════
-   FOOTER
-══════════════════════════════════════ */
-footer{
-  padding:36px var(--outer);
-  border-top:1px solid var(--rule);
-  display:flex;align-items:center;
-  justify-content:space-between;background:var(--bg);
-}
+/* ── Footer ── */
+footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;background:var(--bg);}
 .foot-logo{display:flex;flex-direction:column;line-height:1;}
-.foot-logo .nl-num{font-size:20px;}
-.foot-logo .nl-word{font-size:8px;margin-top:3px;}
 .foot-copy{font-size:10px;color:var(--ink-low);letter-spacing:0.1em;}
 .foot-links{display:flex;gap:28px;}
-.foot-lnk{
-  font-size:10px;letter-spacing:0.1em;
-  color:var(--ink-low);cursor:pointer;
-  text-decoration:none;transition:color 0.2s;
-}
+.foot-lnk{font-size:10px;letter-spacing:0.1em;color:var(--ink-low);cursor:pointer;text-decoration:none;transition:color 0.2s;}
 .foot-lnk:hover{color:var(--ink);}
-
-/* ══════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════ */
-.btn-green{
-  font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;font-size:12px;
-  letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
-  color:#fff;background:var(--green);
-  border:1px solid var(--green);
-  padding:16px 44px;cursor:pointer;border-radius:2px;
-  transition:all 0.3s;
-}
-.btn-green:hover{
-  background:var(--green-lt);border-color:var(--green-lt);
-  transform:translateY(-1px);
-}
-.btn-outline-green{
-  font-family:'Jost','Futura','Century Gothic',Optima,sans-serif,'Futura','Century Gothic','Trebuchet MS',Optima,sans-serif;font-size:12px;
-  letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
-  color:var(--green);background:transparent;
-  border:1px solid rgba(0,92,53,0.3);
-  padding:16px 44px;cursor:pointer;border-radius:2px;
-  transition:all 0.3s;
-}
-.btn-outline-green:hover{border-color:var(--green);background:rgba(0,92,53,0.04);}
-
-/* ══════════════════════════════════════
-   LOGOS STRIP
-══════════════════════════════════════ */
-.logos-strip{
-  padding:32px 0;
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-  background:var(--bg);
-  overflow:hidden;
-}
-.logos-label{
-  text-align:center;
-  font-size:9px;letter-spacing:0.38em;
-  text-transform:uppercase;
-  color:var(--ink-low);
-  margin-bottom:24px;
-  font-weight:400;
-}
-.logos-track{
-  overflow:hidden;
-  -webkit-mask:linear-gradient(90deg,transparent,black 12%,black 88%,transparent);
-  mask:linear-gradient(90deg,transparent,black 12%,black 88%,transparent);
-}
-.logos-inner{
-  display:flex;
-  align-items:center;
-  gap:64px;
-  width:max-content;
-  animation:scrollLogos 28s linear infinite;
-}
-.logo-item{
-  display:flex;align-items:center;
-  color:#C8C4BA;
-  height:32px;
-  flex-shrink:0;
-  transition:color 0.3s;
-}
-.logo-item:hover{color:#888880;}
-.logo-item svg{
-  height:100%;
-  width:auto;
-}
-@keyframes scrollLogos{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
-
-
-
-/* Hero — grano sutil sobre el grid dorado */
-.hero::before{
-  content:'';position:absolute;inset:0;z-index:0;
-  pointer-events:none;
-  background-image:
-    linear-gradient(rgba(184,150,46,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(184,150,46,0.025) 1px,transparent 1px),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size:72px 72px, 72px 72px, 200px 200px;
-}
-
-/* Secciones claras — textura como background-image, sin pseudoelemento */
-.section{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)' opacity='0.022'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:300px 300px;
-  background-color:var(--bg);
-}
-.section-alt{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)' opacity='0.022'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:300px 300px;
-  background-color:var(--bg-alt);
-}
-.section-dk{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:200px 200px;
-  background-color:var(--bg-dark);
-}
-
-/* ══════════════════════════════════════
-   ÍNDICE DE REPUTACIÓN
-══════════════════════════════════════ */
-.indice-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--rule);margin-top:56px;
-}
-.indice-item{
-  background:var(--bg);padding:44px 36px;
-  border-top:2px solid transparent;
-  transition:border-color 0.3s,background 0.3s;
-}
-.indice-item:hover{background:#F4F0E4;border-top-color:var(--gold);}
-.indice-pct{
-  display:block;
-  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
-  font-size:56px;font-weight:300;
-  color:var(--gold);line-height:1;
-  letter-spacing:-0.02em;margin-bottom:14px;
-}
-.indice-label{
-  font-size:13px;font-weight:500;
-  color:var(--ink);margin-bottom:10px;
-  letter-spacing:0.02em;
-}
-.indice-desc{
-  font-size:13px;color:var(--ink-mid);
-  line-height:1.8;font-weight:300;
-}
-.indice-formula{
-  margin-top:48px;padding:36px 44px;
-  border:1px solid var(--rule);
-  background:var(--bg-alt);
-  display:flex;flex-direction:column;
-  align-items:center;text-align:center;gap:16px;
-}
-.indice-eq{
-  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
-  font-size:clamp(16px,2vw,24px);
-  color:var(--ink);letter-spacing:0.02em;
-  font-weight:400;
-}
-.indice-eq em{color:var(--gold);font-style:normal;}
-.indice-note{
-  font-size:12px;color:var(--ink-low);
-  line-height:1.7;max-width:520px;font-weight:300;
-}
-@media(max-width:700px){
-  .indice-grid{grid-template-columns:1fr;}
-  .indice-formula{padding:28px 22px;}
-}
-
-/* ══════════════════════════════════════
-   DATOS DEL MERCADO
-══════════════════════════════════════ */
-.market-strip{
-  padding:72px var(--outer);
-  background:var(--bg-dark);
-  border-top:1px solid var(--rule-dk);
-  border-bottom:1px solid var(--rule-dk);
-}
-.market-grid{
-  display:grid;
-  grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
-  align-items:center;
-  max-width:var(--max);
-  margin:0 auto;
-}
-.market-item{
-  text-align:center;
-  padding:0 32px;
-}
-.market-n{
-  display:block;
-  font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
-  font-size:clamp(36px,4vw,52px);
-  font-weight:300;
-  color:var(--gold);
-  letter-spacing:-0.02em;
-  line-height:1;
-  margin-bottom:12px;
-}
-.market-d{
-  font-size:12px;
-  color:#6A6A5A;
-  line-height:1.6;
-  font-weight:300;
-  max-width:160px;
-  margin:0 auto 10px;
-}
-.market-src{
-  font-size:9px;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:#3A3A30;
-  display:block;
-}
-.market-divider{
-  width:1px;
-  height:64px;
-  background:var(--rule-dk);
-  justify-self:center;
-}
-@media(max-width:900px){
-  .market-grid{grid-template-columns:1fr 1fr;gap:40px;}
-  .market-divider{display:none;}
-}
-@media(max-width:600px){
-  .market-grid{grid-template-columns:1fr;}
-}
 
 /* ══════════════════════════════════════
    KEYFRAMES
 ══════════════════════════════════════ */
-@keyframes riseIn{
-  from{opacity:0;transform:translateY(22px);}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
   to{opacity:1;transform:translateY(0);}
 }
 
@@ -936,62 +674,218 @@ footer{
   .final-ctas{flex-direction:column;align-items:center;}
   .hero-row{flex-direction:column;align-items:center;}
   footer{flex-direction:column;gap:22px;text-align:center;}
+  .entry-choices{flex-direction:column;}
+  .market-grid{flex-direction:column;}
+  .market-divider{width:100%;height:1px;}
 }
 @media(max-width:600px){
   :root{--outer:5vw;}
   nav{grid-template-columns:auto 1fr auto;}
   .nav-left{display:none;}
   .perm-grid{grid-template-columns:1fr;}
-  .hero-stats{flex-direction:column;}
-  .hs-item{border-right:none;border-bottom:1px solid var(--rule-dk);}
+  .indice-grid{grid-template-columns:1fr;}
+
+  /* ── HERO EMPRESA móvil ── */
+  .hero-body{ padding:90px 20px 48px; }
+  .hero-mode-badge{ margin-bottom:32px;font-size:8px; }
+  .hero-label{ margin-bottom:36px;gap:12px; }
+  .hl-txt{ font-size:9px;letter-spacing:0.28em; }
+  .hl-cities{ font-size:8px;letter-spacing:0.18em; }
+  .hl-bar{ width:18px; }
+  .hero-100{ font-size:clamp(100px,28vw,160px); }
+  .hsl-txt{ font-size:9px;letter-spacing:0.32em; }
+  .hsl-line{ width:28px; }
+  .hero-claim{ font-size:clamp(24px,6.5vw,36px);margin:36px auto 0;max-width:100%; }
+  .hero-sub{ font-size:14px;line-height:1.85;margin:18px auto 0;max-width:100%; }
+  .hero-orn{ margin:28px 0; }
+  .hero-ctas{ width:100%; }
+  .hero-row{ flex-direction:column;align-items:stretch;width:100%;gap:10px; }
+  .btn-gold,.btn-outline-gold,.btn-green,.btn-outline-green{
+    padding:16px 24px;font-size:11px;width:100%;
+  }
+  .hero-stats{ flex-direction:column; }
+  .hs-item{ border-right:none;border-bottom:1px solid var(--rule-dk);padding:20px 16px; }
+  .hs-item:last-child{ border-bottom:none; }
+  .hs-n{ font-size:28px; }
+  .hs-d{ font-size:9px; }
+
+  /* ── ENTRY SCREEN móvil ── */
+  #entry-screen{ padding:32px 20px; }
+  .entry-logo{ margin-bottom:32px; }
+  .entry-logo-num{ font-size:clamp(72px,22vw,110px); }
+  .entry-logo-word{ font-size:9px;letter-spacing:0.38em;gap:10px; }
+  .entry-logo-word::before,
+  .entry-logo-word::after{ width:20px; }
+  .entry-cities{ font-size:13px;letter-spacing:0.08em; }
+  .entry-orn{ margin:0 0 28px; }
+  .entry-q{ font-size:11px;letter-spacing:0.18em;margin-bottom:20px; }
+  .entry-choices{ flex-direction:column;width:100%; }
+  .entry-btn{
+    min-width:0;width:100%;
+    padding:26px 20px;
+    font-size:clamp(15px,4.5vw,19px);
+  }
+  .entry-btn-icon{ margin-top:10px;font-size:9px;letter-spacing:0.28em; }
+  .entry-note{ margin-top:20px;font-size:8px; }
+
+  /* ── RECLUTADOR móvil ── */
+  /* Secciones generales */
+  .section{ padding:64px 20px; }
+  .section-alt{ padding:64px 20px; }
+  .section-dk{ padding:64px 20px; }
+  .s-title{ font-size:clamp(28px,7vw,38px); }
+  .s-title-dk{ font-size:clamp(28px,7vw,38px); }
+  .s-body{ font-size:14px; }
+
+  /* Concept grid — una columna */
+  .concept-grid{ grid-template-columns:1fr; }
+  .concept-card{ padding:36px 24px; }
+
+  /* Emp layout — una columna */
+  .emp-layout{ grid-template-columns:1fr;gap:36px; }
+  .emp-quote{ font-size:18px; }
+  .emp-item{ grid-template-columns:32px 1fr;gap:14px;padding:22px 0; }
+
+  /* Mech grid — una columna */
+  .mech-grid{ grid-template-columns:1fr; }
+  .mech-card{ padding:32px 24px; }
+  .mech-n{ font-size:38px; }
+
+  /* Final section */
+  .final-section{ padding:80px 20px; }
+  .final-title{ font-size:clamp(26px,7vw,40px); }
+  .final-ctas{ flex-direction:column;align-items:stretch; }
+  .final-body{ font-size:14px; }
+
+  /* Invite section */
+  .invite-section{ padding:60px 20px; }
+  .invite-quote{ font-size:clamp(18px,5vw,24px); }
+  .invite-sub{ font-size:13px; }
+
+  /* Quote section */
+  .quote-section{ padding:64px 20px; }
+  .the-quote{ font-size:clamp(20px,5.5vw,28px); }
+
+  /* Market strip */
+  .market-item{ padding:36px 20px; }
+  .market-n{ font-size:clamp(28px,8vw,44px); }
+  .market-d{ font-size:12px; }
+
+  /* Footer */
+  footer{ padding:28px 20px;gap:16px; }
+  .foot-links{ gap:16px; }
+
 }
 </style>
 </head>
-<body>
+<body class="entry-active">
+
+<!-- ══════════════════════════════════════
+     PANTALLA DE ENTRADA
+══════════════════════════════════════ -->
+<div id="entry-screen">
+  <div class="entry-inner">
+
+    <div class="entry-logo">
+      <span class="entry-logo-num">100</span>
+      <div class="entry-logo-word">Reclutadores</div>
+      <div class="entry-cities">Guadalajara<span class="sep"> · </span>Ciudad de México<span class="sep"> · </span>Monterrey</div>
+    </div>
+
+    <div class="entry-orn">
+      <span class="orn-line"></span>
+      <span class="orn-dot"></span>
+      <span class="orn-line"></span>
+    </div>
+
+
+
+    <div class="entry-choices">
+      <button class="entry-btn empresa" onclick="enterSite('empresa')">
+        "No puedo permitirme otro error de contratación."
+        <span class="entry-btn-icon">Soy empresa</span>
+      </button>
+      <button class="entry-btn reclutador" onclick="enterSite('reclutador')">
+        "Sé que merezco estar aquí."
+        <span class="entry-btn-icon">Soy reclutador</span>
+      </button>
+    </div>
+
+    <p class="entry-note">Red privada · Acceso por invitación</p>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SITIO PRINCIPAL
+══════════════════════════════════════ -->
+<div id="site-wrapper">
 
 <!-- NAV -->
 <nav id="nav" class="on-dark">
-  <div class="nav-left">
-    <a href="#red" class="nav-lnk">La red</a>
-    <a href="#empresas" class="nav-lnk">Empresas</a>
-    <a href="#estandar" class="nav-lnk">Operación</a>
+  <div class="nav-left" id="nav-left">
+    <a href="#red" class="nav-lnk" id="nl-1">La red</a>
+    <a href="#empresas" class="nav-lnk" id="nl-2">Empresas</a>
+    <a href="#estandar" class="nav-lnk" id="nl-3">El estándar</a>
   </div>
-  <a href="#" class="nav-logo">
+  <a href="#" class="nav-logo" onclick="showEntry();return false;" title="Cambiar perfil">
     <span class="nl-num">100</span>
     <span class="nl-word">Reclutadores</span>
   </a>
   <div class="nav-right">
-    <a href="#invitacion" class="nav-lnk">Acceso</a>
-    <button class="nav-cta">Publicar posición</button>
+    <a href="#invitacion" class="nav-lnk" id="nl-4">Invitación</a>
+    <button class="nav-cta" id="nav-cta-btn">Publicar vacante</button>
   </div>
 </nav>
 
 
-<!-- HERO -->
+<!-- HERO — contenido dinámico por tipo -->
 <section class="hero">
   <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
   <div class="hero-body">
+
+    <button class="hero-mode-badge" onclick="showEntry()" id="mode-badge">
+      Entrando como Empresa
+    </button>
 
     <div class="hero-label">
       <span class="hl-bar"></span>
-      <span class="hl-txt">Red privada de reclutamiento · GDL · Est. 2026</span>
+      <div class="hl-block">
+        <span class="hl-txt">Red Privada de Reclutamiento</span>
+        <span class="hl-cities">Guadalajara · Ciudad de México · Monterrey</span>
+      </div>
       <span class="hl-bar"></span>
     </div>
 
     <span class="hero-100">100</span>
-
     <div class="hero-sub-label">
       <span class="hsl-line"></span>
       <span class="hsl-txt">Reclutadores</span>
       <span class="hsl-line"></span>
     </div>
 
-    <p class="hero-claim">"No todos merecen un asiento."</p>
+    <!-- Claim empresa -->
+    <p class="hero-claim empresa" id="claim-empresa">
+      "El reclutador que cierra tu posición ya existe.<br>Solo necesitas acceso a él."
+    </p>
+    <!-- Claim reclutador -->
+    <p class="hero-claim reclutador" id="claim-reclutador" style="display:none;">
+      "No todos merecen un asiento."
+    </p>
 
-    <p class="hero-sub">
+    <!-- Sub empresa -->
+    <p class="hero-sub" id="sub-empresa">
+      Sin costo hasta contratar.<br>
+      Los mejores reclutadores de México,<br>
+      verificados y listos para tu posición.
+    </p>
+    <!-- Sub reclutador -->
+    <p class="hero-sub" id="sub-reclutador" style="display:none;">
       El mercado tiene miles de reclutadores.<br>
       Nosotros tenemos cien. Los mejores.<br>
-      Por eso las empresas que contratan en serio<br>trabajan con nosotros.
+      Si recibiste una invitación, ya sabes por qué.
     </p>
 
     <div class="hero-orn">
@@ -1000,12 +894,19 @@ footer{
       <span class="orn-line"></span>
     </div>
 
-    <div class="hero-ctas">
+    <!-- CTAs empresa -->
+    <div class="hero-ctas" id="ctas-empresa">
       <div class="hero-row">
         <button class="btn-gold">Publicar una vacante</button>
         <button class="btn-outline-gold">Cómo funciona</button>
       </div>
-      <a href="#invitacion" class="hero-invite">Recibí una invitación</a>
+    </div>
+    <!-- CTAs reclutador -->
+    <div class="hero-ctas" id="ctas-reclutador" style="display:none;">
+      <div class="hero-row">
+        <button class="btn-gold" onclick="document.getElementById('invitacion').scrollIntoView({behavior:'smooth'})">Ingresar mi código de invitación</button>
+      </div>
+      <a href="#red" class="hero-invite">Ver cómo funciona la red</a>
     </div>
 
   </div>
@@ -1024,34 +925,33 @@ footer{
       <span class="hs-d">Promedio<br>de cierre</span>
     </div>
     <div class="hs-item">
-      <span class="hs-n">GDL</span>
-      <span class="hs-d">CDMX · MTY · QRO<br>Red nacional</span>
+      <span class="hs-n" style="font-size:22px;letter-spacing:0.08em;">GDL · CDMX · MTY</span>
+      <span class="hs-d">Red nacional</span>
     </div>
   </div>
 </section>
 
 
-<!-- QUÉ ES LA RED -->
+<!-- EL PROBLEMA -->
 <span id="red"></span>
-<section class="section reveal">
+<section class="section reveal solo-empresa" id="sec-problema">
   <div class="wrap">
-    <div class="eyebrow">La red</div>
-    <h2 class="s-title">Una infraestructura privada<br>para reclutamiento <em>de alto nivel.</em></h2>
-    <p class="s-body">Los reclutadores más especializados de México operan de forma independiente. 100 Reclutadores les da la estructura, las posiciones y el sistema de reputación para hacerlo con estándares verificables.</p>
-    <p class="s-body" style="margin-top:16px;">No es una agencia. No es una bolsa de trabajo. Es la infraestructura que conecta a los mejores operadores del mercado con las empresas que contratan en serio.</p>
+    <div class="eyebrow">El problema que resolvemos</div>
+    <h2 class="s-title">Contratar mal tiene un costo.<br>Casi nadie lo <em>calcula.</em></h2>
+    <p class="s-body">Una posición abierta durante dos meses tiene un costo operativo real. Un candidato que no funciona tiene un costo aún mayor. La mayoría de las empresas usa los mismos canales de siempre y espera resultados distintos.</p>
 
-    <div class="concept-grid">
+    <div class="concept-grid" style="margin-top:56px;">
       <div class="concept-card">
-        <span class="cc-badge">Para empresas</span>
-        <h3 class="cc-title">Acceso a los mejores reclutadores de México</h3>
-        <p class="cc-body">Sin costo hasta contratar. Publicas tu vacante y el sistema la asigna automáticamente a los reclutadores con mejor historial en tu industria. No necesitas conocerlos ni contactarlos — el sistema hace el trabajo. Solo pagas cuando encuentras a la persona correcta.</p>
-        <div class="cc-foot">Pago solo al contratar · Garantía 90 días</div>
+        <span class="cc-badge">Lo que pierdes hoy</span>
+        <h3 class="cc-title">El proceso tradicional ya no funciona</h3>
+        <p class="cc-body">Las bolsas de trabajo son ruidosas. Las agencias cobran por adelantado y no garantizan nada. Los reclutadores internos están saturados. El resultado: posiciones abiertas por meses, candidatos que no se quedan, y procesos que se repiten.</p>
+        <div class="cc-foot">47 días promedio de contratación en México · Manpower Group</div>
       </div>
       <div class="concept-card">
-        <span class="cc-badge">Para reclutadores</span>
-        <h3 class="cc-title">Acceso solo por invitación</h3>
-        <p class="cc-body">No existe registro abierto. El acceso ocurre por invitación directa o referencia validada. Si tienes trayectoria, especialización y reputación verificable, alguien ya está pensando en ti. Si no la tienes, este no es tu lugar todavía.</p>
-        <div class="cc-foot">Asiento con número · Permanencia por resultados</div>
+        <span class="cc-badge">Lo que obtienes aquí</span>
+        <h3 class="cc-title">Acceso directo a los reclutadores que sí cierran</h3>
+        <p class="cc-body">100 Reclutadores es una red privada de operadores seleccionados. No son visibles en LinkedIn. No trabajan para agencias. Operan con su nombre en cada resultado — y eso cambia todo. Solo pagas cuando contratas a la persona correcta.</p>
+        <div class="cc-foot">Costo cero hasta el cierre exitoso · Garantía 90 días</div>
       </div>
     </div>
   </div>
@@ -1059,147 +959,60 @@ footer{
 
 
 <!-- LOGOS -->
-<div class="logos-strip">
+<div class="logos-strip solo-empresa" id="sec-logos">
   <div class="logos-label">Sectores donde opera la red</div>
   <div class="logos-track">
     <div class="logos-inner">
-
-      <!-- CEMEX -->
-      <div class="logo-item">
-        <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="29" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="currentColor" letter-spacing="-1">CEMEX</text>
-        </svg>
-      </div>
-
-      <!-- BANORTE -->
-      <div class="logo-item">
-        <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">BANORTE</text>
-        </svg>
-      </div>
-
-      <!-- BIMBO -->
-      <div class="logo-item">
-        <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="30" font-family="Arial Black,sans-serif" font-size="30" font-weight="900" fill="currentColor">Bimbo</text>
-        </svg>
-      </div>
-
-      <!-- LIVERPOOL -->
-      <div class="logo-item">
-        <svg viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="27" font-family="Georgia,serif" font-size="20" font-weight="400" fill="currentColor" letter-spacing="3">LIVERPOOL</text>
-        </svg>
-      </div>
-
-      <!-- FEMSA -->
-      <div class="logo-item">
-        <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">FEMSA</text>
-        </svg>
-      </div>
-
-      <!-- GRUMA -->
-      <div class="logo-item">
-        <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="1">GRUMA</text>
-        </svg>
-      </div>
-
-      <!-- SORIANA -->
-      <div class="logo-item">
-        <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="27" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">SORIANA</text>
-        </svg>
-      </div>
-
-      <!-- HSBC -->
-      <div class="logo-item">
-        <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">HSBC</text>
-        </svg>
-      </div>
-
-      <!-- Duplicado para loop continuo -->
-      <div class="logo-item">
-        <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="29" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="currentColor" letter-spacing="-1">CEMEX</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">BANORTE</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="30" font-family="Arial Black,sans-serif" font-size="30" font-weight="900" fill="currentColor">Bimbo</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="27" font-family="Georgia,serif" font-size="20" font-weight="400" fill="currentColor" letter-spacing="3">LIVERPOOL</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">FEMSA</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="1">GRUMA</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="27" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">SORIANA</text>
-        </svg>
-      </div>
-      <div class="logo-item">
-        <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">HSBC</text>
-        </svg>
-      </div>
-
+      <div class="logo-item"><svg viewBox="0 0 120 40"><text x="4" y="29" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="currentColor" letter-spacing="-1">CEMEX</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 140 40"><text x="4" y="28" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">BANORTE</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 40"><text x="4" y="30" font-family="Arial Black,sans-serif" font-size="30" font-weight="900" fill="currentColor">Bimbo</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 150 40"><text x="4" y="27" font-family="Georgia,serif" font-size="20" font-weight="400" fill="currentColor" letter-spacing="3">LIVERPOOL</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 40"><text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">FEMSA</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 40"><text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="1">GRUMA</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 140 40"><text x="4" y="27" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">SORIANA</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 90 40"><text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">HSBC</text></svg></div>
+      <!-- duplicado para loop -->
+      <div class="logo-item"><svg viewBox="0 0 120 40"><text x="4" y="29" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="currentColor" letter-spacing="-1">CEMEX</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 140 40"><text x="4" y="28" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">BANORTE</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 40"><text x="4" y="30" font-family="Arial Black,sans-serif" font-size="30" font-weight="900" fill="currentColor">Bimbo</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 150 40"><text x="4" y="27" font-family="Georgia,serif" font-size="20" font-weight="400" fill="currentColor" letter-spacing="3">LIVERPOOL</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 40"><text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">FEMSA</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 40"><text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="1">GRUMA</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 140 40"><text x="4" y="27" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="1">SORIANA</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 90 40"><text x="4" y="28" font-family="Arial Black,sans-serif" font-size="26" font-weight="900" fill="currentColor" letter-spacing="2">HSBC</text></svg></div>
+    </div>
+  </div>
 </div>
 
 
-<!-- DATOS DEL MERCADO -->
-<div class="market-strip">
-  <div class="wrap">
-    <div class="market-grid">
-
-      <div class="market-item">
-        <span class="market-n">47 días</span>
-        <p class="market-d">Tiempo promedio de contratación en México</p>
-        <span class="market-src">Manpower Group, 2024</span>
-      </div>
-
-      <div class="market-divider"></div>
-
-      <div class="market-item">
-        <span class="market-n">+30%</span>
-        <p class="market-d">Del salario anual cuesta una mala contratación</p>
-        <span class="market-src">SHRM</span>
-      </div>
-
-      <div class="market-divider"></div>
-
-      <div class="market-item">
-        <span class="market-n">77%</span>
-        <p class="market-d">De empleadores reporta dificultad para cubrir posiciones clave</p>
-        <span class="market-src">Manpower Talent Shortage, 2024</span>
-      </div>
-
-      <div class="market-divider"></div>
-
-      <div class="market-item">
-        <span class="market-n">#5</span>
-        <p class="market-d">México en escasez global de talento calificado</p>
-        <span class="market-src">Manpower Group, 2024</span>
-      </div>
-
+<!-- DATOS DEL MERCADO — el dolor en números -->
+<div class="market-strip solo-empresa" id="sec-market">
+  <div class="wrap" style="padding:16px 0 8px; text-align:center;">
+    <p style="font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:#7A7A60;font-family:'Jost',sans-serif;margin-bottom:0;">Esto es lo que está pasando en tu empresa ahora mismo</p>
+  </div>
+  <div class="market-grid">
+    <div class="market-item">
+      <span class="market-n">47 días</span>
+      <p class="market-d">Es lo que tarda en promedio cubrir una posición en México</p>
+      <span class="market-src">Manpower Group, 2024</span>
+    </div>
+    <div class="market-divider"></div>
+    <div class="market-item">
+      <span class="market-n">+30%</span>
+      <p class="market-d">Del salario anual es el costo real de una mala contratación</p>
+      <span class="market-src">SHRM</span>
+    </div>
+    <div class="market-divider"></div>
+    <div class="market-item">
+      <span class="market-n">77%</span>
+      <p class="market-d">De los empleadores en México no encuentra el perfil que necesita</p>
+      <span class="market-src">Manpower Talent Shortage, 2024</span>
+    </div>
+    <div class="market-divider"></div>
+    <div class="market-item">
+      <span class="market-n">#5</span>
+      <p class="market-d">México ocupa el lugar 5 en escasez global de talento calificado</p>
+      <span class="market-src">Manpower Group, 2024</span>
     </div>
   </div>
 </div>
@@ -1207,52 +1020,49 @@ footer{
 
 <!-- PARA EMPRESAS -->
 <span id="empresas"></span>
-<section class="section-alt reveal">
+<!-- solo-empresa -->
+<section class="section-alt reveal solo-empresa" id="sec-empresas">
   <div class="wrap">
-    <div class="eyebrow gold">Para empresas</div>
-    <h2 class="s-title">Algunas posiciones son demasiado<br>importantes para <em>dejarlas al azar.</em></h2>
-
+    <div class="eyebrow gold">Por qué funciona</div>
+    <h2 class="s-title">No es una agencia.<br>No es una bolsa.<br>Es <em>diferente.</em></h2>
     <div class="emp-layout">
       <div class="emp-left">
-        <p class="s-body">Tu equipo conoce la empresa. Nosotros conocemos el mercado. No somos competencia de tu área de RRHH — somos la extensión que opera donde ellos no tienen alcance.</p>
-        <blockquote class="emp-quote">
-          "Tu equipo sabe qué necesita.<br>La red sabe dónde encontrarlo."
-        </blockquote>
+        <p class="s-body">Las agencias cobran por adelantado y desaparecen. Las bolsas te inundan de perfiles que no sirven. Aquí funciona distinto: pagas solo cuando contratas, el reclutador responde con su nombre, y tienes 90 días de garantía.</p>
+        <blockquote class="emp-quote">"Describes el perfil una vez.<br>La red hace el resto."</blockquote>
         <button class="btn-gold">Publicar una vacante</button>
       </div>
-
       <div class="emp-right">
         <div class="emp-list">
           <div class="emp-item">
             <span class="emp-n">01</span>
             <div>
-              <div class="emp-t">Solo pagas al contratar</div>
-              <p class="emp-p">Sin inversión inicial. Los honorarios se definen según nivel y complejidad de la posición, y se aplican únicamente al cierre exitoso.</p>
-              <span class="emp-tag">Pagas el día que contratas. No antes.</span>
+              <div class="emp-t">Cero costo hasta que contratas</div>
+              <p class="emp-p">No hay pago por adelantado, ni cuota mensual, ni compromiso de exclusividad. Solo pagas cuando la posición está cubierta con el candidato correcto.</p>
+              <span class="emp-tag">Sin riesgo financiero inicial</span>
             </div>
           </div>
           <div class="emp-item">
             <span class="emp-n">02</span>
             <div>
-              <div class="emp-t">Cada reclutador opera con su nombre en el resultado</div>
-              <p class="emp-p">Si el perfil no se sostiene, el reclutador gestiona el reemplazo. La red no ofrece excusas — ofrece soluciones.</p>
-              <span class="emp-tag">Responsabilidad verificable</span>
+              <div class="emp-t">14 días promedio vs 47 del mercado</div>
+              <p class="emp-p">Los reclutadores de la red son especialistas en su vertical. No lanzan currículums al azar — ya saben dónde está el perfil antes de empezar.</p>
+              <span class="emp-tag">3× más rápido que el proceso tradicional</span>
             </div>
           </div>
           <div class="emp-item">
             <span class="emp-n">03</span>
             <div>
-              <div class="emp-t">14 días promedio de cierre</div>
-              <p class="emp-p">El mercado general tarda 47 días. La diferencia es precisión desde el primer contacto.</p>
-              <span class="emp-tag">3× más rápido</span>
+              <div class="emp-t">El reclutador responde con su reputación</div>
+              <p class="emp-p">Cada operador tiene un índice verificado en tiempo real. Si el candidato no funciona, el reclutador gestiona el reemplazo. No hay con quién pelear ni nada que negociar.</p>
+              <span class="emp-tag">Accountability real, no solo promesas</span>
             </div>
           </div>
           <div class="emp-item">
             <span class="emp-n">04</span>
             <div>
-              <div class="emp-t">Garantía de 90 días</div>
-              <p class="emp-p">Si el candidato no permanece, el reclutador cubre el reemplazo. Sin negociación.</p>
-              <span class="emp-tag">Estándar en todos los cierres</span>
+              <div class="emp-t">90 días de garantía en cada cierre</div>
+              <p class="emp-p">Si el candidato no permanece los primeros 90 días, el proceso se repite sin costo adicional. Estándar en todos los cierres de la red, sin excepción.</p>
+              <span class="emp-tag">La garantía más larga del mercado</span>
             </div>
           </div>
         </div>
@@ -1263,147 +1073,241 @@ footer{
 
 
 <!-- CÓMO OPERA -->
-<section class="section-dk reveal">
+<section class="section-dk reveal solo-empresa" id="sec-opera">
   <div class="wrap">
-    <div class="eyebrow-dk">Cómo opera la red</div>
-    <h2 class="s-title-dk">Un sistema diseñado<br><em>para operar con precisión.</em></h2>
-
+    <div class="eyebrow-dk">Cómo funciona para ti</div>
+    <h2 class="s-title-dk">Cuatro pasos.<br><em>Un solo formulario para empezar.</em></h2>
     <div class="mech-grid">
       <div class="mech-card">
         <span class="mech-n">01</span>
-        <div class="mech-t">Selección sin concesiones</div>
-        <p class="mech-p">No existe registro abierto. El acceso ocurre por invitación o referencia validada. Trayectoria, especialización y reputación verificable. Menos del 12% obtiene un asiento.</p>
-        <div class="mech-foot">Proceso promedio: 14 días hábiles</div>
+        <div class="mech-t">Describes la posición</div>
+        <p class="mech-p">Llenas un formulario con el perfil que necesitas — seniority, industria, expectativa salarial, urgencia. Sin burocracia. En menos de cinco minutos tenemos lo que necesitamos para arrancar.</p>
+        <div class="mech-foot">Sin compromiso · Sin costo en esta etapa</div>
       </div>
       <div class="mech-card">
         <span class="mech-n">02</span>
-        <div class="mech-t">El asiento tiene costo real</div>
-        <p class="mech-p">No es arbitrario — es el filtro. Quien no está dispuesto a invertir en su posición dentro de la red, no pertenece a ella.</p>
-        <div class="mech-foot">Sin resultados, el asiento se libera</div>
+        <div class="mech-t">Validamos que la posición sea competitiva</div>
+        <p class="mech-p">Antes de asignar un reclutador, revisamos que el perfil y las condiciones sean coherentes con el mercado. Si hay algo que ajustar — rango salarial, seniority, expectativas — te lo decimos antes de arrancar. Así el proceso tiene posibilidades reales de cerrar.</p>
+        <div class="mech-foot">Sin filtros de cortesía · Feedback directo del mercado</div>
       </div>
       <div class="mech-card">
         <span class="mech-n">03</span>
-        <div class="mech-t">El talento que buscas no está en las bolsas</div>
-        <p class="mech-p">Las empresas publican bajo demanda. Las que confían en la red no necesitan publicar en otro lado. Solo los niveles más altos del índice acceden a las posiciones más relevantes.</p>
-        <div class="mech-foot">Comisión proporcional al rol · Sin techo</div>
+        <div class="mech-t">Recibes candidatos, no currículums</div>
+        <p class="mech-p">La red asigna al reclutador con mejor historial en tu vertical y él arranca de inmediato. Tú no recibes 40 perfiles para filtrar — recibes los dos o tres que realmente califican. Tu tiempo no se negocia.</p>
+        <div class="mech-foot">Promedio: 14 días al primer candidato presentado</div>
       </div>
       <div class="mech-card">
         <span class="mech-n">04</span>
-        <div class="mech-t">La reputación es el activo</div>
-        <p class="mech-p">Velocidad de cierre, calidad de candidatos a 90 días, evaluación de empresas. Un índice verificado, calculado en tiempo real. El sistema no se puede manipular.</p>
-        <div class="mech-foot">Índice = Cierres × 40% + Evaluación × 35% + Velocidad × 25%</div>
+        <div class="mech-t">Contratas y pagas. Con garantía.</div>
+        <p class="mech-p">Solo en el momento del cierre exitoso se genera el cobro. Y si el candidato no se sostiene en los primeros 90 días, el proceso se repite sin costo adicional.</p>
+        <div class="mech-foot">Pago al cierre · Garantía 90 días incluida</div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ÍNDICE DE REPUTACIÓN -->
-<section class="section reveal">
-  <div class="wrap">
-    <div class="eyebrow">El índice</div>
-    <h2 class="s-title">La reputación de cada reclutador<br>se mide en <em>tiempo real.</em></h2>
-    <p class="s-body">Cada operador dentro de la red tiene un índice verificado, calculado de forma continua. No es una calificación subjetiva — es un sistema con tres variables objetivas que determinan qué posiciones recibe, en qué orden, y si permanece en la red.</p>
-
-    <div class="indice-grid">
-      <div class="indice-item">
-        <span class="indice-pct">40%</span>
-        <div class="indice-label">Cierres efectivos</div>
-        <p class="indice-desc">Posiciones cubiertas con permanencia verificada a 90 días.</p>
-      </div>
-      <div class="indice-item">
-        <span class="indice-pct">35%</span>
-        <div class="indice-label">Evaluación de empresas</div>
-        <p class="indice-desc">Calificación directa del cliente al cierre de cada proceso.</p>
-      </div>
-      <div class="indice-item">
-        <span class="indice-pct">25%</span>
-        <div class="indice-label">Velocidad de cierre</div>
-        <p class="indice-desc">Tiempo desde la asignación hasta el candidato aceptado.</p>
-      </div>
-    </div>
-
-    <div class="indice-formula">
-      <span class="indice-eq">Índice = Cierres <em>×</em> 40% + Evaluación <em>×</em> 35% + Velocidad <em>×</em> 25%</span>
-      <p class="indice-note">El índice no se puede negociar. Determina el acceso a posiciones, la visibilidad ante empresas y la permanencia en la red.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- EL ESTÁNDAR -->
+<!-- POR QUÉ PUEDES CONFIAR EN LA RED -->
 <span id="estandar"></span>
-<section class="section reveal">
+<section class="section reveal solo-empresa" id="sec-estandar">
   <div class="wrap">
-    <div class="eyebrow">El estándar</div>
-    <h2 class="s-title">Entrar es difícil.<br><em>Quedarse</em> es más difícil.</h2>
+    <div class="eyebrow">Tu tranquilidad está respaldada</div>
+    <h2 class="s-title">El reclutador que te asignamos<br>ya tiene <em>historial probado.</em></h2>
+    <p class="s-body">No apostamos por promesas. Cada reclutador en la red opera con un índice de desempeño verificado — y solo trabaja contigo si sus números lo respaldan. Tú no tienes que evaluar al reclutador. Nosotros ya lo hicimos.</p>
 
-    <div class="perm-grid">
-      <div class="perm-card">
-        <span class="perm-lbl">Índice mínimo</span>
-        <p class="perm-val">Evaluación de empresas por debajo de <strong>85%</strong> sostenida por dos ciclos consecutivos activa revisión de permanencia.</p>
+    <div class="concept-grid" style="margin-top:56px;">
+      <div class="concept-card">
+        <span class="cc-badge">Lo que esto evita</span>
+        <h3 class="cc-title">No aprendes con tu posición abierta.</h3>
+        <p class="cc-body">Con una agencia tradicional nunca sabes quién va a trabajar tu vacante ni qué tan bueno es. Aquí el operador asignado ya cerró posiciones similares a la tuya, en tu industria, con permanencia verificada. Llega al trabajo, no al entrenamiento.</p>
+        <div class="cc-foot">Asignación basada en historial real · No en disponibilidad</div>
       </div>
-      <div class="perm-card">
-        <span class="perm-lbl">Inactividad</span>
-        <p class="perm-val">Más de <strong>60 días</strong> sin actividad registrada en la plataforma resulta en la liberación automática del asiento.</p>
-      </div>
-      <div class="perm-card">
-        <span class="perm-lbl">Ghosting</span>
-        <p class="perm-val">Cualquier candidato o empresa sin respuesta documentada en <strong>48 horas</strong> genera penalización directa al índice.</p>
-      </div>
-      <div class="perm-card">
-        <span class="perm-lbl">Manipulación</span>
-        <p class="perm-val">Intentar alterar métricas o eludir el sistema resulta en <strong>expulsión inmediata y permanente.</strong> Sin apelación.</p>
+      <div class="concept-card">
+        <span class="cc-badge">Lo que esto garantiza</span>
+        <h3 class="cc-title">Si no funciona, no se queda en la red.</h3>
+        <p class="cc-body">Tu evaluación al cierre del proceso cuenta directamente en el índice del reclutador. Si su desempeño baja, deja de recibir posiciones. Si no entrega, sale. No hay favores ni excepciones. El estándar se mantiene solo porque hay consecuencias reales.</p>
+        <div class="cc-foot">Tu opinión tiene peso · El índice no se negocia</div>
       </div>
     </div>
-
-
   </div>
 </section>
+
+
+<!-- ══════════════════════════════════════
+     SECCIONES RECLUTADOR (ocultas por defecto)
+══════════════════════════════════════ -->
+<div id="contenido-reclutador" style="display:none;">
+
+<!-- POR QUÉ ESTA RED -->
+<span id="red-rec"></span>
+<section class="section reveal">
+  <div class="wrap">
+    <div class="eyebrow">Por qué esta red es diferente</div>
+    <h2 class="s-title">La oportunidad que un<br>buen reclutador <em>merece.</em></h2>
+    <p class="s-body">La mayoría de los reclutadores freelance pierden tiempo buscando clientes, negociando condiciones y persiguiendo pagos. Aquí no. La red te entrega la posición, tú te concentras en lo que sabes hacer: cerrar.</p>
+
+    <div class="concept-grid" style="margin-top:56px;">
+      <div class="concept-card">
+        <span class="cc-badge">Lo que el mercado te da hoy</span>
+        <h3 class="cc-title">Mucho trabajo. Poco reconocimiento.</h3>
+        <p class="cc-body">En una agencia eres un número. Tus cierres benefician a la empresa, no a tu reputación. Como freelance consigues clientes, pero cargas con todo — la prospección, la negociación, el cobro, y el riesgo de que no paguen. El talento sobra. Las condiciones justas, no.</p>
+        <div class="cc-foot">El reclutador promedio destina 40% de su tiempo a conseguir clientes · no a reclutar</div>
+      </div>
+      <div class="concept-card">
+        <span class="cc-badge">Lo que esta red te da</span>
+        <h3 class="cc-title">Posiciones reales. Tú solo cierras.</h3>
+        <p class="cc-body">Cuando entras a la red, recibes vacantes asignadas según tu historial y vertical. No prospecteas, no negocies tarifas, no persigas pagos. La empresa ya validó el perfil, ya aceptó las condiciones. Tú arrancas donde otros terminan.</p>
+        <div class="cc-foot">Cero tiempo en ventas · 100% en reclutamiento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BENEFICIOS RECLUTADOR -->
+<section class="section-alt reveal">
+  <div class="wrap">
+    <div class="eyebrow gold">Lo que obtienes al operar en la red</div>
+    <h2 class="s-title">Las condiciones que<br>un buen reclutador <em>merece.</em></h2>
+    <div class="emp-layout">
+      <div class="emp-left">
+        <p class="s-body">Entraste por invitación porque alguien que te conoce sabe que puedes estar aquí. Eso ya dice algo. Lo que sigue depende de tus resultados — y la red está diseñada para que los mejores ganen más.</p>
+        <blockquote class="emp-quote">"Tu historial trabaja<br>por ti, no contra ti."</blockquote>
+        <button class="btn-gold" onclick="document.getElementById('invitacion').scrollIntoView({behavior:'smooth'})">Ingresar mi código de invitación</button>
+      </div>
+      <div class="emp-right">
+        <div class="emp-list">
+          <div class="emp-item">
+            <span class="emp-n">01</span>
+            <div>
+              <div class="emp-t">Vacantes asignadas, sin prospección</div>
+              <p class="emp-p">No dedicas tiempo ni energía a conseguir clientes. La red gestiona la relación con la empresa, valida el perfil y te lo entrega listo para trabajar. Tú solo recluta.</p>
+              <span class="emp-tag">Más tiempo en lo que genera resultados</span>
+            </div>
+          </div>
+          <div class="emp-item">
+            <span class="emp-n">02</span>
+            <div>
+              <div class="emp-t">Comisión por cierre, sin techo</div>
+              <p class="emp-p">Cobras al cierre exitoso. No hay cuota mensual, no hay descuentos por "usar la plataforma". Cada posición que cierras se traduce directamente en tu ingreso.</p>
+              <span class="emp-tag">Sin intermediarios que se queden con tu trabajo</span>
+            </div>
+          </div>
+          <div class="emp-item">
+            <span class="emp-n">03</span>
+            <div>
+              <div class="emp-t">Tu índice construye tu reputación</div>
+              <p class="emp-p">Cada cierre con permanencia, cada evaluación positiva de la empresa, cada entrega en tiempo — todo suma a tu índice. A mayor índice, mejores posiciones. La red premia a quien entrega.</p>
+              <span class="emp-tag">Historial verificado que habla por ti</span>
+            </div>
+          </div>
+          <div class="emp-item">
+            <span class="emp-n">04</span>
+            <div>
+              <div class="emp-t">Posiciones competitivas y validadas</div>
+              <p class="emp-p">Antes de asignarte una vacante, la red verifica que el perfil sea realista y las condiciones sean competitivas en el mercado. No pierdes tiempo en posiciones imposibles de cerrar.</p>
+              <span class="emp-tag">Solo trabajas en lo que tiene posibilidades reales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CÓMO FUNCIONA PARA EL RECLUTADOR -->
+<section class="section-dk reveal">
+  <div class="wrap">
+    <div class="eyebrow-dk">Cómo opera la red para ti</div>
+    <h2 class="s-title-dk">Cuatro pasos.<br><em>Tú solo te preocupas por cerrar.</em></h2>
+    <div class="mech-grid">
+      <div class="mech-card">
+        <span class="mech-n">01</span>
+        <div class="mech-t">Ingresas con tu código de invitación</div>
+        <p class="mech-p">El acceso ocurre por invitación directa o referencia validada. No hay proceso de aplicación abierto. Si alguien te invitó, ya confía en tu capacidad — eso es el primer filtro.</p>
+        <div class="mech-foot">Acceso exclusivo · Solo 100 asientos en la red</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-n">02</span>
+        <div class="mech-t">La red te asigna posiciones en tu industria</div>
+        <p class="mech-p">El sistema cruza tu historial y especialidad con las vacantes disponibles. Recibes posiciones donde ya tienes experiencia y contexto — no cualquier vacante, la correcta para ti.</p>
+        <div class="mech-foot">Asignación inteligente · Sin ruido ni vacantes irrelevantes</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-n">03</span>
+        <div class="mech-t">Trabajas con tu método, tu red, tu criterio</div>
+        <p class="mech-p">La red no te dice cómo reclutar. Conoces tu industria, sabes dónde está el talento. Operas con autonomía total — y eso es exactamente por lo que te invitaron.</p>
+        <div class="mech-foot">Autonomía total · Sin microgestión</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-n">04</span>
+        <div class="mech-t">Cierras y cobras. Tu índice sube.</div>
+        <p class="mech-p">Al confirmar la contratación se genera tu comisión. Cada cierre con permanencia a 90 días y evaluación positiva de la empresa fortalece tu índice — y eso te abre mejores posiciones.</p>
+        <div class="mech-foot">Pago al cierre · Índice que trabaja a tu favor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EL ÍNDICE — para el reclutador -->
+<span id="estandar-rec"></span>
+<section class="section reveal">
+  <div class="wrap">
+    <div class="eyebrow">El estándar de la red</div>
+    <h2 class="s-title">Tu historial es tu<br><em>ventaja competitiva.</em></h2>
+    <p class="s-body">El índice no es un sistema de castigo — es un sistema de reconocimiento. Mide lo que realmente importa: si cierras, si el candidato se queda, y si la empresa queda satisfecha. A mejor índice, mejores posiciones y mayor visibilidad dentro de la red.</p>
+
+    <div class="concept-grid" style="margin-top:56px;">
+      <div class="concept-card">
+        <span class="cc-badge">Cómo se construye tu índice</span>
+        <h3 class="cc-title">Tres métricas. Todas objetivas.</h3>
+        <p class="cc-body">El 40% es permanencia verificada a 90 días — el candidato que colocaste sigue en el puesto. El 35% es la evaluación directa de la empresa al cierre. El 25% es velocidad de entrega. Ninguna métrica se puede manipular — solo mejorar trabajando bien.</p>
+        <div class="cc-foot">Calculado en tiempo real · Transparente para ti</div>
+      </div>
+      <div class="concept-card">
+        <span class="cc-badge">Qué te da un índice alto</span>
+        <h3 class="cc-title">Las mejores posiciones llegan a ti primero.</h3>
+        <p class="cc-body">El sistema asigna vacantes priorizando a los operadores con mejor historial en cada vertical. Un índice alto significa más posiciones, mejores perfiles y mayor ingreso potencial. La red está diseñada para que los que más entregan, más reciban.</p>
+        <div class="cc-foot">Meritocracia real · Sin favoritismos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /contenido-reclutador -->
 
 
 <!-- QUOTE -->
 <section class="quote-section reveal">
-  <p class="the-quote">
-    "La reputación también se contrata.<br>Aquí es lo único que importa."
-  </p>
+  <p class="the-quote" id="main-quote">"Contratar bien no es suerte.<br>Es tener acceso a <em style="color:var(--gold)">las personas correctas.</em>"</p>
   <div class="q-diamond"></div>
-  <div class="q-attr">100 Reclutadores · Red privada · GDL · México</div>
+  <div class="q-attr">100 Reclutadores · Red privada · GDL · MTY · México</div>
 </section>
 
 
 <!-- FINAL CTA -->
 <section class="final-section reveal">
-  <p class="final-eyebrow">Infraestructura privada de reclutamiento · México</p>
-  <h2 class="final-title">El perfil correcto no siempre está disponible.<br>Pero siempre está <em>en la red.</em></h2>
-  <p class="final-body">
-    Publica tu posición.<br>
-    Sin inversión inicial.<br>
-    Solo pagas al contratar.
-  </p>
-  <div class="final-ctas">
-    <button class="btn-gold">Publicar una posición</button>
+  <p class="final-eyebrow" id="final-eyebrow">¿Tienes una posición que no puedes seguir esperando?</p>
+  <h2 class="final-title" id="final-title">Describe el perfil.<br>La red <em>hace el resto.</em></h2>
+  <p class="final-body" id="final-body">Sin costo hasta contratar.<br>Sin proceso complicado.<br>Solo el candidato correcto.</p>
+  <div class="final-ctas" id="final-ctas">
+    <button class="btn-gold">Publicar una vacante</button>
     <button class="btn-outline-green">Hablar con el equipo →</button>
   </div>
-  <p class="final-note">Sin costo hasta contratar · Garantía 90 días</p>
+  <p class="final-note" id="final-note">Cero costo hasta el cierre · Garantía 90 días · Sin exclusividad</p>
 </section>
 
 
 <!-- INVITACIÓN -->
 <span id="invitacion"></span>
-<section class="invite-section reveal">
+<section class="invite-section reveal" id="invite-section" style="display:none;">
   <div class="invite-orn">
-    <span></span>
-    <i>Para reclutadores</i>
-    <span></span>
+    <span></span><i>Para reclutadores</i><span></span>
   </div>
-  <p class="invite-quote">
-    "Si recibiste una invitación,<br>ya sabes qué hacer."
-  </p>
-  <p class="invite-sub">
-    El acceso a la red ocurre por invitación directa o referencia validada.<br>
-    No existe proceso de aplicación abierto.
-  </p>
+  <p class="invite-quote">"Si recibiste una invitación,<br>ya sabes qué hacer."</p>
+  <p class="invite-sub">El acceso a la red ocurre por invitación directa o referencia validada.<br>No existe proceso de aplicación abierto.</p>
   <button class="btn-outline-green">Tengo mi código de invitación</button>
 </section>
 
@@ -1414,27 +1318,122 @@ footer{
     <span class="nl-num" style="font-size:20px">100</span>
     <span class="nl-word">Reclutadores</span>
   </div>
-  <span class="foot-copy">© 2026 · GDL · Red privada · México</span>
+  <span class="foot-copy">© 2026 · 100 Reclutadores · Red Privada de Reclutamiento · México</span>
   <div class="foot-links">
-    <a href="#" class="foot-lnk">Privacidad</a>
+    <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer" class="foot-lnk">Aviso de Privacidad</a>
     <a href="#" class="foot-lnk">Términos</a>
     <a href="#" class="foot-lnk">Contacto</a>
   </div>
 </footer>
 
+</div><!-- /site-wrapper -->
+
 
 <script>
+/* ══════════════════════════════════════
+   ENTRY SCREEN
+══════════════════════════════════════ */
+function enterSite(tipo){
+  const entry   = document.getElementById('entry-screen');
+  const wrapper = document.getElementById('site-wrapper');
+  const badge   = document.getElementById('mode-badge');
+  const navCta  = document.getElementById('nav-cta-btn');
+
+  /* Adaptar hero según tipo */
+  if(tipo === 'empresa'){
+    document.getElementById('claim-empresa').style.display  = '';
+    document.getElementById('claim-reclutador').style.display = 'none';
+    document.getElementById('sub-empresa').style.display    = '';
+    document.getElementById('sub-reclutador').style.display = 'none';
+    document.getElementById('ctas-empresa').style.display   = '';
+    document.getElementById('ctas-reclutador').style.display= 'none';
+    badge.textContent  = '← Entrando como Empresa';
+    navCta.textContent = 'Publicar vacante';
+    /* Nav empresa */
+    document.getElementById('nl-1').textContent = 'La red';
+    document.getElementById('nl-1').href = '#red';
+    document.getElementById('nl-2').textContent = 'Empresas';
+    document.getElementById('nl-2').href = '#empresas';
+    document.getElementById('nl-3').textContent = 'Por qué funciona';
+    document.getElementById('nl-3').href = '#estandar';
+    document.getElementById('nl-4').style.display = 'none';
+    document.getElementById('invite-section').style.display = 'none';
+    document.getElementById('contenido-reclutador').style.display = 'none';
+    document.querySelectorAll('.solo-empresa').forEach(el => el.style.display = '');
+    document.getElementById('main-quote').innerHTML = '\"Contratar bien no es suerte.<br>Es tener acceso a <em style=\"color:var(--gold)\">las personas correctas.</em>\"';
+    document.getElementById('final-eyebrow').innerHTML = '¿Tienes una posición que no puedes seguir esperando?';
+    document.getElementById('final-title').innerHTML = 'Describe el perfil.<br>La red <em>hace el resto.</em>';
+    document.getElementById('final-body').innerHTML = 'Sin costo hasta contratar.<br>Sin proceso complicado.<br>Solo el candidato correcto.';
+    document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\">Publicar una vacante</button><button class=\"btn-outline-green\">Hablar con el equipo →</button>';
+    document.getElementById('final-note').innerHTML = 'Cero costo hasta el cierre · Garantía 90 días · Sin exclusividad';
+    navCta.style.display = '';
+  } else {
+    document.getElementById('claim-empresa').style.display  = 'none';
+    document.getElementById('claim-reclutador').style.display = '';
+    document.getElementById('sub-empresa').style.display    = 'none';
+    document.getElementById('sub-reclutador').style.display = '';
+    document.getElementById('ctas-empresa').style.display   = 'none';
+    document.getElementById('ctas-reclutador').style.display= '';
+    badge.textContent  = '← Entrando como Reclutador';
+    navCta.textContent = 'Mi código de invitación';
+    /* Nav reclutador */
+    document.getElementById('nl-1').textContent = 'La red';
+    document.getElementById('nl-1').href = '#red';
+    document.getElementById('nl-2').textContent = 'El índice';
+    document.getElementById('nl-2').href = '#estandar';
+    document.getElementById('nl-3').textContent = 'El estándar';
+    document.getElementById('nl-3').href = '#estandar';
+    document.getElementById('nl-4').textContent = 'Mi invitación';
+    document.getElementById('nl-4').href = '#invitacion';
+    navCta.textContent = 'Ingresar código';
+    navCta.style.display = '';
+    document.getElementById('invite-section').style.display = '';
+    document.getElementById('contenido-reclutador').style.display = '';
+    document.querySelectorAll('.solo-empresa').forEach(el => el.style.display = 'none');
+    document.getElementById('main-quote').innerHTML = '\"Si llegaste hasta aquí,<br>ya sabes que <em style=\"color:var(--gold)\">mereces estar.</em>\"';
+    document.getElementById('final-eyebrow').innerHTML = 'Un solo lugar donde tu trabajo habla por ti';
+    document.getElementById('final-title').innerHTML = 'Los mejores reclutadores no buscan clientes.<br><em>Ganan cerrando posiciones.</em>';
+    document.getElementById('final-body').innerHTML = 'Más vacantes.<br>Mejores comisiones.<br>Sin tener que conseguirlas.';
+    document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\" onclick=\"document.getElementById(\'invitacion\').scrollIntoView({behavior:\'smooth\'})\">Ingresar mi código de invitación</button>';
+    document.getElementById('final-note').innerHTML = 'Acceso por invitación · Solo 100 asientos · Red privada';
+  }
+
+  /* Animación de salida */
+  entry.classList.add('exit');
+  document.body.classList.remove('entry-active');
+
+  /* Mostrar sitio */
+  setTimeout(() => {
+    wrapper.classList.add('visible');
+  }, 200);
+}
+
+function showEntry(){
+  const entry   = document.getElementById('entry-screen');
+  const wrapper = document.getElementById('site-wrapper');
+  entry.classList.remove('exit');
+  wrapper.classList.remove('visible');
+  document.body.classList.add('entry-active');
+  window.scrollTo(0,0);
+}
+
+/* ══════════════════════════════════════
+   NAV scroll
+══════════════════════════════════════ */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   const onDark = window.scrollY < window.innerHeight * 0.88;
   nav.classList.toggle('on-dark', onDark);
-}, { passive: true });
+}, { passive:true });
 
+/* ══════════════════════════════════════
+   REVEAL
+══════════════════════════════════════ */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   });
-}, { threshold: 0.08 });
+}, { threshold:0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
