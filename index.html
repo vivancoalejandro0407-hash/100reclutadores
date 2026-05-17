@@ -1369,7 +1369,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <button class="modal-close" onclick="cerrarModal()">✕</button>
     <div class="modal-eyebrow">Iniciar búsqueda</div>
     <h3 class="modal-title">Cuéntanos qué perfil necesitas</h3>
-    <p class="modal-sub">En menos de 2 minutos lo tenemos. Te contactamos por WhatsApp.</p>
+    <p class="modal-sub">En menos de 2 minutos lo tenemos. Te contactamos por WhatsApp.<br><span style="font-size:11px;color:#8A7A50;letter-spacing:0.06em;">Trabajamos posiciones con salario mínimo de $25,000 mensuales brutos.</span></p>
 
     <div class="modal-form">
       <div class="modal-field">
@@ -1381,8 +1381,8 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
         <input class="modal-input" id="mv-industria" type="text" placeholder="Ej. Manufactura, Tech, Retail…">
       </div>
       <div class="modal-field">
-        <label class="modal-label">Rango salarial mensual bruto</label>
-        <input class="modal-input" id="mv-salario" type="text" placeholder="Ej. $25,000 – $35,000">
+        <label class="modal-label">Rango salarial mensual bruto (mínimo $25,000)</label>
+        <input class="modal-input" id="mv-salario" type="text" placeholder="Ej. $35,000 – $50,000 mensuales brutos">
       </div>
       <div class="modal-field">
         <label class="modal-label">¿Qué tan urgente es?</label>
@@ -1631,7 +1631,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <!-- Banner garantía -->
     <div class="garantia-banner">
       <span class="garantia-badge">Garantía 90 días</span>
-      <p class="garantia-txt">Si el candidato no se queda los primeros 90 días, repetimos el proceso <strong>sin costo adicional.</strong> Sin letra chica, sin excepciones.</p>
+      <p class="garantia-txt">Si el candidato no se queda los primeros 90 días, repetimos el proceso <strong>sin costo adicional.</strong> Sin letra chica, sin excepciones. El fee es el <strong>50% del salario mensual bruto</strong> — solo al contratar.</p>
     </div>
 
     <div class="eyebrow" style="margin-top:64px;">Por qué funciona</div>
@@ -1642,7 +1642,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="beneficio-card">
         <div class="beneficio-icon">$0</div>
         <div class="beneficio-t">Cero costo hasta que contratas</div>
-        <p class="beneficio-p">Sin pago por adelantado, sin cuota mensual, sin exclusividad. Solo pagas cuando la posición está cubierta con el candidato correcto.</p>
+        <p class="beneficio-p">Sin pago por adelantado, sin cuota mensual, sin exclusividad. Al contratar pagas el <strong style="color:var(--ink);">50% del salario mensual bruto</strong> del candidato — solo en ese momento, nada antes.</p>
       </div>
       <div class="beneficio-card">
         <div class="beneficio-icon">14d</div>
@@ -1925,6 +1925,16 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
       <div class="faq-item">
         <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Qué tipo de posiciones voy a reclutar?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Posiciones con salario mínimo de $25,000 mensuales brutos — gerencias, coordinaciones senior y especialistas con experiencia. Fintech, tecnología, ventas, operaciones, manufactura nivel ingeniería en adelante. Sin posiciones operativas ni junior. Esto garantiza que tu comisión valga el esfuerzo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
           <span>¿Compito con otros reclutadores en la misma vacante?</span>
           <span class="faq-icon">+</span>
         </button>
@@ -2009,7 +2019,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <button onclick="cerrarCodigo()" style="position:absolute;top:20px;right:22px;background:none;border:none;cursor:pointer;font-size:16px;color:#6A6A50;font-family:'Jost',sans-serif;">✕</button>
     <div style="font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-lo);margin-bottom:14px;font-family:'Jost',sans-serif;">Acceso a la red</div>
     <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,26px);font-weight:400;color:#E0DCC8;line-height:1.25;margin-bottom:8px;">Ingresa tu código<br>de invitación</h3>
-    <p style="font-size:13px;color:#6A6A58;line-height:1.7;margin-bottom:28px;font-weight:300;">Si alguien ya en la red te invitó, tienes un código. Ingrésalo aquí junto con tu nombre y te contactamos en menos de 24 horas.</p>
+    <p style="font-size:13px;color:#6A6050;line-height:1.7;margin-bottom:28px;font-weight:300;">Si alguien ya en la red te invitó, tienes un código. Ingrésalo aquí junto con tu nombre y te contactamos en menos de 24 horas.</p>
     <div style="display:flex;flex-direction:column;gap:16px;">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <label style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#6A6A50;font-family:'Jost',sans-serif;">Tu nombre</label>
@@ -2295,8 +2305,8 @@ if('IntersectionObserver' in window){
     <div class="modal-eyebrow" style="color:#8A7A50;">Preguntas frecuentes</div>
     <h3 class="modal-title" style="color:#141412;">Lo que las empresas suelen preguntarnos</h3>
     <div class="faq-list" style="margin-top:28px;border-top-color:#D8D4C8;">
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Para qué tipo de posiciones funciona mejor?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Para mandos medios especializados — perfiles con conocimiento técnico o sectorial donde un reclutador genérico no llega. Fintech y servicios financieros, gerencias comerciales y de ventas, tecnología y desarrollo de software, operaciones y supply chain, marketing y growth, manufactura e industria.</p></div></div>
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto cuesta?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Nada hasta que contratas. Solo pagas cuando el candidato que elegiste firma. Sin cuotas, sin mensualidades, sin letra chica.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Para qué tipo de posiciones funciona mejor?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Para posiciones con salario mensual bruto de <strong>$25,000 o más</strong> — gerencias, coordinaciones senior y especialistas con experiencia. Fintech y servicios financieros, gerencias comerciales y de ventas, tecnología y desarrollo de software, operaciones y supply chain, marketing y growth, manufactura nivel ingeniería o supervisión en adelante. No trabajamos posiciones operativas o junior.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto cuesta?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>El fee es el <strong>50% del salario mensual bruto</strong> del candidato que contratas — pagado solo al cierre. Sin cuotas, sin mensualidades, sin letra chica. Ejemplo: candidato con salario de $40,000 → pagas $20,000 una sola vez. Las agencias tradicionales cobran un mes completo o más, muchas veces por adelantado.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto tiempo tarda en llegar el primer candidato?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>En promedio 14 días. Tres reclutadores especializados en tu industria arrancan en paralelo desde el momento en que validamos tu vacante.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Qué pasa si el candidato no funciona?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Tienes 90 días de garantía. Si el candidato no se sostiene en ese periodo, el proceso se repite sin costo adicional.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuántos reclutadores trabajan mi vacante?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Tres. Cada uno especializado en tu giro, trabajando en paralelo y de forma anónima. El sistema los asigna según su historial en tu industria — tú solo ves los candidatos que presentan.</p></div></div>
