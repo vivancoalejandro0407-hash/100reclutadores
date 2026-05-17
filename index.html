@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100 Reclutadores</title>
+
+<!-- SEO -->
+<title>100 Reclutadores — Red privada de reclutamiento especializado</title>
+<meta name="description" content="Red privada de 100 reclutadores especializados. Tres expertos en tu industria compiten por darte el mejor candidato. Sin costo hasta contratar. GDL · CDMX · MTY.">
+<meta name="author" content="Alejandro Vivanco">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="100 Reclutadores — Red privada de reclutamiento especializado">
+<meta property="og:description" content="Tres expertos en tu industria compiten por darte el mejor candidato. Sin costo hasta contratar. Garantía 90 días.">
+<meta property="og:url" content="https://100reclutadores.com">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="100 Reclutadores">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="100 Reclutadores — Red privada de reclutamiento">
+<meta name="twitter:description" content="Tres expertos en tu industria compiten por darte el mejor candidato. Sin costo hasta contratar.">
+
+<!-- Favicon SVG inline -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230C0C0A'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='400' fill='%23B8962E' letter-spacing='-0.5'>100</text></svg>">
+<link rel="alternate icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -160,25 +183,28 @@ body{
 
 /* Botones de elección */
 .entry-choices{
-  display:flex;gap:1px;
-  background:var(--rule-dk);
+  display:flex;flex-direction:column;gap:12px;width:100%;max-width:480px;
   opacity:0;animation:fadeUp 1s ease 0.85s forwards;
 }
 .entry-btn{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(17px,1.8vw,23px);
+  font-size:clamp(17px,1.8vw,22px);
   font-style:italic;font-weight:300;
   letter-spacing:-0.01em;
-  background:var(--bg-dark);
-  border:none;cursor:pointer;
-  padding:36px 60px;
+  background:#0F0F0D;
+  border:1px solid #2A2A22;
+  cursor:pointer;
+  padding:28px 36px 24px;
   position:relative;overflow:hidden;
-  transition:background 0.35s,color 0.35s;
+  transition:background 0.35s,color 0.35s,border-color 0.35s;
   color:#8A8A70;
-  text-align:center;
-  min-width:320px;
+  text-align:left;
+  width:100%;
   white-space:normal;
-  line-height:1.35;
+  line-height:1.4;
+  display:flex;
+  flex-direction:column;
+  gap:0;
 }
 .entry-btn::before{
   content:'';position:absolute;
@@ -190,23 +216,25 @@ body{
   bottom:0;left:0;right:0;height:1px;
   background:transparent;transition:background 0.4s;
 }
-.entry-btn:hover{ background:#111110; }
+.entry-btn:hover{ background:#111110;border-color:#3A3A2A; }
 /* Empresa — verde */
-.entry-btn.empresa:hover{ color:#8DC5A4; }
+.entry-btn.empresa:hover{ color:#8DC5A4;border-color:rgba(26,122,74,0.4); }
 .entry-btn.empresa:hover::before{ background:var(--green-lt); }
 .entry-btn.empresa:hover::after{ background:rgba(26,122,74,0.2); }
 /* Reclutador — dorado */
-.entry-btn.reclutador:hover{ color:var(--gold-hi); }
+.entry-btn.reclutador:hover{ color:var(--gold-hi);border-color:rgba(184,150,46,0.35); }
 .entry-btn.reclutador:hover::before{ background:var(--gold); }
 .entry-btn.reclutador:hover::after{ background:rgba(184,150,46,0.15); }
 
 .entry-btn-icon{
   display:inline-flex;align-items:center;gap:7px;
   font-family:'Jost',sans-serif;
-  font-size:10px;letter-spacing:0.38em;
+  font-size:11px;letter-spacing:0.34em;
   text-transform:uppercase;font-style:normal;font-weight:500;
-  margin-top:14px;
-  opacity:0.55;transition:opacity 0.35s, color 0.35s;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid #2A2A22;
+  opacity:0.7;transition:opacity 0.35s, color 0.35s;
   color:#B0AA90;
 }
 .entry-btn-icon::after{
@@ -376,7 +404,7 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
 .hero-claim.reclutador{color:#EDE8DC;}
 
 .hero-sub{
-  font-size:15px;color:#6A6A60;
+  font-size:15px;color:#9A9480;
   line-height:2;max-width:480px;
   margin:22px auto 0;font-weight:300;
 }
@@ -567,8 +595,8 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
   font-size:clamp(36px,5vw,60px);font-weight:300;
   color:var(--gold);display:block;letter-spacing:-0.02em;margin-bottom:14px;
 }
-.market-d{font-size:13px;color:#A0A090;line-height:1.7;font-weight:300;margin-bottom:10px;}
-.market-src{font-size:8.5px;letter-spacing:0.28em;color:#5A5A48;text-transform:uppercase;}
+.market-d{font-size:13px;color:#B0AA90;line-height:1.7;font-weight:300;margin-bottom:10px;}
+.market-src{font-size:10px;letter-spacing:0.22em;color:#7A7A60;text-transform:uppercase;}
 
 /* ── Para empresas ── */
 .emp-layout{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start;margin-top:56px;}
@@ -594,8 +622,8 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#fff;}
 .mech-card:hover::before{opacity:1;}
 .mech-n{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-lo);line-height:1;opacity:0.3;margin-bottom:22px;display:block;}
 .mech-t{font-size:16px;font-weight:400;color:#D8D4C8;margin-bottom:13px;line-height:1.3;}
-.mech-p{font-size:13px;color:#5A5A52;line-height:1.88;font-weight:300;}
-.mech-foot{margin-top:26px;font-size:9.5px;letter-spacing:0.22em;color:var(--gold-lo);text-transform:uppercase;padding-top:18px;border-top:1px solid #1A1A16;opacity:0.7;}
+.mech-p{font-size:13px;color:#7A7A72;line-height:1.88;font-weight:300;}
+.mech-foot{margin-top:26px;font-size:10px;letter-spacing:0.18em;color:#A08840;text-transform:uppercase;padding-top:18px;border-top:1px solid #1A1A16;opacity:0.85;}
 
 /* ── Índice ── */
 .indice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin-top:56px;}
@@ -655,6 +683,331 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 .foot-lnk{font-size:10px;letter-spacing:0.1em;color:var(--ink-low);cursor:pointer;text-decoration:none;transition:color 0.2s;}
 .foot-lnk:hover{color:var(--ink);}
 
+/* ── Comisión highlight ── */
+.emp-item-comision{background:var(--bg);position:relative;}
+.emp-item-comision::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);}
+.comision-highlight{
+  margin-top:20px;padding:24px 28px;
+  background:var(--bg-dark);border:1px solid #2A2A20;
+  border-left:3px solid var(--gold);
+}
+.comision-bar{
+  display:flex;height:36px;overflow:hidden;border-radius:2px;
+  margin-bottom:16px;gap:2px;
+}
+.comision-bar-fill{
+  width:60%;background:var(--gold);
+  display:flex;align-items:center;padding:0 14px;
+  transition:width 0.6s ease;
+}
+.comision-bar-rest{
+  flex:1;background:#1E1E18;
+  display:flex;align-items:center;padding:0 12px;
+}
+.comision-bar-label{
+  font-family:'Jost',sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:0.16em;text-transform:uppercase;color:#0C0C0A;
+  white-space:nowrap;
+}
+.comision-bar-label-rest{
+  font-family:'Jost',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:0.14em;text-transform:uppercase;color:#4A4A40;
+  white-space:nowrap;
+}
+.comision-toggle{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  background:none;border:none;border-top:1px solid #2A2A20;
+  padding:14px 0;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.2em;
+  text-transform:uppercase;color:#6A6A50;
+  transition:color 0.25s;margin-top:4px;
+}
+.comision-toggle:hover{ color:var(--gold); }
+.comision-toggle-icon{
+  font-size:16px;font-weight:300;color:#4A4A38;
+  transition:transform 0.3s, color 0.25s;
+  line-height:1;
+}
+.comision-toggle.open .comision-toggle-icon{
+  transform:rotate(45deg);color:var(--gold);
+}
+.comision-toggle.open .comision-toggle-txt{ color:var(--gold); }
+.comision-ejemplo{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s ease;
+  display:flex;flex-direction:column;gap:10px;
+  border-bottom:1px solid #2A2A20;
+  padding:0;
+}
+.comision-ejemplo.open{
+  max-height:200px;
+  padding:16px 0;
+}
+.comision-ejemplo-row{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.comision-ejemplo-label{
+  font-size:12px;color:#6A6A58;letter-spacing:0.04em;font-weight:300;flex:1;min-width:160px;
+}
+.comision-ejemplo-flecha{
+  font-size:12px;color:#4A4A38;flex-shrink:0;
+}
+.comision-ejemplo-monto{
+  font-family:'Cormorant Garamond',serif;font-size:18px;
+  font-weight:500;color:var(--gold);letter-spacing:0.02em;
+  white-space:nowrap;
+}
+.comision-nota{
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:#4A4A38;font-weight:400;line-height:1.7;
+}
+@media(max-width:600px){
+  .comision-bar-label{font-size:9px;letter-spacing:0.1em;}
+  .comision-bar-label-rest{font-size:8px;}
+  .comision-highlight{padding:18px 16px;}
+}
+
+/* ── Founder ── */
+.founder-section{
+  padding:80px var(--outer);
+  background:var(--bg-dark);
+  border-top:1px solid var(--rule-dk);
+  border-bottom:1px solid var(--rule-dk);
+  text-align:center;
+}
+.founder-inner{
+  max-width:560px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:28px;
+}
+.founder-orn{
+  width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--gold-lo));
+}
+.founder-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,2.2vw,24px);
+  font-weight:300;font-style:italic;
+  color:#8A8A70;line-height:1.7;
+}
+.founder-link{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  text-decoration:none;
+}
+.founder-name{
+  font-family:'Jost',sans-serif;font-size:13px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:#C8C4B0;font-weight:400;
+  transition:color 0.25s;
+}
+.founder-linkedin{
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold-lo);
+  transition:color 0.25s;
+}
+.founder-link:hover .founder-name{ color:var(--gold); }
+.founder-link:hover .founder-linkedin{ color:var(--gold); }
+@media(max-width:600px){
+  .founder-section{ padding:60px 20px; }
+  .founder-quote{ font-size:17px; }
+}
+
+/* ── FAQ ── */
+.faq-list{margin-top:56px;border-top:1px solid var(--rule);}
+.faq-item{border-bottom:1px solid var(--rule);}
+.faq-trigger{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  background:none;border:none;cursor:pointer;
+  padding:24px 0;gap:20px;text-align:left;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2vw,21px);
+  font-weight:400;color:var(--ink);line-height:1.3;
+  transition:color 0.25s;
+}
+.faq-trigger:hover{color:var(--gold);}
+.faq-trigger.open{color:var(--gold);}
+.faq-icon{
+  font-size:22px;font-weight:300;color:var(--gold-lo);
+  flex-shrink:0;line-height:1;
+  transition:transform 0.3s, color 0.25s;font-family:'Jost',sans-serif;
+}
+.faq-trigger.open .faq-icon{transform:rotate(45deg);color:var(--gold);}
+.faq-body{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s ease;
+  padding:0;
+}
+.faq-body.open{max-height:300px;padding-bottom:24px;}
+.faq-body p{
+  font-size:15px;color:var(--ink-mid);line-height:1.85;
+  font-weight:300;max-width:680px;
+}
+@media(max-width:600px){
+  .faq-trigger{font-size:16px;padding:20px 0;}
+  .faq-body p{font-size:14px;}
+}
+
+/* ── Modal Vacante ── */
+#modal-vacante{ display:none; }
+#modal-vacante.open{ display:flex; }
+.modal-vacante-wrap{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.82);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-box{
+  background:#0E0E0C;border:1px solid #2A2A1E;
+  max-width:520px;width:100%;
+  padding:48px 44px;position:relative;
+  max-height:90vh;overflow-y:auto;
+}
+.modal-close{
+  position:absolute;top:20px;right:22px;
+  background:none;border:none;cursor:pointer;
+  font-size:16px;color:#4A4A38;
+  transition:color 0.2s;font-family:'Jost',sans-serif;
+}
+.modal-close:hover{ color:var(--gold); }
+.modal-eyebrow{
+  font-size:10px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--gold-lo);margin-bottom:14px;font-family:'Jost',sans-serif;
+}
+.modal-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,3vw,28px);font-weight:400;
+  color:#E0DCC8;line-height:1.25;margin-bottom:10px;
+}
+.modal-sub{
+  font-size:13px;color:#4A4A38;line-height:1.7;
+  margin-bottom:32px;font-weight:300;
+}
+.modal-form{ display:flex;flex-direction:column;gap:20px; }
+.modal-field{ display:flex;flex-direction:column;gap:8px; }
+.modal-label{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:#6A6A50;font-family:'Jost',sans-serif;font-weight:400;
+}
+.modal-input{
+  background:#0A0A08;border:1px solid #2A2A1E;
+  padding:14px 16px;font-size:14px;color:#C8C4B0;
+  font-family:'Jost',sans-serif;font-weight:300;
+  outline:none;transition:border-color 0.25s;
+  border-radius:0;
+}
+.modal-input::placeholder{ color:#3A3A2E; }
+.modal-input:focus{ border-color:rgba(184,150,46,0.45); }
+.modal-options{ display:flex;gap:8px;flex-wrap:wrap; }
+.modal-opt{
+  background:none;border:1px solid #2A2A1E;
+  padding:10px 18px;font-size:12px;letter-spacing:0.12em;
+  text-transform:uppercase;color:#4A4A38;cursor:pointer;
+  font-family:'Jost',sans-serif;transition:all 0.2s;
+}
+.modal-opt:hover{ border-color:#4A4A30;color:#8A8A60; }
+.modal-opt.selected{ border-color:var(--gold);color:var(--gold);background:rgba(184,150,46,0.06); }
+@media(max-width:600px){
+  .modal-box{ padding:36px 24px; }
+  .modal-options{ flex-direction:column; }
+  .modal-opt{ text-align:center; }
+}
+
+/* ── Modelo tres cards dark ── */
+.modelo-three-dk-wrap{
+  width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;
+  background:#1A1A14;
+}
+.modelo-three-card{
+  background:#0E0E0C;padding:32px 28px;
+  position:relative;
+  transition:background 0.3s;
+}
+.modelo-three-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);
+  opacity:0;transition:opacity 0.3s;
+}
+.modelo-three-card:hover{background:#111110;}
+.modelo-three-card:hover::before{opacity:1;}
+.modelo-three-badge{
+  display:inline-block;font-family:'Jost',sans-serif;
+  font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold-lo);border:1px solid #2A2A1E;border-radius:2px;
+  padding:5px 14px;margin-bottom:18px;font-weight:400;
+}
+.modelo-three-txt{
+  font-size:13px;color:#4A4A40;line-height:1.85;font-weight:300;
+}
+@media(max-width:900px){
+  .modelo-three-dk-wrap{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .modelo-three-dk-wrap{grid-template-columns:1fr;}
+  .modelo-three-card{padding:22px 18px;}
+}
+
+/* ── Modelo 3 reclutadores ── */
+.modelo-flow{margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:0;}
+.modelo-flow-dk{}
+.modelo-step{
+  width:100%;max-width:680px;
+  display:grid;grid-template-columns:72px 1fr;gap:28px;align-items:start;
+  padding:36px 40px;background:var(--bg-alt);border:1px solid var(--rule);
+}
+.modelo-flow-dk .modelo-step{background:#0F0F0D;border-color:#1E1E1A;}
+.modelo-step-final{}
+.modelo-icon{
+  width:56px;height:56px;border:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);flex-shrink:0;
+}
+.modelo-flow-dk .modelo-icon{background:#0C0C0A;border-color:#2A2A22;}
+.modelo-icon-gold{border-color:rgba(184,150,46,0.4);background:rgba(184,150,46,0.06);}
+.modelo-num{
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;
+  color:var(--gold);letter-spacing:0.04em;
+}
+.modelo-label{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+.modelo-desc{font-size:13px;color:var(--ink-mid);line-height:1.85;font-weight:300;}
+
+.modelo-arrow{
+  font-size:20px;color:var(--rule);padding:12px 0;
+  font-family:'Cormorant Garamond',serif;
+}
+
+.modelo-three{
+  width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;
+  background:var(--rule);
+}
+.modelo-three-dk{background:#1E1E1A;}
+.modelo-rec{
+  background:var(--bg);padding:28px 24px;
+}
+.modelo-rec-dk{background:#0F0F0D;}
+.modelo-rec-you{background:#0C0E0B;}
+.modelo-rec-tag{
+  display:inline-block;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--ink-low);border:1px solid var(--rule);border-radius:2px;
+  padding:4px 12px;margin-bottom:14px;font-weight:400;
+}
+.modelo-rec-desc{font-size:13px;color:var(--ink-mid);line-height:1.8;font-weight:300;}
+
+.modelo-footer{
+  margin-top:40px;width:100%;max-width:680px;
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;
+  padding-top:28px;border-top:1px solid var(--rule);
+}
+.modelo-footer-item{font-size:11px;letter-spacing:0.16em;color:var(--ink-low);text-transform:uppercase;font-weight:400;}
+.modelo-footer-sep{color:var(--rule);font-size:14px;}
+
+@media(max-width:900px){
+  .modelo-three{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .modelo-step{grid-template-columns:1fr;gap:16px;padding:24px 20px;}
+  .modelo-three{grid-template-columns:1fr;}
+  .modelo-rec{padding:22px 18px;}
+  .modelo-footer{flex-direction:column;gap:8px;text-align:center;}
+  .modelo-footer-sep{display:none;}
+}
+
 /* ══════════════════════════════════════
    KEYFRAMES
 ══════════════════════════════════════ */
@@ -679,101 +1032,130 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   .market-divider{width:100%;height:1px;}
 }
 @media(max-width:600px){
-  :root{--outer:5vw;}
+  :root{--outer:20px;}
   nav{grid-template-columns:auto 1fr auto;}
   .nav-left{display:none;}
   .perm-grid{grid-template-columns:1fr;}
   .indice-grid{grid-template-columns:1fr;}
 
   /* ── HERO EMPRESA móvil ── */
-  .hero-body{ padding:90px 20px 48px; }
-  .hero-mode-badge{ margin-bottom:32px;font-size:8px; }
+  .hero-body{ padding:100px 20px 56px; }
+  .hero-mode-badge{ margin-bottom:32px;font-size:12px;letter-spacing:0.12em; }
   .hero-label{ margin-bottom:36px;gap:12px; }
-  .hl-txt{ font-size:9px;letter-spacing:0.28em; }
-  .hl-cities{ font-size:8px;letter-spacing:0.18em; }
+  .hl-txt{ font-size:12px;letter-spacing:0.18em;color:#C8A84C; }
+  .hl-cities{ font-size:11px;letter-spacing:0.12em;color:#8A7A50; }
   .hl-bar{ width:18px; }
   .hero-100{ font-size:clamp(100px,28vw,160px); }
-  .hsl-txt{ font-size:9px;letter-spacing:0.32em; }
+  .hsl-txt{ font-size:12px;letter-spacing:0.28em;color:#C8A84C; }
   .hsl-line{ width:28px; }
-  .hero-claim{ font-size:clamp(24px,6.5vw,36px);margin:36px auto 0;max-width:100%; }
-  .hero-sub{ font-size:14px;line-height:1.85;margin:18px auto 0;max-width:100%; }
+  .hero-claim{ font-size:clamp(22px,6vw,32px);margin:36px auto 0;max-width:100%; }
+  .hero-sub{ font-size:16px;line-height:1.9;margin:20px auto 0;max-width:100%;color:#B0AA90; }
   .hero-orn{ margin:28px 0; }
   .hero-ctas{ width:100%; }
-  .hero-row{ flex-direction:column;align-items:stretch;width:100%;gap:10px; }
+  .hero-row{ flex-direction:column;align-items:stretch;width:100%;gap:12px; }
   .btn-gold,.btn-outline-gold,.btn-green,.btn-outline-green{
-    padding:16px 24px;font-size:11px;width:100%;
+    padding:18px 24px;font-size:13px;letter-spacing:0.14em;width:100%;
   }
   .hero-stats{ flex-direction:column; }
-  .hs-item{ border-right:none;border-bottom:1px solid var(--rule-dk);padding:20px 16px; }
+  .hs-item{ border-right:none;border-bottom:1px solid var(--rule-dk);padding:22px 16px; }
   .hs-item:last-child{ border-bottom:none; }
-  .hs-n{ font-size:28px; }
-  .hs-d{ font-size:9px; }
+  .hs-n{ font-size:32px; }
+  .hs-d{ font-size:12px;color:#8A8A70;letter-spacing:0.1em; }
 
   /* ── ENTRY SCREEN móvil ── */
-  #entry-screen{ padding:32px 20px; }
-  .entry-logo{ margin-bottom:32px; }
+  #entry-screen{ padding:36px 20px; }
+  .entry-logo{ margin-bottom:36px; }
   .entry-logo-num{ font-size:clamp(72px,22vw,110px); }
-  .entry-logo-word{ font-size:9px;letter-spacing:0.38em;gap:10px; }
+  .entry-logo-word{ font-size:12px;letter-spacing:0.32em;gap:10px;color:#C9A84C; }
   .entry-logo-word::before,
   .entry-logo-word::after{ width:20px; }
-  .entry-cities{ font-size:13px;letter-spacing:0.08em; }
-  .entry-orn{ margin:0 0 28px; }
-  .entry-q{ font-size:11px;letter-spacing:0.18em;margin-bottom:20px; }
-  .entry-choices{ flex-direction:column;width:100%; }
+  .entry-cities{ font-size:15px;letter-spacing:0.08em;color:#C9A84C; }
+  .entry-orn{ margin:0 0 32px; }
+  .entry-q{ font-size:13px;letter-spacing:0.14em;margin-bottom:24px;color:#8A8A70; }
+  .entry-choices{ flex-direction:column;width:100%;max-width:100%;gap:10px; }
   .entry-btn{
     min-width:0;width:100%;
-    padding:26px 20px;
-    font-size:clamp(15px,4.5vw,19px);
+    padding:24px 20px 20px;
+    font-size:clamp(16px,4.5vw,20px);
+    text-align:left;
   }
-  .entry-btn-icon{ margin-top:10px;font-size:9px;letter-spacing:0.28em; }
-  .entry-note{ margin-top:20px;font-size:8px; }
+  .entry-btn-icon{ margin-top:14px;padding-top:12px;font-size:11px;letter-spacing:0.22em; }
+  .entry-note{ margin-top:24px;font-size:12px;letter-spacing:0.16em;color:#6A6050; }
 
   /* ── RECLUTADOR móvil ── */
   /* Secciones generales */
   .section{ padding:64px 20px; }
   .section-alt{ padding:64px 20px; }
   .section-dk{ padding:64px 20px; }
-  .s-title{ font-size:clamp(28px,7vw,38px); }
-  .s-title-dk{ font-size:clamp(28px,7vw,38px); }
-  .s-body{ font-size:14px; }
+  .eyebrow{ font-size:11px;letter-spacing:0.28em;color:var(--gold-lo); }
+  .s-title{ font-size:clamp(28px,7.5vw,40px); }
+  .s-title-dk{ font-size:clamp(28px,7.5vw,40px); }
+  .s-body{ font-size:16px;line-height:1.85;color:var(--ink-mid); }
 
   /* Concept grid — una columna */
   .concept-grid{ grid-template-columns:1fr; }
   .concept-card{ padding:36px 24px; }
+  .cc-badge{ font-size:11px;letter-spacing:0.22em; }
+  .cc-title{ font-size:22px; }
+  .cc-body{ font-size:15px;line-height:1.85; }
+  .cc-foot{ font-size:12px;letter-spacing:0.1em; }
 
   /* Emp layout — una columna */
   .emp-layout{ grid-template-columns:1fr;gap:36px; }
-  .emp-quote{ font-size:18px; }
+  .emp-quote{ font-size:19px; }
   .emp-item{ grid-template-columns:32px 1fr;gap:14px;padding:22px 0; }
+  .emp-t{ font-size:16px; }
+  .emp-p{ font-size:14px;line-height:1.85; }
 
   /* Mech grid — una columna */
   .mech-grid{ grid-template-columns:1fr; }
   .mech-card{ padding:32px 24px; }
   .mech-n{ font-size:38px; }
+  .mech-t{ font-size:17px;color:#E0DCC8; }
+  .mech-p{ font-size:14px;color:#6E6E66;line-height:1.85; }
+  .mech-foot{ font-size:11px;letter-spacing:0.16em;color:#A08840; }
 
-  /* Final section */
-  .final-section{ padding:80px 20px; }
-  .final-title{ font-size:clamp(26px,7vw,40px); }
-  .final-ctas{ flex-direction:column;align-items:stretch; }
-  .final-body{ font-size:14px; }
+  /* Indice grid */
+  .indice-pct{ font-size:44px; }
+  .indice-label{ font-size:15px; }
+  .indice-desc{ font-size:14px;line-height:1.8; }
+  .indice-eq{ font-size:18px; }
+  .indice-note{ font-size:13px; }
 
-  /* Invite section */
-  .invite-section{ padding:60px 20px; }
-  .invite-quote{ font-size:clamp(18px,5vw,24px); }
-  .invite-sub{ font-size:13px; }
-
-  /* Quote section */
-  .quote-section{ padding:64px 20px; }
-  .the-quote{ font-size:clamp(20px,5.5vw,28px); }
+  /* Perm grid */
+  .perm-lbl{ font-size:11px;letter-spacing:0.22em; }
+  .perm-val{ font-size:14px;line-height:1.85; }
 
   /* Market strip */
   .market-item{ padding:36px 20px; }
-  .market-n{ font-size:clamp(28px,8vw,44px); }
-  .market-d{ font-size:12px; }
+  .market-n{ font-size:clamp(32px,9vw,48px); }
+  .market-d{ font-size:14px;color:#B0AA90; }
+  .market-src{ font-size:11px;letter-spacing:0.18em; }
+
+  /* Final section */
+  .final-section{ padding:80px 20px; }
+  .final-eyebrow{ font-size:12px;letter-spacing:0.24em; }
+  .final-title{ font-size:clamp(28px,7.5vw,42px); }
+  .final-ctas{ flex-direction:column;align-items:stretch; }
+  .final-body{ font-size:16px;line-height:1.9; }
+  .final-note{ font-size:12px;letter-spacing:0.16em; }
+
+  /* Invite section */
+  .invite-section{ padding:60px 20px; }
+  .invite-orn i{ font-size:14px;letter-spacing:0.16em; }
+  .invite-quote{ font-size:clamp(20px,5.5vw,26px); }
+  .invite-sub{ font-size:15px;line-height:1.85; }
+
+  /* Quote section */
+  .quote-section{ padding:64px 20px; }
+  .the-quote{ font-size:clamp(22px,6vw,30px); }
+  .q-attr{ font-size:11px;letter-spacing:0.22em; }
 
   /* Footer */
   footer{ padding:28px 20px;gap:16px; }
+  .foot-copy{ font-size:12px;letter-spacing:0.08em; }
   .foot-links{ gap:16px; }
+  .foot-lnk{ font-size:12px;letter-spacing:0.08em; }
 
 }
 </style>
@@ -811,16 +1193,53 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       </button>
     </div>
 
-    <p class="entry-note">Red privada · Acceso por invitación</p>
+    <p class="entry-note">Red privada · Acceso solo por invitación</p>
 
   </div>
 </div>
 
 
-<!-- ══════════════════════════════════════
-     SITIO PRINCIPAL
-══════════════════════════════════════ -->
-<div id="site-wrapper">
+<!-- MODAL VACANTE → WHATSAPP -->
+<div id="modal-vacante" class="modal-vacante-wrap">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal()">✕</button>
+    <div class="modal-eyebrow">Publicar vacante</div>
+    <h3 class="modal-title">Cuéntanos qué perfil necesitas</h3>
+    <p class="modal-sub">En menos de 2 minutos lo tenemos. Te contactamos por WhatsApp.</p>
+
+    <div class="modal-form">
+      <div class="modal-field">
+        <label class="modal-label">¿Qué puesto necesitas cubrir?</label>
+        <input class="modal-input" id="mv-puesto" type="text" placeholder="Ej. Gerente de Ventas, Desarrollador Backend…">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">¿En qué industria opera tu empresa?</label>
+        <input class="modal-input" id="mv-industria" type="text" placeholder="Ej. Manufactura, Tech, Retail…">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Rango salarial mensual bruto</label>
+        <input class="modal-input" id="mv-salario" type="text" placeholder="Ej. $25,000 – $35,000">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">¿Qué tan urgente es?</label>
+        <div class="modal-options" id="mv-urgencia">
+          <button class="modal-opt" onclick="selectOpt(this,'mv-urgencia')">Muy urgente</button>
+          <button class="modal-opt" onclick="selectOpt(this,'mv-urgencia')">Este mes</button>
+          <button class="modal-opt" onclick="selectOpt(this,'mv-urgencia')">Sin prisa</button>
+        </div>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Tu nombre y empresa</label>
+        <input class="modal-input" id="mv-contacto" type="text" placeholder="Ej. Carlos Martínez · Empresa XYZ">
+      </div>
+      <button class="btn-gold" style="width:100%;margin-top:8px;padding:18px;" onclick="enviarWhatsApp()">
+        Enviar por WhatsApp →
+      </button>
+      <p style="text-align:center;font-size:11px;letter-spacing:0.14em;color:#4A4A38;margin-top:14px;text-transform:uppercase;">Sin costo hasta contratar · Te respondemos en menos de 1 hora</p>
+      <p style="text-align:center;font-size:11px;color:#3A3A2E;margin-top:10px;line-height:1.7;letter-spacing:0.04em;">Antes de iniciar el proceso firmamos un acuerdo simple<br>de confidencialidad y términos.</p>
+    </div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav id="nav" class="on-dark">
@@ -835,7 +1254,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   </a>
   <div class="nav-right">
     <a href="#invitacion" class="nav-lnk" id="nl-4">Invitación</a>
-    <button class="nav-cta" id="nav-cta-btn">Publicar vacante</button>
+    <button class="nav-cta" id="nav-cta-btn" onclick="abrirModal()">Publicar vacante</button>
   </div>
 </nav>
 
@@ -897,7 +1316,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <!-- CTAs empresa -->
     <div class="hero-ctas" id="ctas-empresa">
       <div class="hero-row">
-        <button class="btn-gold">Publicar una vacante</button>
+        <button class="btn-gold" onclick="abrirModal()">Publicar una vacante</button>
         <button class="btn-outline-gold">Cómo funciona</button>
       </div>
     </div>
@@ -911,7 +1330,8 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
   </div>
 
-  <div class="hero-stats">
+  <!-- Stats empresa -->
+  <div class="hero-stats" id="stats-empresa">
     <div class="hs-item">
       <span class="hs-n">100</span>
       <span class="hs-d">Asientos totales<br>en la red</span>
@@ -927,6 +1347,26 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <div class="hs-item">
       <span class="hs-n" style="font-size:22px;letter-spacing:0.08em;">GDL · CDMX · MTY</span>
       <span class="hs-d">Red nacional</span>
+    </div>
+  </div>
+
+  <!-- Stats reclutador -->
+  <div class="hero-stats" id="stats-reclutador" style="display:none;">
+    <div class="hs-item">
+      <span class="hs-n">100</span>
+      <span class="hs-d">Asientos en la red<br>acceso exclusivo</span>
+    </div>
+    <div class="hs-item">
+      <span class="hs-n">60%</span>
+      <span class="hs-d">Del fee es tuyo<br>sin intermediarios</span>
+    </div>
+    <div class="hs-item">
+      <span class="hs-n">$0</span>
+      <span class="hs-d">Fee de entrada<br>o mensualidad</span>
+    </div>
+    <div class="hs-item">
+      <span class="hs-n" style="font-size:22px;letter-spacing:0.08em;">GDL · CDMX · MTY</span>
+      <span class="hs-d">Vacantes en<br>toda la red</span>
     </div>
   </div>
 </section>
@@ -1029,7 +1469,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="emp-left">
         <p class="s-body">Las agencias cobran por adelantado y desaparecen. Las bolsas te inundan de perfiles que no sirven. Aquí funciona distinto: pagas solo cuando contratas, el reclutador responde con su nombre, y tienes 90 días de garantía.</p>
         <blockquote class="emp-quote">"Describes el perfil una vez.<br>La red hace el resto."</blockquote>
-        <button class="btn-gold">Publicar una vacante</button>
+        <button class="btn-gold" onclick="abrirModal()">Publicar una vacante</button>
       </div>
       <div class="emp-right">
         <div class="emp-list">
@@ -1045,7 +1485,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
             <span class="emp-n">02</span>
             <div>
               <div class="emp-t">14 días promedio vs 47 del mercado</div>
-              <p class="emp-p">Los reclutadores de la red son especialistas en su vertical. No lanzan currículums al azar — ya saben dónde está el perfil antes de empezar.</p>
+              <p class="emp-p">Los reclutadores de la red son especialistas en tu industria. No lanzan currículums al azar — ya saben dónde está el perfil antes de empezar.</p>
               <span class="emp-tag">3× más rápido que el proceso tradicional</span>
             </div>
           </div>
@@ -1053,7 +1493,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
             <span class="emp-n">03</span>
             <div>
               <div class="emp-t">El reclutador responde con su reputación</div>
-              <p class="emp-p">Cada operador tiene un índice verificado en tiempo real. Si el candidato no funciona, el reclutador gestiona el reemplazo. No hay con quién pelear ni nada que negociar.</p>
+              <p class="emp-p">Cada operador tiene un índice verificado en tiempo real — su reputación dentro de la red, que sube cuando cierra bien y baja si el candidato no se queda. Si el candidato no funciona, el reclutador gestiona el reemplazo. No hay con quién pelear ni nada que negociar.</p>
               <span class="emp-tag">Accountability real, no solo promesas</span>
             </div>
           </div>
@@ -1093,7 +1533,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="mech-card">
         <span class="mech-n">03</span>
         <div class="mech-t">Recibes candidatos, no currículums</div>
-        <p class="mech-p">La red asigna al reclutador con mejor historial en tu vertical y él arranca de inmediato. Tú no recibes 40 perfiles para filtrar — recibes los dos o tres que realmente califican. Tu tiempo no se negocia.</p>
+        <p class="mech-p">La red asigna al reclutador con mejor historial en tu sector y él arranca de inmediato. Tú no recibes 40 perfiles para filtrar — recibes los dos o tres que realmente califican. Tu tiempo no se negocia.</p>
         <div class="mech-foot">Promedio: 14 días al primer candidato presentado</div>
       </div>
       <div class="mech-card">
@@ -1102,6 +1542,67 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
         <p class="mech-p">Solo en el momento del cierre exitoso se genera el cobro. Y si el candidato no se sostiene en los primeros 90 días, el proceso se repite sin costo adicional.</p>
         <div class="mech-foot">Pago al cierre · Garantía 90 días incluida</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EL MODELO — 3 RECLUTADORES -->
+<section class="section-dk reveal solo-empresa" id="sec-modelo" style="background:#080808;border-top:1px solid #1A1A14;border-bottom:1px solid #1A1A14;">
+  <div class="wrap">
+    <div class="eyebrow-dk">Cómo funciona el modelo</div>
+    <h2 class="s-title-dk">Tres especialistas compiten<br>por darte el <em>mejor candidato.</em></h2>
+    <p class="s-body" style="color:#6A6A58;margin-top:18px;">No un reclutador genérico asignado al azar. La red selecciona tres operadores especializados en tu giro, trabajan en paralelo y cada uno presenta su mejor perfil. Tú decides con quién quedarte.</p>
+
+    <div class="modelo-flow modelo-flow-dk" style="margin-top:56px;">
+
+      <div class="modelo-step" style="background:#0E0E0C;border-color:#2A2A1E;max-width:100%;">
+        <div class="modelo-icon" style="background:#0A0A08;border-color:#2A2A1E;">
+          <span class="modelo-num" style="color:var(--gold);">01</span>
+        </div>
+        <div class="modelo-content">
+          <div class="modelo-label" style="color:#D0CCC0;">Tu vacante entra a la red</div>
+          <p class="modelo-desc" style="color:#5A5A50;">Describes el perfil una sola vez. La red valida que la posición sea competitiva y selecciona a los tres reclutadores con mejor historial en tu industria específica.</p>
+        </div>
+      </div>
+
+      <div class="modelo-arrow" style="color:#2A2A1E;">↓</div>
+
+      <div class="modelo-three-dk-wrap">
+        <div class="modelo-three-card">
+          <div class="modelo-three-badge">Especialista A</div>
+          <p class="modelo-three-txt">Trabaja de forma anónima con su propia red de talento en tu industria. No sabe quiénes son los otros dos.</p>
+        </div>
+        <div class="modelo-three-card">
+          <div class="modelo-three-badge">Especialista B</div>
+          <p class="modelo-three-txt">La competencia garantiza que solo presente a su mejor candidato — no el más fácil de conseguir.</p>
+        </div>
+        <div class="modelo-three-card">
+          <div class="modelo-three-badge">Especialista C</div>
+          <p class="modelo-three-txt">Historial verificado en tu industria. No generalistas — operadores que ya cerraron posiciones como la tuya.</p>
+        </div>
+      </div>
+
+      <div class="modelo-arrow" style="color:#2A2A1E;">↓</div>
+
+      <div class="modelo-step modelo-step-final" style="background:#0E0E0C;border-color:rgba(184,150,46,0.3);border-left:3px solid var(--gold);max-width:100%;">
+        <div class="modelo-icon modelo-icon-gold" style="background:rgba(184,150,46,0.08);">
+          <span class="modelo-num" style="color:var(--gold);">02</span>
+        </div>
+        <div class="modelo-content">
+          <div class="modelo-label" style="color:#D0CCC0;">Tú ves tres perfiles. Eliges uno.</div>
+          <p class="modelo-desc" style="color:#5A5A50;">Conforme cada especialista presenta su candidato, lo ves en la plataforma. Tres perfiles filtrados, de tres expertos en tu giro. Tú decides quién es el correcto — y solo pagas por ese cierre.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modelo-footer" style="border-color:#1E1E14;margin-top:48px;">
+      <span class="modelo-footer-item" style="color:#5A5A48;">Tres especialistas en tu giro</span>
+      <span class="modelo-footer-sep" style="color:#2A2A1E;">·</span>
+      <span class="modelo-footer-item" style="color:#5A5A48;">Trabajan en paralelo y de forma anónima</span>
+      <span class="modelo-footer-sep" style="color:#2A2A1E;">·</span>
+      <span class="modelo-footer-item" style="color:#5A5A48;">Pagas solo por el candidato que eliges</span>
     </div>
   </div>
 </section>
@@ -1149,16 +1650,78 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <div class="concept-grid" style="margin-top:56px;">
       <div class="concept-card">
         <span class="cc-badge">Lo que el mercado te da hoy</span>
-        <h3 class="cc-title">Mucho trabajo. Poco reconocimiento.</h3>
+        <h3 class="cc-title">Mucho trabajo. Poco reconocimiento. Pocas ganancias.</h3>
         <p class="cc-body">En una agencia eres un número. Tus cierres benefician a la empresa, no a tu reputación. Como freelance consigues clientes, pero cargas con todo — la prospección, la negociación, el cobro, y el riesgo de que no paguen. El talento sobra. Las condiciones justas, no.</p>
         <div class="cc-foot">El reclutador promedio destina 40% de su tiempo a conseguir clientes · no a reclutar</div>
       </div>
       <div class="concept-card">
         <span class="cc-badge">Lo que esta red te da</span>
         <h3 class="cc-title">Posiciones reales. Tú solo cierras.</h3>
-        <p class="cc-body">Cuando entras a la red, recibes vacantes asignadas según tu historial y vertical. No prospecteas, no negocies tarifas, no persigas pagos. La empresa ya validó el perfil, ya aceptó las condiciones. Tú arrancas donde otros terminan.</p>
+        <p class="cc-body">Cuando entras a la red, recibes vacantes asignadas según tu historial y especialidad. No prospecteas, no negocies tarifas, no persigas pagos. La empresa ya validó el perfil, ya aceptó las condiciones. Tú arrancas donde otros terminan.</p>
         <div class="cc-foot">Cero tiempo en ventas · 100% en reclutamiento</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EL MODELO — 3 RECLUTADORES (vista reclutador) -->
+<section class="section-dk reveal" id="sec-modelo-rec">
+  <div class="wrap">
+    <div class="eyebrow-dk">El modelo de la red</div>
+    <h2 class="s-title-dk">Compites con dos pares.<br><em>Gana el mejor candidato.</em></h2>
+    <p class="s-body" style="color:#8A8A72;margin-top:22px;">Para cada vacante, la red elige tres reclutadores especializados en ese giro. Trabajan en paralelo, sin conocerse. Cada uno presenta su mejor candidato. El cliente elige. Solo cobra quien coloca.</p>
+    <p class="s-body" style="color:#6A6A5A;margin-top:16px;font-size:14px;">Tres especialistas en paralelo no solo garantizan mejor calidad — garantizan velocidad. Mientras uno busca, los otros también. Tienes incentivo para ser rápido <em>y</em> bueno. El primero en presentar al candidato correcto lleva ventaja.</p>
+
+    <div class="modelo-flow modelo-flow-dk">
+
+      <div class="modelo-step">
+        <div class="modelo-icon">
+          <span class="modelo-num" style="color:var(--gold-hi)">Tú</span>
+        </div>
+        <div class="modelo-content">
+          <div class="modelo-label" style="color:#D8D4C8;">Recibes la vacante asignada a tu perfil</div>
+          <p class="modelo-desc" style="color:#6A6A62;">La red te selecciona porque tu historial y especialidad coinciden con el giro de la posición. No compites con todos — solo con dos pares que están al mismo nivel que tú.</p>
+        </div>
+      </div>
+
+      <div class="modelo-arrow" style="color:var(--gold-lo);">↓</div>
+
+      <div class="modelo-three modelo-three-dk">
+        <div class="modelo-rec modelo-rec-dk modelo-rec-you">
+          <span class="modelo-rec-tag" style="color:var(--gold);border-color:rgba(184,150,46,0.4);">Tú — Especialista A</span>
+          <p class="modelo-rec-desc" style="color:#6A6A62;">Tu red, tu método, tu criterio. Autonomía total para encontrar el mejor perfil en tu industria.</p>
+        </div>
+        <div class="modelo-rec modelo-rec-dk">
+          <span class="modelo-rec-tag" style="color:#555;border-color:#2A2A24;">Especialista B</span>
+          <p class="modelo-rec-desc" style="color:#4A4A44;">Anónimo para ti. Tú eres anónimo para él. La competencia es limpia.</p>
+        </div>
+        <div class="modelo-rec modelo-rec-dk">
+          <span class="modelo-rec-tag" style="color:#555;border-color:#2A2A24;">Especialista C</span>
+          <p class="modelo-rec-desc" style="color:#4A4A44;">Mismo nivel, misma oportunidad. Gana quien presenta el mejor candidato.</p>
+        </div>
+      </div>
+
+      <div class="modelo-arrow" style="color:var(--gold-lo);">↓</div>
+
+      <div class="modelo-step modelo-step-final">
+        <div class="modelo-icon modelo-icon-gold">
+          <span class="modelo-num" style="font-size:13px;letter-spacing:0.05em;">WIN</span>
+        </div>
+        <div class="modelo-content">
+          <div class="modelo-label" style="color:#D8D4C8;">El cliente elige. Tú cobras.</div>
+          <p class="modelo-desc" style="color:#6A6A62;">Si el cliente elige a tu candidato, la comisión es tuya. Tu índice sube. Mejores posiciones llegan a ti primero. La red está diseñada para que los resultados hablen — y los buenos resultados se acumulen.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modelo-footer" style="border-color:#1E1E1A;">
+      <span class="modelo-footer-item" style="color:#6A6A5A;">Especialistas del giro — no generalistas</span>
+      <span class="modelo-footer-sep" style="color:#3A3A30;">·</span>
+      <span class="modelo-footer-item" style="color:#6A6A5A;">Competencia anónima y limpia</span>
+      <span class="modelo-footer-sep" style="color:#3A3A30;">·</span>
+      <span class="modelo-footer-item" style="color:#6A6A5A;">Solo cobra quien coloca</span>
     </div>
   </div>
 </section>
@@ -1185,19 +1748,45 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
               <span class="emp-tag">Más tiempo en lo que genera resultados</span>
             </div>
           </div>
-          <div class="emp-item">
+          <div class="emp-item emp-item-comision">
             <span class="emp-n">02</span>
             <div>
-              <div class="emp-t">Comisión por cierre, sin techo</div>
-              <p class="emp-p">Cobras al cierre exitoso. No hay cuota mensual, no hay descuentos por "usar la plataforma". Cada posición que cierras se traduce directamente en tu ingreso.</p>
-              <span class="emp-tag">Sin intermediarios que se queden con tu trabajo</span>
+              <div class="emp-t">60% del fee es tuyo. Sin negociación.</div>
+              <p class="emp-p">La red cobra a la empresa por cada cierre. De ese fee, el 60% va directo a ti — sin cuota mensual, sin descuentos por "usar la plataforma", sin letra chica. A mayor salario del candidato que colocas, mayor tu comisión. Cierras más, ganas más. Así de simple.</p>
+              <div class="comision-highlight">
+                <div class="comision-bar">
+                  <div class="comision-bar-fill">
+                    <span class="comision-bar-label">Tu comisión — 60%</span>
+                  </div>
+                  <div class="comision-bar-rest">
+                    <span class="comision-bar-label-rest">Red — 40%</span>
+                  </div>
+                </div>
+                <button class="comision-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+                  <span class="comision-toggle-txt">Ver ejemplos de comisión</span>
+                  <span class="comision-toggle-icon">+</span>
+                </button>
+                <div class="comision-ejemplo">
+                  <div class="comision-ejemplo-row">
+                    <span class="comision-ejemplo-label">Posición con salario de $25,000/mes</span>
+                    <span class="comision-ejemplo-flecha">→</span>
+                    <span class="comision-ejemplo-monto">~$7,500 para ti</span>
+                  </div>
+                  <div class="comision-ejemplo-row">
+                    <span class="comision-ejemplo-label">Posición con salario de $50,000/mes</span>
+                    <span class="comision-ejemplo-flecha">→</span>
+                    <span class="comision-ejemplo-monto">~$15,000 para ti</span>
+                  </div>
+                </div>
+                <p class="comision-nota">Sin fee de entrada · Sin mensualidad · Solo ganas cuando cierras · Pago en menos de 48 horas</p>
+              </div>
             </div>
           </div>
           <div class="emp-item">
             <span class="emp-n">03</span>
             <div>
               <div class="emp-t">Tu índice construye tu reputación</div>
-              <p class="emp-p">Cada cierre con permanencia, cada evaluación positiva de la empresa, cada entrega en tiempo — todo suma a tu índice. A mayor índice, mejores posiciones. La red premia a quien entrega.</p>
+              <p class="emp-p">Tu índice es tu reputación dentro de la red — sube cada vez que cierras bien y el candidato se queda, baja si no. Cada cierre con permanencia, cada evaluación positiva de la empresa, cada entrega en tiempo — todo suma. A mayor índice, mejores posiciones. La red premia a quien contrata bien.</p>
               <span class="emp-tag">Historial verificado que habla por ti</span>
             </div>
           </div>
@@ -1217,6 +1806,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
 
 <!-- CÓMO FUNCIONA PARA EL RECLUTADOR -->
+<span id="indice-rec"></span>
 <section class="section-dk reveal">
   <div class="wrap">
     <div class="eyebrow-dk">Cómo opera la red para ti</div>
@@ -1269,7 +1859,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="concept-card">
         <span class="cc-badge">Qué te da un índice alto</span>
         <h3 class="cc-title">Las mejores posiciones llegan a ti primero.</h3>
-        <p class="cc-body">El sistema asigna vacantes priorizando a los operadores con mejor historial en cada vertical. Un índice alto significa más posiciones, mejores perfiles y mayor ingreso potencial. La red está diseñada para que los que más entregan, más reciban.</p>
+        <p class="cc-body">El sistema asigna vacantes priorizando a los operadores con mejor historial en cada sector. Un índice alto significa más posiciones, mejores perfiles y mayor ingreso potencial. La red está diseñada para que los que más entregan, más reciban.</p>
         <div class="cc-foot">Meritocracia real · Sin favoritismos</div>
       </div>
     </div>
@@ -1277,6 +1867,101 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 </section>
 
 </div><!-- /contenido-reclutador -->
+
+
+<!-- FAQ EMPRESA -->
+<section class="section-alt reveal solo-empresa" id="sec-faq">
+  <div class="wrap">
+    <div class="eyebrow">Preguntas frecuentes</div>
+    <h2 class="s-title">Lo que las empresas<br>suelen <em>preguntarnos.</em></h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Para qué tipo de posiciones funciona mejor?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Para mandos medios especializados — perfiles con conocimiento técnico o sectorial donde un reclutador genérico no llega. Fintech y servicios financieros, gerencias comerciales y de ventas, tecnología y desarrollo de software, operaciones y supply chain, marketing y growth, manufactura e industria. Si tu posición requiere experiencia específica y llevas más de tres semanas sin el candidato correcto, este modelo es para ti.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cuánto cuesta?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Nada hasta que contratas. Solo pagas cuando el candidato que elegiste firma. Sin cuotas, sin mensualidades, sin letra chica.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cuánto tiempo tarda en llegar el primer candidato?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>En promedio 14 días. Tres reclutadores especializados en tu industria arrancan en paralelo desde el momento en que validamos tu vacante.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Qué pasa si el candidato no funciona?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Tienes 90 días de garantía. Si el candidato no se sostiene en ese periodo, el proceso se repite sin costo adicional.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cuántos reclutadores trabajan mi vacante?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Tres. Cada uno especializado en tu giro, trabajando en paralelo y de forma anónima entre sí. El sistema los asigna según su historial en tu industria — tú solo ves los candidatos que presentan.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Tengo que firmar un contrato o dar exclusividad?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>No. Describes el perfil, recibes candidatos y decides. Sin compromisos previos, sin exclusividad.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿En qué ciudades operan?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Actualmente en Guadalajara, Ciudad de México y Monterrey, con reclutadores especializados en cada mercado.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ROSTRO -->
+<section class="founder-section reveal">
+  <div class="founder-inner">
+    <div class="founder-orn"></div>
+    <p class="founder-quote">"Detrás de la red hay una persona.<br>Soy Alejandro Vivanco, y respondo<br>directamente por cada proceso."</p>
+    <a href="https://www.linkedin.com/in/vivancoalejandro/" target="_blank" rel="noopener" class="founder-link">
+      <span class="founder-name">Alejandro Vivanco</span>
+      <span class="founder-linkedin">Ver en LinkedIn →</span>
+    </a>
+  </div>
+</section>
 
 
 <!-- QUOTE -->
@@ -1293,10 +1978,92 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   <h2 class="final-title" id="final-title">Describe el perfil.<br>La red <em>hace el resto.</em></h2>
   <p class="final-body" id="final-body">Sin costo hasta contratar.<br>Sin proceso complicado.<br>Solo el candidato correcto.</p>
   <div class="final-ctas" id="final-ctas">
-    <button class="btn-gold">Publicar una vacante</button>
+    <button class="btn-gold" onclick="abrirModal()">Publicar una vacante</button>
     <button class="btn-outline-green">Hablar con el equipo →</button>
   </div>
   <p class="final-note" id="final-note">Cero costo hasta el cierre · Garantía 90 días · Sin exclusividad</p>
+</section>
+
+
+<!-- FAQ RECLUTADOR -->
+<section class="section-alt reveal" id="sec-faq-rec">
+  <div class="wrap">
+    <div class="eyebrow">Preguntas frecuentes</div>
+    <h2 class="s-title">Lo que los reclutadores<br>suelen <em>preguntarnos.</em></h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cuándo recibo mi pago?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>En menos de 48 horas después de que la empresa confirma la contratación. Sin esperas de 30 o 60 días como en las agencias tradicionales. Cierras, confirmamos, te depositamos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cómo accedo a la red?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Solo por invitación. Si alguien que ya opera en la red te recomendó, recibes un código de acceso. No hay proceso de aplicación abierto.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Tengo que pagar algo para entrar?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>No. Sin fee de entrada, sin mensualidad. Solo ganas cuando cierras una posición.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cuánto gano por cada cierre?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>El 60% del fee que paga la empresa. A mayor salario del candidato que colocas, mayor tu comisión. Sin descuentos ni deducciones por usar la plataforma.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cómo se me asignan las vacantes?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>El sistema cruza tu historial y especialidad con las vacantes disponibles. Recibes posiciones en tu industria — no cualquier vacante, la correcta para ti.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Compito con otros reclutadores en la misma vacante?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Sí, con dos más. Trabajan de forma anónima, igual que tú. El cliente ve los candidatos que cada uno presenta y elige. Solo cobra quien coloca.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Qué pasa si el candidato no pasa los 90 días?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Se repite el proceso. Eso también afecta tu índice, por eso la red solo asigna vacantes donde el perfil es realista y las condiciones son competitivas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 
@@ -1331,6 +2098,54 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
 <script>
 /* ══════════════════════════════════════
+   MODAL VACANTE → WHATSAPP
+══════════════════════════════════════ */
+function toggleFaq(btn){
+  var body = btn.nextElementSibling;
+  var isOpen = btn.classList.contains('open');
+  /* Cerrar todos */
+  document.querySelectorAll('.faq-trigger.open').forEach(function(b){
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  /* Abrir el clickeado si estaba cerrado */
+  if(!isOpen){
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+function abrirModal(){
+  var m = document.getElementById('modal-vacante');
+  if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function cerrarModal(){
+  var m = document.getElementById('modal-vacante');
+  if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+}
+function selectOpt(btn, groupId){
+  document.querySelectorAll('#'+groupId+' .modal-opt').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+}
+function enviarWhatsApp(){
+  var puesto    = document.getElementById('mv-puesto').value.trim();
+  var industria = document.getElementById('mv-industria').value.trim();
+  var salario   = document.getElementById('mv-salario').value.trim();
+  var urgencia  = document.querySelector('#mv-urgencia .modal-opt.selected');
+  var contacto  = document.getElementById('mv-contacto').value.trim();
+  if(!puesto){ alert('¿Qué puesto necesitas cubrir?'); return; }
+  if(!contacto){ alert('¿Cuál es tu nombre y empresa?'); return; }
+  var msg = 'Hola, quiero publicar una vacante en 100 Reclutadores:\n\n📌 *Puesto:* '+puesto+'\n🏢 *Industria:* '+(industria||'No especificada')+'\n💰 *Salario:* '+(salario||'Por definir')+'\n⏱ *Urgencia:* '+(urgencia?urgencia.textContent:'No especificada')+'\n👤 *Contacto:* '+contacto;
+  window.open('https://wa.me/523320658076?text='+encodeURIComponent(msg),'_blank');
+  cerrarModal();
+}
+/* Cerrar modal al click fuera */
+window.addEventListener('load', function(){
+  var m = document.getElementById('modal-vacante');
+  if(m) m.addEventListener('click', function(e){ if(e.target===this) cerrarModal(); });
+});
+
+/* ══════════════════════════════════════
    ENTRY SCREEN
 ══════════════════════════════════════ */
 function enterSite(tipo){
@@ -1347,8 +2162,11 @@ function enterSite(tipo){
     document.getElementById('sub-reclutador').style.display = 'none';
     document.getElementById('ctas-empresa').style.display   = '';
     document.getElementById('ctas-reclutador').style.display= 'none';
+    document.getElementById('stats-empresa').style.display = '';
+    document.getElementById('stats-reclutador').style.display = 'none';
     badge.textContent  = '← Entrando como Empresa';
     navCta.textContent = 'Publicar vacante';
+    navCta.onclick = abrirModal;
     /* Nav empresa */
     document.getElementById('nl-1').textContent = 'La red';
     document.getElementById('nl-1').href = '#red';
@@ -1359,12 +2177,13 @@ function enterSite(tipo){
     document.getElementById('nl-4').style.display = 'none';
     document.getElementById('invite-section').style.display = 'none';
     document.getElementById('contenido-reclutador').style.display = 'none';
+    document.getElementById('sec-faq-rec').style.display = 'none';
     document.querySelectorAll('.solo-empresa').forEach(el => el.style.display = '');
     document.getElementById('main-quote').innerHTML = '\"Contratar bien no es suerte.<br>Es tener acceso a <em style=\"color:var(--gold)\">las personas correctas.</em>\"';
     document.getElementById('final-eyebrow').innerHTML = '¿Tienes una posición que no puedes seguir esperando?';
     document.getElementById('final-title').innerHTML = 'Describe el perfil.<br>La red <em>hace el resto.</em>';
     document.getElementById('final-body').innerHTML = 'Sin costo hasta contratar.<br>Sin proceso complicado.<br>Solo el candidato correcto.';
-    document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\">Publicar una vacante</button><button class=\"btn-outline-green\">Hablar con el equipo →</button>';
+    document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\" onclick=\"abrirModal()\">Publicar una vacante</button>';
     document.getElementById('final-note').innerHTML = 'Cero costo hasta el cierre · Garantía 90 días · Sin exclusividad';
     navCta.style.display = '';
   } else {
@@ -1374,28 +2193,33 @@ function enterSite(tipo){
     document.getElementById('sub-reclutador').style.display = '';
     document.getElementById('ctas-empresa').style.display   = 'none';
     document.getElementById('ctas-reclutador').style.display= '';
+    document.getElementById('stats-empresa').style.display = 'none';
+    document.getElementById('stats-reclutador').style.display = '';
     badge.textContent  = '← Entrando como Reclutador';
     navCta.textContent = 'Mi código de invitación';
     /* Nav reclutador */
     document.getElementById('nl-1').textContent = 'La red';
-    document.getElementById('nl-1').href = '#red';
+    document.getElementById('nl-1').href = '#red-rec';
     document.getElementById('nl-2').textContent = 'El índice';
-    document.getElementById('nl-2').href = '#estandar';
+    document.getElementById('nl-2').href = '#indice-rec';
     document.getElementById('nl-3').textContent = 'El estándar';
-    document.getElementById('nl-3').href = '#estandar';
+    document.getElementById('nl-3').href = '#estandar-rec';
     document.getElementById('nl-4').textContent = 'Mi invitación';
     document.getElementById('nl-4').href = '#invitacion';
     navCta.textContent = 'Ingresar código';
+    navCta.onclick = function(){ document.getElementById('invitacion').scrollIntoView({behavior:'smooth'}); };
     navCta.style.display = '';
     document.getElementById('invite-section').style.display = '';
     document.getElementById('contenido-reclutador').style.display = '';
+    document.getElementById('sec-faq-rec').style.display = '';
+    document.getElementById('sec-faq').style.display = 'none';
     document.querySelectorAll('.solo-empresa').forEach(el => el.style.display = 'none');
     document.getElementById('main-quote').innerHTML = '\"Si llegaste hasta aquí,<br>ya sabes que <em style=\"color:var(--gold)\">mereces estar.</em>\"';
     document.getElementById('final-eyebrow').innerHTML = 'Un solo lugar donde tu trabajo habla por ti';
     document.getElementById('final-title').innerHTML = 'Los mejores reclutadores no buscan clientes.<br><em>Ganan cerrando posiciones.</em>';
     document.getElementById('final-body').innerHTML = 'Más vacantes.<br>Mejores comisiones.<br>Sin tener que conseguirlas.';
     document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\" onclick=\"document.getElementById(\'invitacion\').scrollIntoView({behavior:\'smooth\'})\">Ingresar mi código de invitación</button>';
-    document.getElementById('final-note').innerHTML = 'Acceso por invitación · Solo 100 asientos · Red privada';
+    document.getElementById('final-note').innerHTML = 'Acceso solo por invitación · Solo 100 asientos · Red privada';
   }
 
   /* Animación de salida */
@@ -1403,7 +2227,7 @@ function enterSite(tipo){
   document.body.classList.remove('entry-active');
 
   /* Mostrar sitio */
-  setTimeout(() => {
+  setTimeout(function(){
     wrapper.classList.add('visible');
   }, 200);
 }
@@ -1420,21 +2244,25 @@ function showEntry(){
 /* ══════════════════════════════════════
    NAV scroll
 ══════════════════════════════════════ */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  const onDark = window.scrollY < window.innerHeight * 0.88;
-  nav.classList.toggle('on-dark', onDark);
-}, { passive:true });
+var nav = document.getElementById('nav');
+if(nav){
+  window.addEventListener('scroll', function(){
+    var onDark = window.scrollY < window.innerHeight * 0.88;
+    nav.classList.toggle('on-dark', onDark);
+  }, { passive:true });
+}
 
 /* ══════════════════════════════════════
    REVEAL
 ══════════════════════════════════════ */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  });
-}, { threshold:0.08 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.08 });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}
 </script>
 </body>
 </html>
