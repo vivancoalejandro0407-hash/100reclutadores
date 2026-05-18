@@ -13,7 +13,7 @@
 <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="100 Reclutadores — Red privada de reclutamiento especializado">
-<meta property="og:description" content="Tres expertos en tu industria compiten por darte el mejor candidato. Sin costo hasta contratar. Garantía 90 días.">
+<meta property="og:description" content="Tres expertos en tu industria compiten por darte el mejor candidato. Sin costo hasta contratar. Garantía 60 días.">
 <meta property="og:url" content="https://100reclutadores.com">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="100 Reclutadores">
@@ -96,7 +96,7 @@ body{
   content:'';position:absolute;inset:0;z-index:0;
   background-image:
     linear-gradient(rgba(184,150,46,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(184,150,46,0.025) 1px,transparent 1px);
+    linear-gradient(60deg,rgba(184,150,46,0.025) 1px,transparent 1px);
   background-size:72px 72px;
 }
 /* Glow dorado sutil */
@@ -344,7 +344,7 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#0C0C0A;}
   position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:
     linear-gradient(rgba(184,150,46,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(184,150,46,0.025) 1px,transparent 1px);
+    linear-gradient(60deg,rgba(184,150,46,0.025) 1px,transparent 1px);
   background-size:72px 72px;
 }
 .hero-glow{
@@ -566,7 +566,7 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#0C0C0A;}
 .concept-card:hover{background:#F4F0E4;}
 .concept-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  background:linear-gradient(60deg,transparent,var(--gold),transparent);
   opacity:0;transition:opacity 0.4s;
 }
 .concept-card:hover::before{opacity:1;}
@@ -657,7 +657,7 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#0C0C0A;}
 .mech-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule-dk);margin-top:56px;}
 .mech-card{background:var(--bg-dark);padding:48px 42px;transition:background 0.3s;position:relative;}
 .mech-card:hover{background:#101010;}
-.mech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo),transparent);opacity:0;transition:opacity 0.4s;}
+.mech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(60deg,transparent,var(--gold-lo),transparent);opacity:0;transition:opacity 0.4s;}
 .mech-card:hover::before{opacity:1;}
 .mech-n{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-lo);line-height:1;opacity:0.3;margin-bottom:22px;display:block;}
 .mech-t{font-size:16px;font-weight:400;color:#D8D4C8;margin-bottom:13px;line-height:1.3;}
@@ -690,8 +690,8 @@ nav.on-dark .nav-cta:hover{background:var(--gold);color:#0C0C0A;}
   background:var(--bg-alt);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
   position:relative;overflow:hidden;
 }
-.quote-section::before{content:'';position:absolute;top:32px;left:var(--outer);right:var(--outer);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4;}
-.quote-section::after{content:'';position:absolute;bottom:32px;left:var(--outer);right:var(--outer);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4;}
+.quote-section::before{content:'';position:absolute;top:32px;left:var(--outer);right:var(--outer);height:1px;background:linear-gradient(60deg,transparent,var(--gold),transparent);opacity:0.4;}
+.quote-section::after{content:'';position:absolute;bottom:32px;left:var(--outer);right:var(--outer);height:1px;background:linear-gradient(60deg,transparent,var(--gold),transparent);opacity:0.4;}
 .the-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,52px);font-style:italic;font-weight:300;color:var(--ink);line-height:1.3;letter-spacing:-0.02em;max-width:720px;margin:0 auto 28px;}
 .q-diamond{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);margin:0 auto 20px;box-shadow:0 0 12px rgba(184,150,46,0.35);}
 .q-attr{font-size:9.5px;letter-spacing:0.38em;color:var(--ink-low);text-transform:uppercase;}
@@ -817,6 +817,13 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 .founder-inner{
   max-width:560px;margin:0 auto;
   display:flex;flex-direction:column;align-items:center;gap:28px;
+}
+.founder-photo{
+  width:96px;height:96px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid rgba(184,150,46,0.4);
+  margin-bottom:4px;
 }
 .founder-orn{
   width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--gold-lo));
@@ -967,7 +974,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 }
 .modelo-three-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);
+  background:linear-gradient(60deg,var(--gold) 0%,transparent 100%);
   opacity:0;transition:opacity 0.3s;
 }
 .modelo-three-card:hover{background:#111110;}
@@ -1107,7 +1114,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 .modelo-three-card:hover{ background:#EDE9DF; }
 .modelo-three-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);opacity:0;transition:opacity 0.3s;
+  background:linear-gradient(60deg,var(--gold) 0%,transparent 100%);opacity:0;transition:opacity 0.3s;
 }
 .modelo-three-card:hover::before{ opacity:1; }
 .modelo-three-badge{
@@ -1134,6 +1141,84 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   background:#0E0E0C;padding:40px 32px;transition:background 0.25s;
 }
 .paso-card-dk:hover{ background:#111110; }
+
+/* ── Esquema de pagos ── */
+.pagos-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  background:#1A1A14;margin-top:56px;
+}
+.pago-card{
+  background:#0E0E0C;padding:40px 36px;
+}
+.pago-card-gold{
+  background:#0C0E0B;border-top:2px solid var(--gold);
+}
+.pago-badge{
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.26em;
+  text-transform:uppercase;color:var(--gold-lo);margin-bottom:20px;
+}
+.pago-pct{
+  font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;
+  color:var(--gold);line-height:1;margin-bottom:4px;
+}
+.pago-card:not(.pago-card-gold) .pago-pct{color:#6A6A58;}
+.pago-label{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:#4A4A38;margin-bottom:24px;font-family:'Jost',sans-serif;
+}
+.pago-detalle{
+  border-top:1px solid #1E1E18;padding-top:20px;margin-bottom:20px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.pago-fila{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.pago-fila-txt{font-size:12px;color:#6A6A58;font-weight:300;flex:1;}
+.pago-fila-num{
+  font-size:12px;color:#C8C4B0;font-weight:500;
+  font-family:'Jost',sans-serif;letter-spacing:0.06em;white-space:nowrap;
+}
+.pago-nota{
+  font-size:12px;color:#4A4A38;line-height:1.8;
+  border-top:1px solid #1E1E18;padding-top:16px;font-weight:300;
+}
+
+/* Ejemplo */
+.pagos-ejemplo{
+  margin-top:40px;padding:32px 36px;
+  background:#0A0A08;border:1px solid #1E1E18;
+}
+.pagos-ejemplo-title{
+  font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-lo);margin-bottom:20px;font-family:'Jost',sans-serif;
+}
+.pagos-ejemplo-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+  background:#1A1A14;
+}
+.pe-item{
+  background:#0E0E0C;padding:18px 16px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.pe-item-gold{background:#0C0E0B;}
+.pe-label{font-size:11px;color:#4A4A38;line-height:1.5;font-weight:300;}
+.pe-valor{
+  font-family:'Cormorant Garamond',serif;font-size:22px;
+  color:#6A6A58;font-weight:300;
+}
+.pe-item-gold .pe-valor{color:var(--gold);}
+
+@media(max-width:900px){
+  .pagos-grid{grid-template-columns:1fr;}
+  .pagos-ejemplo-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .pagos-grid{grid-template-columns:1fr;}
+  .pagos-ejemplo-grid{grid-template-columns:1fr;}
+  .pago-card{padding:28px 20px;}
+  .pagos-ejemplo{padding:24px 20px;}
+  .pago-pct{font-size:48px;}
+}
 
 /* ── Pasos empresa ── */
 .pasos-grid{
@@ -1442,7 +1527,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <span class="hl-bar"></span>
     </div>
 
-    <span class="hero-100">100</span>
+    <span class="hero-100" id="hero-100">100</span>
     <div class="hero-sub-label">
       <span class="hsl-line"></span>
       <span class="hsl-txt">Reclutadores</span>
@@ -1498,19 +1583,19 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   <div class="hero-stats" id="stats-empresa">
     <div class="hs-item">
       <span class="hs-n">100</span>
-      <span class="hs-d">Asientos totales<br>en la red</span>
+      <span class="hs-d">Empresas activas<br>en la red</span>
     </div>
     <div class="hs-item">
-      <span class="hs-n">90</span>
-      <span class="hs-d">Días de garantía<br>por contratación</span>
+      <span class="hs-n">3</span>
+      <span class="hs-d">Especialistas<br>por vacante</span>
     </div>
     <div class="hs-item">
       <span class="hs-n">14d</span>
       <span class="hs-d">Promedio<br>de cierre</span>
     </div>
     <div class="hs-item">
-      <span class="hs-n" style="font-size:22px;letter-spacing:0.08em;">GDL · CDMX · MTY</span>
-      <span class="hs-d">Red nacional</span>
+      <span class="hs-n">60d</span>
+      <span class="hs-d">Días de garantía<br>incluidos</span>
     </div>
   </div>
 
@@ -1548,14 +1633,14 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="concept-card">
         <span class="cc-badge">Lo que pierdes hoy</span>
         <h3 class="cc-title">El proceso tradicional ya no funciona</h3>
-        <p class="cc-body">Las bolsas de trabajo son ruidosas. Las agencias cobran por adelantado y no garantizan nada. Los reclutadores internos están saturados. El resultado: posiciones abiertas por meses, candidatos que no se quedan, y procesos que se repiten.</p>
+        <p class="cc-body">Las bolsas de trabajo te inundan de perfiles que no califican. Las agencias cobran por adelantado y no garantizan nada. Los reclutadores internos están saturados. El resultado: posiciones abiertas por meses, candidatos que no se quedan, y procesos que se repiten. Especialmente en perfiles especializados que nadie más sabe dónde encontrar.</p>
         <div class="cc-foot">47 días promedio de contratación en México · Manpower Group</div>
       </div>
       <div class="concept-card">
         <span class="cc-badge">Lo que obtienes aquí</span>
-        <h3 class="cc-title">Acceso directo a los reclutadores que sí cierran</h3>
-        <p class="cc-body">100 Reclutadores es una red privada de operadores seleccionados. Cada uno opera con su nombre en cada resultado — y eso cambia todo. Solo pagas cuando contratas a la persona correcta.</p>
-        <div class="cc-foot">Costo cero hasta el cierre exitoso · Garantía 90 días</div>
+        <h3 class="cc-title">Acceso directo a los reclutadores que sí dan resultados</h3>
+        <p class="cc-body">100 Reclutadores es una red privada de operadores seleccionados. Cada uno trabaja con su nombre en cada proceso — y eso cambia todo. Solo pagas cuando contratas a la persona correcta.</p>
+        <div class="cc-foot">Costo cero hasta el cierre exitoso · Garantía 60 días</div>
       </div>
     </div>
   </div>
@@ -1592,7 +1677,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 <!-- DATOS DEL MERCADO — el dolor en números -->
 <div class="market-strip solo-empresa" id="sec-market">
   <div class="wrap" style="padding:16px 0 8px; text-align:center;">
-    <p style="font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:#7A7A60;font-family:'Jost',sans-serif;margin-bottom:0;">Esto es lo que está pasando en tu empresa ahora mismo</p>
+    <p style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#B8962E;font-family:'Jost',sans-serif;margin-bottom:0;font-weight:500;">La posición sigue abierta. El negocio no puede esperar.</p>
   </div>
   <div class="market-grid">
     <div class="market-item">
@@ -1630,8 +1715,8 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
     <!-- Banner garantía -->
     <div class="garantia-banner">
-      <span class="garantia-badge">Garantía 90 días</span>
-      <p class="garantia-txt">Si el candidato no se queda los primeros 90 días, repetimos el proceso <strong>sin costo adicional.</strong> Sin letra chica, sin excepciones. El fee es el <strong>50% del salario mensual bruto</strong> — solo al contratar.</p>
+      <span class="garantia-badge">Garantía 60 días</span>
+      <p class="garantia-txt">Si el candidato no se queda los primeros 60 días, lo reponemos en <strong>7 a 10 días</strong> sin costo adicional. Sin letra chica, sin excepciones. El fee es el <strong>50% del salario mensual bruto</strong> — la mitad de lo que cobran las agencias tradicionales.</p>
     </div>
 
     <div class="eyebrow" style="margin-top:64px;">Por qué funciona</div>
@@ -1640,9 +1725,9 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <!-- 4 cards -->
     <div class="beneficios-grid">
       <div class="beneficio-card">
-        <div class="beneficio-icon">$0</div>
-        <div class="beneficio-t">Cero costo hasta que contratas</div>
-        <p class="beneficio-p">Sin pago por adelantado, sin cuota mensual, sin exclusividad. Al contratar pagas el <strong style="color:var(--ink);">50% del salario mensual bruto</strong> del candidato — solo en ese momento, nada antes.</p>
+        <div class="beneficio-icon">50%</div>
+        <div class="beneficio-t">La mitad de lo que cobra una agencia</div>
+        <p class="beneficio-p">Las agencias tradicionales cobran el 100% del salario mensual — muchas veces por adelantado. Aquí pagas el 50%, solo al contratar, con garantía de 60 días incluida. Sin riesgo financiero inicial.</p>
       </div>
       <div class="beneficio-card">
         <div class="beneficio-icon">14d</div>
@@ -1655,15 +1740,16 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
         <p class="beneficio-p">Cada reclutador entra por invitación y comparte su CV e historial laboral antes de operar. Si el candidato no funciona, gestiona el reemplazo. No hay con quién pelear ni nada que negociar.</p>
       </div>
       <div class="beneficio-card beneficio-card-gold">
-        <div class="beneficio-icon" style="color:var(--gold);">90d</div>
-        <div class="beneficio-t">Garantía de 90 días en cada cierre</div>
-        <p class="beneficio-p">Si el candidato no permanece los primeros 90 días, repetimos sin costo adicional. Estándar en todos los cierres, sin excepción.</p>
+        <div class="beneficio-icon" style="color:var(--gold);">60d</div>
+        <div class="beneficio-t">Garantía de 60 días en cada cierre</div>
+        <p class="beneficio-p">Si el candidato no permanece los primeros 60 días, lo reponemos en 7 a 10 días hábiles sin costo adicional. La garantía más ágil del mercado — sin trámites, sin negociación.</p>
       </div>
     </div>
 
     <div style="text-align:center;margin-top:56px;">
       <button class="btn-green-solid" onclick="abrirModal()">Iniciar mi búsqueda — sin costo →</button>
       <p style="margin-top:16px;font-size:12px;color:var(--ink-low);letter-spacing:0.06em;">Antes de iniciar el proceso firmamos un acuerdo simple de confidencialidad y términos.</p>
+      <p style="text-align:center;font-size:11px;color:#8A7A50;margin-top:8px;line-height:1.7;">Al enviar aceptas nuestros <a href="terminos-empresa.html" target="_blank" style="color:#B8962E;">Términos y Condiciones</a> y <a href="aviso-privacidad.html" target="_blank" style="color:#B8962E;">Aviso de Privacidad</a>.</p>
     </div>
 
   </div>
@@ -1690,7 +1776,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="paso-card paso-card-gold">
         <span class="paso-n" style="color:var(--gold);">03</span>
         <div class="paso-t">Eliges. Pagas. Con garantía.</div>
-        <p class="paso-p">Solo pagas cuando contratas al candidato que elegiste. Y si no se sostiene en los primeros 90 días, el proceso se repite sin costo adicional. Sin letra chica.</p>
+        <p class="paso-p">Solo pagas cuando contratas al candidato que elegiste. Y si no se sostiene en los primeros 60 días, el proceso se repite sin costo adicional. Sin letra chica.</p>
       </div>
     </div>
 
@@ -1723,7 +1809,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   <div class="wrap">
     <div class="eyebrow-dk">Por qué esta red es diferente</div>
     <h2 class="s-title-dk">La oportunidad que un<br>buen reclutador <em>merece.</em></h2>
-    <p class="s-body" style="color:#6A6A58;">La mayoría de los reclutadores freelance pierden tiempo buscando clientes, negociando condiciones y persiguiendo pagos. Aquí no. La red te entrega la posición, tú te concentras en lo que sabes hacer: cerrar.</p>
+    <p class="s-body" style="color:#6A6A58;">La mayoría de los reclutadores freelance pierden tiempo buscando clientes, negociando condiciones y persiguiendo pagos. Aquí no. La red te entrega la posición, tú te concentras en lo que sabes hacer: encontrar al candidato correcto.</p>
 
     <div class="concept-grid" style="margin-top:56px;">
       <div class="concept-card">
@@ -1734,7 +1820,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       </div>
       <div class="concept-card">
         <span class="cc-badge">Lo que esta red te da</span>
-        <h3 class="cc-title">Posiciones reales. Tú solo cierras.</h3>
+        <h3 class="cc-title">Posiciones reales. Tú solo recluta.</h3>
         <p class="cc-body">Cuando entras a la red, recibes vacantes asignadas según tu historial y especialidad. No prospecteas, no negocies tarifas, no persigas pagos. La empresa ya validó el perfil, ya aceptó las condiciones. Tú arrancas donde otros terminan.</p>
         <div class="cc-foot">Cero tiempo en ventas · 100% en reclutamiento</div>
       </div>
@@ -1753,7 +1839,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="paso-card-dk">
         <span class="paso-n" style="color:var(--gold-lo);">01</span>
         <div class="paso-t" style="color:#D8D4C8;">Recibes la vacante</div>
-        <p class="paso-p" style="color:#6A6A58;">La red te asigna posiciones que coinciden con tu historial y especialidad. No prospecteas, no negocies — arrancas directo a reclutar.</p>
+        <p class="paso-p" style="color:#6A6A58;">La red te asigna posiciones que coinciden con tu historial y especialidad. Recibes industria, ciudad, perfil y salario — suficiente para reclutar bien. El nombre de la empresa se revela cuando tu candidato es elegido.</p>
       </div>
       <div class="paso-card-dk">
         <span class="paso-n" style="color:var(--gold-lo);">02</span>
@@ -1762,8 +1848,8 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       </div>
       <div class="paso-card-dk" style="border-bottom:3px solid var(--gold);">
         <span class="paso-n" style="color:var(--gold);">03</span>
-        <div class="paso-t" style="color:#D8D4C8;">El cliente elige. Tú cobras.</div>
-        <p class="paso-p" style="color:#6A6A58;">Si el cliente elige a tu candidato, el 60% del fee es tuyo. Depósito en menos de 48 horas. Sin esperas, sin descuentos, sin letra chica.</p>
+        <div class="paso-t" style="color:#D8D4C8;">El cliente elige. Tú cobras el doble que en una agencia.</div>
+        <p class="paso-p" style="color:#6A6A58;">Si el cliente elige a tu candidato, el 50% del fee es tuyo — el doble de lo que pagaría cualquier agencia. Mitad al contratar, mitad a los 60 días si el candidato permanece. Sin descuentos, sin letra chica.</p>
       </div>
     </div>
   </div>
@@ -1791,38 +1877,12 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
               <span class="emp-tag">Más tiempo en lo que genera resultados</span>
             </div>
           </div>
-          <div class="emp-item emp-item-comision">
+          <div class="emp-item">
             <span class="emp-n">02</span>
             <div>
-              <div class="emp-t">60% del fee es tuyo. Sin negociación.</div>
-              <p class="emp-p">La red cobra a la empresa por cada cierre. De ese fee, el 60% va directo a ti — sin cuota mensual, sin descuentos por "usar la plataforma", sin letra chica. A mayor salario del candidato que colocas, mayor tu comisión. Cierras más, ganas más. Así de simple.</p>
-              <div class="comision-highlight">
-                <div class="comision-bar">
-                  <div class="comision-bar-fill">
-                    <span class="comision-bar-label">Tu comisión — 60%</span>
-                  </div>
-                  <div class="comision-bar-rest">
-                    <span class="comision-bar-label-rest">Red — 40%</span>
-                  </div>
-                </div>
-                <button class="comision-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-                  <span class="comision-toggle-txt">Ver ejemplos de comisión</span>
-                  <span class="comision-toggle-icon">+</span>
-                </button>
-                <div class="comision-ejemplo">
-                  <div class="comision-ejemplo-row">
-                    <span class="comision-ejemplo-label">Posición con salario de $25,000/mes</span>
-                    <span class="comision-ejemplo-flecha">→</span>
-                    <span class="comision-ejemplo-monto">~$7,500 para ti</span>
-                  </div>
-                  <div class="comision-ejemplo-row">
-                    <span class="comision-ejemplo-label">Posición con salario de $50,000/mes</span>
-                    <span class="comision-ejemplo-flecha">→</span>
-                    <span class="comision-ejemplo-monto">~$15,000 para ti</span>
-                  </div>
-                </div>
-                <p class="comision-nota">Sin fee de entrada · Sin mensualidad · Solo ganas cuando cierras · Pago en menos de 48 horas</p>
-              </div>
+              <div class="emp-t">Ganas por participar. Ganas más por colocar.</div>
+              <p class="emp-p">Si el cliente elige a tu candidato recibes el 50% del fee — mitad al contratar, la otra mitad a los 60 días. Los otros dos participantes reciben 7.5% cada uno en 48 horas. En esta red, participar tiene valor.</p>
+              <span class="emp-tag">Ver esquema completo de pagos más abajo</span>
             </div>
           </div>
           <div class="emp-item">
@@ -1841,6 +1901,76 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
 
 <!-- EL ÍNDICE — para el reclutador -->
+<!-- ESQUEMA DE PAGOS RECLUTADOR -->
+<section class="section-dk reveal" id="sec-pagos-rec">
+  <div class="wrap">
+    <div class="eyebrow-dk">Cómo se reparte el fee</div>
+    <h2 class="s-title-dk">Transparente desde el<br>primer día. <em>Para todos.</em></h2>
+    <p class="s-body" style="color:#8A8A72;margin-top:18px;">La empresa paga el 50% del salario mensual bruto del candidato contratado. Ese fee se reparte entre los tres reclutadores que participaron — no solo el que gana.</p>
+
+    <div class="pagos-grid">
+
+      <div class="pago-card pago-card-gold">
+        <div class="pago-badge">Reclutador ganador</div>
+        <div class="pago-pct">50%</div>
+        <div class="pago-label">del fee total</div>
+        <div class="pago-detalle">
+          <div class="pago-fila">
+            <span class="pago-fila-txt">Al contratar</span>
+            <span class="pago-fila-num">50% ahora</span>
+          </div>
+          <div class="pago-fila">
+            <span class="pago-fila-txt">A los 60 días si el candidato permanece</span>
+            <span class="pago-fila-num">50% restante</span>
+          </div>
+        </div>
+        <p class="pago-nota">Si el candidato no permanece 60 días tienes de 7 a 10 días para reponer. Si no repones, los otros dos participantes pueden presentar un candidato adicional y ganar el 50% pendiente.</p>
+      </div>
+
+      <div class="pago-card">
+        <div class="pago-badge">Participantes (×2)</div>
+        <div class="pago-pct">7.5%</div>
+        <div class="pago-label">del fee cada uno</div>
+        <div class="pago-detalle">
+          <div class="pago-fila">
+            <span class="pago-fila-txt">En 48 horas al contratar</span>
+            <span class="pago-fila-num">Automático</span>
+          </div>
+        </div>
+        <p class="pago-nota">Por haber participado y presentado candidatos. Sin importar quién ganó — tu trabajo tiene valor y se reconoce.</p>
+      </div>
+
+    </div>
+
+    <div class="pagos-ejemplo">
+      <div class="pagos-ejemplo-title">Ejemplo con salario de $40,000/mes</div>
+      <div class="pagos-ejemplo-grid">
+        <div class="pe-item">
+          <span class="pe-label">Fee a la empresa</span>
+          <span class="pe-valor">$20,000</span>
+        </div>
+        <div class="pe-item pe-item-gold">
+          <span class="pe-label">Ganador — al contratar</span>
+          <span class="pe-valor">$5,000</span>
+        </div>
+        <div class="pe-item pe-item-gold">
+          <span class="pe-label">Ganador — a los 60 días</span>
+          <span class="pe-valor">$5,000</span>
+        </div>
+        <div class="pe-item">
+          <span class="pe-label">Participante B — 48 horas</span>
+          <span class="pe-valor">$1,500</span>
+        </div>
+        <div class="pe-item">
+          <span class="pe-label">Participante C — 48 horas</span>
+          <span class="pe-valor">$1,500</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <span id="estandar-rec"></span>
 <section class="section-dk reveal">
   <div class="wrap">
@@ -1875,11 +2005,51 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
       <div class="faq-item">
         <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Sabré qué empresa solicita la vacante?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Recibes toda la información necesaria para reclutar: industria, tamaño de empresa, ciudad, descripción del puesto, perfil requerido y rango salarial. El nombre de la empresa se revela solo cuando tu candidato es el elegido — así se protege el proceso para todos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿La empresa sabrá quién soy?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Solo si tu candidato es el elegido. En ese momento la red hace la presentación formal. Antes del cierre, los tres reclutadores operan de forma anónima — así se garantiza que el proceso sea limpio y que tu trabajo tenga el valor que merece.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Cómo se formaliza el pago?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Los pagos se realizan contra factura. Al confirmar tu primer cierre te explicamos el proceso completo — es simple y sin burocracia.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>¿Tendré una relación laboral con 100 Reclutadores?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>No. Operas como prestador de servicios independiente. No hay relación laboral, no hay subordinación, no hay horarios. Tú decides cuándo y cómo trabajas — solo respondes por tus resultados.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
           <span>¿Cuándo recibo mi pago?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-body">
-          <p>En menos de 48 horas después de que la empresa confirma la contratación. Sin esperas de 30 o 60 días como en las agencias tradicionales. Cierras, confirmamos, te depositamos.</p>
+          <p>En dos partes. La primera mitad (25% del fee total) al momento en que la empresa confirma la contratación. La segunda mitad a los 60 días si el candidato permanece. En total cobras el 50% del fee — el doble de lo que paga cualquier agencia tradicional.</p>
         </div>
       </div>
 
@@ -1909,7 +2079,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-body">
-          <p>El 60% del fee que paga la empresa. A mayor salario del candidato que colocas, mayor tu comisión. Sin descuentos ni deducciones por usar la plataforma.</p>
+          <p>El 50% del fee que paga la empresa — el doble de lo que paga cualquier agencia tradicional. A mayor salario del candidato que colocas, mayor tu comisión. Sin descuentos ni deducciones por usar la plataforma.</p>
         </div>
       </div>
 
@@ -1945,7 +2115,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
       <div class="faq-item">
         <button class="faq-trigger" onclick="toggleFaq(this)">
-          <span>¿Qué pasa si el candidato no pasa los 90 días?</span>
+          <span>¿Qué pasa si el candidato no permanece los primeros 60 días?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-body">
@@ -1975,8 +2145,9 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 <section class="founder-section reveal">
   <div class="founder-inner">
     <div class="founder-orn"></div>
-    <p class="founder-quote" id="founder-quote-empresa">"Fundé esta red porque contratar bien en México es innecesariamente difícil. Demasiadas agencias, demasiado ruido, demasiado riesgo. Aquí cada reclutador responde con su nombre. Yo respondo con el mío."</p>
-    <p class="founder-quote" id="founder-quote-reclutador" style="display:none;">"Empecé en RRHH como reclutador. Sé que no es cuestión de suerte — sé cuánto trabajo hay detrás de cada cierre. Y sé que casi nadie lo paga bien. Fundé esta red para cambiar eso."</p>
+    <img src="data:image/jpeg;base64,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" alt="Alejandro Vivanco" class="founder-photo">
+    <p class="founder-quote" id="founder-quote-empresa">"Fundé esta red porque contratar bien en México es innecesariamente difícil. Demasiadas agencias, demasiados procesos, demasiado riesgo. Aquí cada reclutador responde con su nombre. Yo respondo con el mío."</p>
+    <p class="founder-quote" id="founder-quote-reclutador" style="display:none;">"Empecé en RRHH como reclutador. Sé que no es cuestión de suerte — sé cuánto trabajo hay detrás de cada contratación. Y sé que casi nadie lo paga bien. Fundé esta red para cambiar eso."</p>
     <a href="https://www.linkedin.com/in/vivancoalejandro/" target="_blank" rel="noopener" class="founder-link">
       <span class="founder-name">Alejandro Vivanco — Fundador</span>
       <span class="founder-linkedin">Ver en LinkedIn →</span>
@@ -1987,7 +2158,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
 <!-- QUOTE -->
 <section class="quote-section reveal">
-  <p class="the-quote" id="main-quote">"Contratar bien no es suerte.<br>Es tener acceso a <em style="color:var(--gold)">las personas correctas.</em>"</p>
+  <p class="the-quote" id="main-quote">"El candidato correcto existe.<br>El reclutador que sabe encontrarlo, <em style="color:var(--gold)">también.</em>"</p>
   <div class="q-diamond"></div>
   <div class="q-attr">100 Reclutadores · Red privada · GDL · MTY · México</div>
 </section>
@@ -2002,7 +2173,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <button class="btn-gold" onclick="abrirModal()">Iniciar mi búsqueda →</button>
     <button class="btn-outline-green">Hablar con el equipo →</button>
   </div>
-  <p class="final-note" id="final-note">Cero costo hasta el cierre · Garantía 90 días · Sin exclusividad</p>
+  <p class="final-note" id="final-note">Cero costo hasta el cierre · Garantía 60 días · Sin exclusividad</p>
 </section>
 
 
@@ -2035,6 +2206,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       </div>
       <button onclick="enviarCodigo()" class="btn-gold" style="width:100%;margin-top:8px;padding:18px;">Enviar por WhatsApp →</button>
       <p style="text-align:center;font-size:11px;letter-spacing:0.14em;color:#3A3A2E;text-transform:uppercase;">Acceso solo por invitación · Red privada</p>
+      <p style="text-align:center;font-size:11px;color:#6A6050;margin-top:8px;line-height:1.7;">Al enviar aceptas nuestros <a href="terminos-reclutador.html" target="_blank" style="color:#B8962E;">Términos y Condiciones</a> y <a href="aviso-privacidad.html" target="_blank" style="color:#B8962E;">Aviso de Privacidad</a>.</p>
     </div>
   </div>
 </div>
@@ -2048,8 +2220,9 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
   <span class="foot-copy">© 2026 · 100 Reclutadores · Red Privada de Reclutamiento · México</span>
   <div class="foot-links">
     <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer" class="foot-lnk">Aviso de Privacidad</a>
-    <a href="#" class="foot-lnk">Términos</a>
-    <a href="#" class="foot-lnk">Contacto</a>
+    <a href="terminos-empresa.html" target="_blank" rel="noopener noreferrer" class="foot-lnk">Términos Empresas</a>
+    <a href="terminos-reclutador.html" target="_blank" rel="noopener noreferrer" class="foot-lnk">Términos Reclutadores</a>
+    <a href="https://wa.me/523320658076" target="_blank" rel="noopener noreferrer" class="foot-lnk">Contacto</a>
   </div>
 </footer>
 
@@ -2094,12 +2267,12 @@ function toggleFaq(btn){
   /* Cerrar todos */
   document.querySelectorAll('.faq-trigger.open').forEach(function(b){
     b.classList.remove('open');
-    b.nextElementSibling.classList.remove('open');
+    if(b.nextElementSibling){ b.nextElementSibling.classList.remove('open'); }
   });
   /* Abrir el clickeado si estaba cerrado */
   if(!isOpen){
     btn.classList.add('open');
-    body.classList.add('open');
+    if(body){ body.classList.add('open'); }
   }
 }
 
@@ -2136,24 +2309,29 @@ window.addEventListener('load', function(){
 /* ══════════════════════════════════════
    ENTRY SCREEN
 ══════════════════════════════════════ */
+function sid(id){ return document.getElementById(id); }
+function show(id){ var el=sid(id); if(el) el.style.display=''; }
+function hide(id){ var el=sid(id); if(el) el.style.display='none'; }
+function html(id,v){ var el=sid(id); if(el) el.innerHTML=v; }
+
 function enterSite(tipo){
-  var entry   = document.getElementById('entry-screen');
-  var wrapper = document.getElementById('site-wrapper');
-  var badge   = document.getElementById('mode-badge');
-  var navCta  = document.getElementById('nav-cta-btn');
+  var entry   = sid('entry-screen');
+  var wrapper = sid('site-wrapper');
+  var badge   = sid('mode-badge');
+  var navCta  = sid('nav-cta-btn');
 
   /* Adaptar hero según tipo */
   if(tipo === 'empresa'){
-    document.getElementById('claim-empresa').style.display  = '';
-    document.getElementById('claim-reclutador').style.display = 'none';
-    document.getElementById('sub-empresa').style.display    = '';
-    document.getElementById('sub-reclutador').style.display = 'none';
-    document.getElementById('ctas-empresa').style.display   = '';
-    document.getElementById('ctas-reclutador').style.display= 'none';
-    document.getElementById('stats-empresa').style.display = '';
-    document.getElementById('stats-reclutador').style.display = 'none';
-    document.getElementById('founder-quote-empresa').style.display = '';
-    document.getElementById('founder-quote-reclutador').style.display = 'none';
+    show('claim-empresa');
+    hide('claim-reclutador');
+    show('sub-empresa');
+    hide('sub-reclutador');
+    show('ctas-empresa');
+    hide('ctas-reclutador');
+    show('stats-empresa');
+    hide('stats-reclutador');
+    show('founder-quote-empresa');
+    hide('founder-quote-reclutador');
     badge.style.display = 'none';
     var hb = document.querySelector('.hero-body');
     if(hb){ hb.style.background='#FAFAF7'; }
@@ -2180,35 +2358,33 @@ function enterSite(tipo){
     navCta.textContent = 'Iniciar búsqueda';
     navCta.onclick = abrirModal;
     /* Nav empresa */
-    document.getElementById('nl-1').textContent = 'La red';
-    document.getElementById('nl-1').href = '#red';
-    document.getElementById('nl-2').textContent = 'Empresas';
-    document.getElementById('nl-2').href = '#empresas';
-    document.getElementById('nl-3').textContent = 'Por qué funciona';
-    document.getElementById('nl-3').href = '#estandar';
-    document.getElementById('nl-4').style.display = 'none';
+    var nl1=document.getElementById('nl-1'),nl2=document.getElementById('nl-2'),nl3=document.getElementById('nl-3'),nl4=document.getElementById('nl-4');
+    if(nl1){ nl1.textContent='La red'; nl1.href='#red'; }
+    if(nl2){ nl2.textContent='Empresas'; nl2.href='#empresas'; }
+    if(nl3){ nl3.textContent='Por qué funciona'; nl3.href='#estandar'; }
+    if(nl4){ nl4.style.display='none'; }
     
-    document.getElementById('contenido-reclutador').style.display = 'none';
-    document.getElementById('sec-faq-rec').style.display = 'none';
+    hide('contenido-reclutador');
+    hide('sec-faq-rec');
     document.querySelectorAll('.solo-empresa').forEach(function(el){ el.style.display = ''; });
-    document.getElementById('main-quote').innerHTML = '\"Contratar bien no es suerte.<br>Es tener acceso a <em style=\"color:var(--gold)\">las personas correctas.</em>\"';
-    document.getElementById('final-eyebrow').innerHTML = '¿Tienes una posición que no puedes seguir esperando?';
-    document.getElementById('final-title').innerHTML = 'Describe el perfil.<br>La red <em>hace el resto.</em>';
-    document.getElementById('final-body').innerHTML = 'Sin costo hasta contratar.<br>Sin proceso complicado.<br>Solo el candidato correcto.';
-    document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\" onclick=\"abrirModal()\">Iniciar mi búsqueda →</button>';
-    document.getElementById('final-note').innerHTML = 'Cero costo hasta el cierre · Garantía 90 días · Sin exclusividad';
+    html('main-quote','"El candidato correcto existe.<br>El reclutador que sabe encontrarlo, <em style=\"color:var(--gold)\">también.</em>"');
+    html('final-eyebrow','¿Tienes una posición que no puedes seguir esperando?');
+    html('final-title','Describe el perfil.<br>La red <em>hace el resto.</em>');
+    html('final-body','Sin costo hasta contratar.<br>Sin proceso complicado.<br>Solo el candidato correcto.');
+    html('final-ctas','<button class=\"btn-gold\" onclick=\"abrirModal()\">Iniciar mi búsqueda →</button>');
+    html('final-note','Cero costo hasta el cierre · Garantía 60 días · Sin exclusividad');
     navCta.style.display = '';
   } else {
-    document.getElementById('claim-empresa').style.display  = 'none';
-    document.getElementById('claim-reclutador').style.display = '';
-    document.getElementById('sub-empresa').style.display    = 'none';
-    document.getElementById('sub-reclutador').style.display = '';
-    document.getElementById('ctas-empresa').style.display   = 'none';
-    document.getElementById('ctas-reclutador').style.display= '';
-    document.getElementById('stats-empresa').style.display = 'none';
-    document.getElementById('stats-reclutador').style.display = '';
-    document.getElementById('founder-quote-empresa').style.display = 'none';
-    document.getElementById('founder-quote-reclutador').style.display = '';
+    hide('claim-empresa');
+    show('claim-reclutador');
+    hide('sub-empresa');
+    show('sub-reclutador');
+    hide('ctas-empresa');
+    show('ctas-reclutador');
+    hide('stats-empresa');
+    show('stats-reclutador');
+    hide('founder-quote-empresa');
+    show('founder-quote-reclutador');
     badge.style.display = 'none';
     var hb = document.querySelector('.hero-body');
     if(hb){ hb.style.background=''; }
@@ -2231,38 +2407,40 @@ function enterSite(tipo){
     if(nav){ nav.classList.add('on-dark'); }
     navCta.textContent = 'Mi código de invitación';
     /* Nav reclutador */
-    document.getElementById('nl-1').textContent = 'La red';
-    document.getElementById('nl-1').href = '#red-rec';
-    document.getElementById('nl-2').textContent = 'El índice';
-    document.getElementById('nl-2').href = '#indice-rec';
-    document.getElementById('nl-3').textContent = 'El estándar';
-    document.getElementById('nl-3').href = '#estandar-rec';
-    document.getElementById('nl-4').textContent = 'Mi invitación';
-    document.getElementById('nl-4').href = '#invitacion';
-    document.getElementById('nl-4').style.display = 'none';
+    var nl1=document.getElementById('nl-1'),nl2=document.getElementById('nl-2'),nl3=document.getElementById('nl-3'),nl4=document.getElementById('nl-4');
+    if(nl1){ nl1.textContent='La red'; nl1.href='#red-rec'; }
+    if(nl2){ nl2.textContent='El índice'; nl2.href='#indice-rec'; }
+    if(nl3){ nl3.textContent='El estándar'; nl3.href='#estandar-rec'; }
+    if(nl4){ nl4.textContent='Mi invitación'; nl4.href='#invitacion'; nl4.style.display='none'; }
     navCta.textContent = 'Ingresar código';
     navCta.onclick = function(){ abrirCodigo(); };
     navCta.style.display = '';
     
-    document.getElementById('contenido-reclutador').style.display = '';
-    document.getElementById('sec-faq-rec').style.display = '';
-    document.getElementById('sec-faq').style.display = 'none';
+    show('contenido-reclutador');
+    show('sec-faq-rec');
+    hide('sec-faq');
     document.querySelectorAll('.solo-empresa').forEach(function(el){ el.style.display = 'none'; });
-    document.getElementById('main-quote').innerHTML = '\"Si llegaste hasta aquí,<br>ya sabes que <em style=\"color:var(--gold)\">mereces estar.</em>\"';
-    document.getElementById('final-eyebrow').innerHTML = 'Un solo lugar donde tu trabajo habla por ti';
-    document.getElementById('final-title').innerHTML = 'Los mejores reclutadores no buscan clientes.<br><em>Ganan cerrando posiciones.</em>';
-    document.getElementById('final-body').innerHTML = 'Más vacantes.<br>Mejores comisiones.<br>Sin tener que conseguirlas.';
-    document.getElementById('final-ctas').innerHTML = '<button class=\"btn-gold\" onclick=\"abrirCodigo()\">Ingresar mi código de invitación</button>';
-    document.getElementById('final-note').innerHTML = 'Acceso solo por invitación · Solo 100 asientos · Red privada';
+    html('main-quote','\"Si llegaste hasta aquí,<br>ya sabes que <em style=\"color:var(--gold)\">mereces estar.</em>\"');
+    html('final-eyebrow','Un solo lugar donde tu trabajo habla por ti');
+    html('final-title','Los mejores reclutadores no buscan clientes.<br><em>Ganan cerrando posiciones.</em>');
+    html('final-body','Más vacantes.<br>Mejores comisiones.<br>Sin tener que conseguirlas.');
+    html('final-ctas','<button class=\"btn-gold\" onclick=\"abrirCodigo()\">Ingresar mi código de invitación</button>');
+    html('final-note','Acceso solo por invitación · Solo 100 asientos · Red privada');
   }
 
   /* Animación de salida */
-  entry.classList.add('exit');
+  if(entry){ entry.classList.add('exit'); }
   document.body.classList.remove('entry-active');
 
   /* Mostrar sitio */
   setTimeout(function(){
-    wrapper.classList.add('visible');
+    if(wrapper){ wrapper.classList.add('visible'); }
+    /* Count-up del 100 */
+    var el100 = document.getElementById('hero-100');
+    if(el100){
+      el100.textContent = '0';
+      setTimeout(function(){ countUp(el100, 100, 2800); }, 400);
+    }
   }, 200);
 }
 
@@ -2273,6 +2451,20 @@ function showEntry(){
   if(wrapper){ wrapper.classList.remove('visible'); }
   document.body.classList.add('entry-active');
   window.scrollTo(0,0);
+}
+
+function countUp(el, target, duration){
+  var startTime = null;
+  function step(timestamp){
+    if(!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    /* Ease out quint — mucho más lento al final */
+    var ease = 1 - Math.pow(1 - progress, 5);
+    el.textContent = Math.floor(ease * target);
+    if(progress < 1){ requestAnimationFrame(step); }
+    else { el.textContent = target; }
+  }
+  requestAnimationFrame(step);
 }
 
 /* ══════════════════════════════════════
@@ -2305,12 +2497,16 @@ if('IntersectionObserver' in window){
     <div class="modal-eyebrow" style="color:#8A7A50;">Preguntas frecuentes</div>
     <h3 class="modal-title" style="color:#141412;">Lo que las empresas suelen preguntarnos</h3>
     <div class="faq-list" style="margin-top:28px;border-top-color:#D8D4C8;">
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Para qué tipo de posiciones funciona mejor?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Para posiciones con salario mensual bruto de <strong>$25,000 o más</strong> — gerencias, coordinaciones senior y especialistas con experiencia. Fintech y servicios financieros, gerencias comerciales y de ventas, tecnología y desarrollo de software, operaciones y supply chain, marketing y growth, manufactura nivel ingeniería o supervisión en adelante. No trabajamos posiciones operativas o junior.</p></div></div>
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto cuesta?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>El fee es el <strong>50% del salario mensual bruto</strong> del candidato que contratas — pagado solo al cierre. Sin cuotas, sin mensualidades, sin letra chica. Ejemplo: candidato con salario de $40,000 → pagas $20,000 una sola vez. Las agencias tradicionales cobran un mes completo o más, muchas veces por adelantado.</p></div></div>
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto tiempo tarda en llegar el primer candidato?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>En promedio 14 días. Tres reclutadores especializados en tu industria arrancan en paralelo desde el momento en que validamos tu vacante.</p></div></div>
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Qué pasa si el candidato no funciona?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Tienes 90 días de garantía. Si el candidato no se sostiene en ese periodo, el proceso se repite sin costo adicional.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto tiempo tardan en presentar candidatos?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>En máximo 14 días. Tres reclutadores especializados en tu industria trabajan en paralelo desde que validamos tu vacante. No recibes 40 CVs para filtrar — recibes los perfiles que realmente califican.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuánto cuesta?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>El fee es el <strong>50% del salario mensual bruto</strong> del candidato contratado — pagado solo al cierre. Las agencias tradicionales cobran el 100% del salario mensual, muchas veces por adelantado. Aquí pagas la mitad, sin riesgo previo. Ejemplo: candidato con salario $40,000 → pagas $20,000 una sola vez.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Genera alguna relación laboral con ustedes o con los reclutadores?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>No. 100 Reclutadores opera como intermediario de servicios de reclutamiento. No existe relación laboral entre tu empresa, la red ni los reclutadores. Es una prestación de servicios profesionales independientes.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿A quién le pago?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>El pago se realiza a 100 Reclutadores — no directamente al reclutador. Nosotros gestionamos la distribución interna. Tú tratas con una sola contraparte en todo momento.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuándo se paga?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Al contratar al candidato que elegiste — nunca antes. Sin anticipos, sin cuotas, sin mensualidades. Solo en el momento del cierre exitoso.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Qué garantía tengo?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>60 días de garantía en cada cierre. Si el candidato no permanece ese periodo, lo reponemos en 7 a 10 días hábiles sin costo adicional. Sin trámites, sin negociación.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Qué pasa si el candidato renuncia, decide no continuar o no cumple las expectativas?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Sin importar la razón — renuncia, bajo desempeño o decisión de la empresa — lo reponemos en máximo 7 a 10 días hábiles sin costo adicional, siempre que ocurra dentro de los primeros 60 días. El proceso se reactiva de inmediato.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Para qué tipo de posiciones funciona mejor?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Para posiciones con salario mensual bruto de <strong>$25,000 o más</strong> — gerencias, coordinaciones senior y especialistas con experiencia. Fintech, tecnología, ventas, operaciones, manufactura nivel ingeniería en adelante. No trabajamos posiciones operativas o junior.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuántos reclutadores trabajan mi vacante?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Tres. Cada uno especializado en tu giro, trabajando en paralelo y de forma anónima. El sistema los asigna según su historial en tu industria — tú solo ves los candidatos que presentan.</p></div></div>
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Tengo que firmar un contrato o dar exclusividad?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>No. Describes el perfil, recibes candidatos y decides. Sin compromisos previos, sin exclusividad.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Tengo que firmar un contrato o dar exclusividad?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>No. Describes el perfil, recibes candidatos y decides. Sin compromisos previos, sin exclusividad. Antes de iniciar firmamos un acuerdo simple de confidencialidad.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿En qué ciudades operan?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Actualmente en Guadalajara, Ciudad de México y Monterrey, con reclutadores especializados en cada mercado.</p></div></div>
     </div>
   </div>
