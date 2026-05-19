@@ -1142,6 +1142,67 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 }
 .paso-card-dk:hover{ background:#111110; }
 
+/* ── Todos ganan ── */
+.todos-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;
+  background:#1A1A14;margin-top:48px;
+}
+.todos-card{
+  background:#0E0E0C;padding:36px 28px;
+}
+.todos-card-gold{
+  background:#0C0E0B;border-top:2px solid var(--gold);
+}
+.todos-badge{
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-lo);margin-bottom:16px;font-family:'Jost',sans-serif;
+}
+.todos-pct{
+  font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;
+  color:#6A6A58;line-height:1;margin-bottom:4px;
+}
+.todos-card-gold .todos-pct{color:var(--gold);}
+.todos-label{
+  font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  color:#4A4A38;margin-bottom:16px;font-family:'Jost',sans-serif;
+}
+.todos-desc{font-size:13px;color:#6A6A58;line-height:1.8;font-weight:300;}
+.todos-footer{
+  margin-top:36px;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;
+  color:#6A6A58;border-top:1px solid #1E1E18;padding-top:28px;
+}
+
+/* ── Todos ganan light (empresa) ── */
+.todos-grid-light{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;
+  background:var(--rule);margin-top:48px;
+}
+.todos-card-light{
+  background:var(--bg);padding:36px 28px;transition:background 0.25s;
+}
+.todos-card-light:hover{background:var(--bg-alt);}
+.todos-card-light-gold{
+  background:#FDFBF5;
+}
+.todos-card-light-gold:hover{background:#FAF7ED;}
+.todos-n{
+  font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;
+  color:var(--ink-low);line-height:1;margin-bottom:8px;
+}
+.todos-t{
+  font-family:'Jost',sans-serif;font-size:14px;font-weight:500;
+  color:var(--ink);margin-bottom:10px;
+}
+.todos-p{font-size:13px;color:var(--ink-mid);line-height:1.85;font-weight:300;}
+
+@media(max-width:768px){
+  .todos-grid{grid-template-columns:1fr;}
+  .todos-grid-light{grid-template-columns:1fr;}
+  .todos-card{padding:28px 20px;}
+  .todos-card-light{padding:28px 20px;}
+}
+
 /* ── Esquema de pagos ── */
 .pagos-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:2px;
@@ -1458,7 +1519,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
     <button class="modal-close" onclick="cerrarModal()">✕</button>
     <div class="modal-eyebrow">Iniciar búsqueda</div>
     <h3 class="modal-title">Cuéntanos qué perfil necesitas</h3>
-    <p class="modal-sub">En menos de 2 minutos lo tenemos. Te contactamos por WhatsApp.<br><span style="font-size:11px;color:#8A7A50;letter-spacing:0.06em;">Trabajamos posiciones con salario mínimo de $25,000 mensuales brutos.</span></p>
+    <p class="modal-sub">Llena el formulario en menos de 2 minutos. Te contactamos en menos de 1 hora.<br><span style="font-size:11px;color:#8A7A50;letter-spacing:0.06em;">Trabajamos posiciones con salario mínimo de $20,000 mensuales brutos.</span></p>
 
     <div class="modal-form">
       <div class="modal-field">
@@ -1470,7 +1531,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
         <input class="modal-input" id="mv-industria" type="text" placeholder="Ej. Manufactura, Tech, Retail…">
       </div>
       <div class="modal-field">
-        <label class="modal-label">Rango salarial mensual bruto (mínimo $25,000)</label>
+        <label class="modal-label">Rango salarial mensual bruto (mínimo $20,000)</label>
         <input class="modal-input" id="mv-salario" type="text" placeholder="Ej. $35,000 – $50,000 mensuales brutos">
       </div>
       <div class="modal-field">
@@ -1488,7 +1549,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <button class="btn-gold" style="width:100%;margin-top:8px;padding:18px;" onclick="enviarWhatsApp()">
         Enviar por WhatsApp →
       </button>
-      <p style="text-align:center;font-size:11px;letter-spacing:0.14em;color:#4A4A38;margin-top:14px;text-transform:uppercase;">Sin costo hasta contratar · Te respondemos en menos de 1 hora</p>
+      <p style="text-align:center;font-size:11px;letter-spacing:0.14em;color:#4A4A38;margin-top:14px;text-transform:uppercase;">Sin costo hasta contratar · Sin compromiso previo</p>
       <p style="text-align:center;font-size:11px;color:#3A3A2E;margin-top:10px;line-height:1.7;letter-spacing:0.04em;">Antes de iniciar el proceso firmamos un acuerdo simple<br>de confidencialidad y términos.</p>
     </div>
   </div>
@@ -1540,7 +1601,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
     <!-- Claim empresa -->
     <p class="hero-claim empresa" id="claim-empresa">
-      "El reclutador que cierra tu posición ya existe.<br>Solo necesitas acceso a él."
+      "Reclutadores especializados en tu giro.<br>Compiten por darte al mejor candidato."
     </p>
     <!-- Claim reclutador -->
     <p class="hero-claim reclutador" id="claim-reclutador" style="display:none;">
@@ -1643,7 +1704,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="concept-card">
         <span class="cc-badge">Lo que obtienes aquí</span>
         <h3 class="cc-title">Acceso directo a los reclutadores que sí dan resultados</h3>
-        <p class="cc-body">100 Reclutadores es una red privada de operadores seleccionados. Cada uno trabaja con su nombre en cada proceso — y eso cambia todo. Solo pagas cuando contratas a la persona correcta.</p>
+        <p class="cc-body">100 Reclutadores es una red privada de profesionales en reclutamiento. Cada uno trabaja con su nombre en cada proceso — y eso cambia todo. Solo pagas cuando contratas a la persona correcta.</p>
         <div class="cc-foot">Costo cero hasta el cierre exitoso · Garantía 60 días</div>
       </div>
     </div>
@@ -1736,7 +1797,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="beneficio-card">
         <div class="beneficio-icon">14d</div>
         <div class="beneficio-t">14 días vs 47 del mercado</div>
-        <p class="beneficio-p">Reclutadores especializados en tu industria trabajando en paralelo. No generan ruido — van directo a donde está el perfil.</p>
+        <p class="beneficio-p">Reclutadores especializados en tu industria trabajando en paralelo. No te inundan de CVs para filtrar — te presentan solo los perfiles que realmente califican.</p>
       </div>
       <div class="beneficio-card">
         <div class="beneficio-icon">✓</div>
@@ -1780,7 +1841,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
       <div class="paso-card paso-card-gold">
         <span class="paso-n" style="color:var(--gold);">03</span>
         <div class="paso-t">Eliges. Pagas. Con garantía.</div>
-        <p class="paso-p">Solo pagas cuando contratas al candidato que elegiste. Y si no se sostiene en los primeros 60 días, el proceso se repite sin costo adicional. Sin letra chica.</p>
+        <p class="paso-p">Solo pagas cuando contratas al candidato que elegiste. Y si por cualquier razón el candidato no continúa en el puesto durante los primeros 60 días naturales, iniciamos un nuevo proceso sin costo adicional. Sin letra chica.</p>
       </div>
     </div>
 
@@ -1928,7 +1989,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
             <span class="pago-fila-num">50% restante</span>
           </div>
         </div>
-        <p class="pago-nota">Si el candidato no permanece 60 días tienes de 7 a 10 días para reponer. Si no repones, los otros dos participantes pueden presentar un candidato adicional y ganar el 50% pendiente.</p>
+        <p class="pago-nota">Si por cualquier razón el candidato no continúa en el puesto durante los primeros 60 días, tienes de 7 a 10 días para reponer. Si no repones, los otros dos participantes pueden presentar un candidato adicional y ganar el 50% pendiente.</p>
       </div>
 
       <div class="pago-card">
@@ -2000,6 +2061,40 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 </section>
 
 
+
+<!-- TODOS GANAN — RECLUTADOR -->
+<section class="section-dk reveal" id="sec-todos-ganan">
+  <div class="wrap">
+    <div class="eyebrow-dk">El modelo que nos hace diferentes</div>
+    <h2 class="s-title-dk">Tres reclutadores.<br>Un candidato elegido.<br><em>Todos ganan.</em></h2>
+    <p class="s-body" style="color:#8A8A72;margin-top:18px;">En esta red no hay un solo ganador. Aunque el cliente elija el candidato de otro reclutador, tu trabajo siempre tiene valor y siempre se paga.</p>
+
+    <div class="todos-grid">
+      <div class="todos-card todos-card-gold">
+        <div class="todos-badge">Si tu candidato es elegido</div>
+        <div class="todos-pct">50%</div>
+        <div class="todos-label">de la comisión total</div>
+        <p class="todos-desc">Mitad al contratar, mitad a los 60 días si el candidato permanece.</p>
+      </div>
+      <div class="todos-card">
+        <div class="todos-badge">Si participaste y presentaste</div>
+        <div class="todos-pct">7.5%</div>
+        <div class="todos-label">de la comisión total</div>
+        <p class="todos-desc">Aunque el cliente elija a otro candidato, cobras en 48 horas por haber participado.</p>
+      </div>
+      <div class="todos-card">
+        <div class="todos-badge">Si el ganador no repone</div>
+        <div class="todos-pct">50%</div>
+        <div class="todos-label">del restante</div>
+        <p class="todos-desc">Si el reclutador ganador no repone en 7-10 días, puedes presentar otro candidato y ganar la comisión pendiente.</p>
+      </div>
+    </div>
+
+    <div class="todos-footer">
+      En ninguna agencia tu trabajo se paga aunque no ganes. Aquí sí.
+    </div>
+  </div>
+</section>
 
 <section class="section-dk reveal" id="sec-faq-rec">
   <div class="wrap">
@@ -2103,7 +2198,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-body">
-          <p>Posiciones con salario mínimo de $25,000 mensuales brutos — gerencias, coordinaciones senior y especialistas con experiencia. Fintech, tecnología, ventas, operaciones, manufactura nivel ingeniería en adelante. Sin posiciones operativas ni junior. Esto garantiza que tu comisión valga el esfuerzo.</p>
+          <p>Posiciones con salario mínimo de $20,000 mensuales brutos — gerencias, coordinaciones senior y especialistas con experiencia. Fintech, tecnología, ventas, operaciones, manufactura nivel ingeniería en adelante. Sin posiciones operativas ni junior. Esto garantiza que tu comisión valga el esfuerzo.</p>
         </div>
       </div>
 
@@ -2119,7 +2214,7 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
       <div class="faq-item">
         <button class="faq-trigger" onclick="toggleFaq(this)">
-          <span>¿Qué pasa si el candidato no permanece los primeros 60 días?</span>
+          <span>¿Qué pasa si el candidato no continúa en el puesto durante los primeros 60 días?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-body">
@@ -2135,6 +2230,33 @@ footer{padding:36px var(--outer);border-top:1px solid var(--rule);display:flex;a
 
 
 <!-- FAQ EMPRESA -->
+<!-- TODOS GANAN — EMPRESA -->
+<section class="section solo-empresa" id="sec-como-funciona-pago">
+  <div class="wrap">
+    <div class="eyebrow">El modelo que nos hace diferentes</div>
+    <h2 class="s-title">Tres reclutadores compiten.<br><em>Tú solo eliges al mejor.</em></h2>
+    <p class="s-body" style="margin-top:18px;">Para cada vacante asignamos tres reclutadores especializados en tu industria. Trabajan en paralelo, de forma anónima entre sí. Cada uno presenta su mejor candidato. Tú ves los perfiles y decides — sin presión, sin compromiso.</p>
+
+    <div class="todos-grid todos-grid-light">
+      <div class="todos-card-light">
+        <div class="todos-n">3</div>
+        <div class="todos-t">Reclutadores especializados</div>
+        <p class="todos-p">Cada uno con historial en tu industria. El sistema los asigna — tú no tienes que evaluarlos.</p>
+      </div>
+      <div class="todos-card-light">
+        <div class="todos-n">1</div>
+        <div class="todos-t">Candidato que tú eliges</div>
+        <p class="todos-p">Ves los perfiles conforme se presentan y decides con cuál quedarte. Solo pagas por ese cierre.</p>
+      </div>
+      <div class="todos-card-light todos-card-light-gold">
+        <div class="todos-n" style="color:var(--gold);">60d</div>
+        <div class="todos-t">De garantía incluida</div>
+        <p class="todos-p">Si por cualquier razón el candidato no continúa en el puesto, lo reponemos en 7 a 10 días sin costo adicional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section-alt solo-empresa" id="sec-faq">
   <div class="wrap" style="text-align:center;">
     <div class="eyebrow">Preguntas frecuentes</div>
@@ -2313,6 +2435,15 @@ window.addEventListener('load', function(){
 /* ══════════════════════════════════════
    ENTRY SCREEN
 ══════════════════════════════════════ */
+/* ══════════════════════════════════════
+   HISTORIAL — botón atrás del celular
+══════════════════════════════════════ */
+window.addEventListener('popstate', function(e){
+  if(e.state && e.state.section === 'site'){
+    showEntry();
+  }
+});
+
 function sid(id){ return document.getElementById(id); }
 function show(id){ var el=sid(id); if(el) el.style.display=''; }
 function hide(id){ var el=sid(id); if(el) el.style.display='none'; }
@@ -2436,6 +2567,9 @@ function enterSite(tipo){
   if(entry){ entry.classList.add('exit'); }
   document.body.classList.remove('entry-active');
 
+  /* Registrar en historial para que el botón atrás funcione */
+  history.pushState({section: 'site', tipo: tipo}, '', '');
+
   /* Mostrar sitio */
   setTimeout(function(){
     if(wrapper){ wrapper.classList.add('visible'); }
@@ -2508,7 +2642,7 @@ if('IntersectionObserver' in window){
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuándo se paga?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Al contratar al candidato que elegiste — nunca antes. Sin anticipos, sin cuotas, sin mensualidades. Solo en el momento del cierre exitoso.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Qué garantía tengo?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>60 días de garantía en cada cierre. Si el candidato no permanece ese periodo, lo reponemos en 7 a 10 días hábiles sin costo adicional. Sin trámites, sin negociación.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Qué pasa si el candidato renuncia, decide no continuar o no cumple las expectativas?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Sin importar la razón — renuncia, bajo desempeño o decisión de la empresa — lo reponemos en máximo 7 a 10 días hábiles sin costo adicional, siempre que ocurra dentro de los primeros 60 días. El proceso se reactiva de inmediato.</p></div></div>
-      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Para qué tipo de posiciones funciona mejor?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Para posiciones con salario mensual bruto de <strong>$25,000 o más</strong> — gerencias, coordinaciones senior y especialistas con experiencia. Fintech, tecnología, ventas, operaciones, manufactura nivel ingeniería en adelante. No trabajamos posiciones operativas o junior.</p></div></div>
+      <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Para qué tipo de posiciones funciona mejor?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Para posiciones con salario mensual bruto de <strong>$20,000 o más</strong> — gerencias, coordinaciones senior y especialistas con experiencia. Fintech, tecnología, ventas, operaciones, manufactura nivel ingeniería en adelante. No trabajamos posiciones operativas o junior.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Cuántos reclutadores trabajan mi vacante?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Tres. Cada uno especializado en tu giro, trabajando en paralelo y de forma anónima. El sistema los asigna según su historial en tu industria — tú solo ves los candidatos que presentan.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿Tengo que firmar un contrato o dar exclusividad?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>No. Describes el perfil, recibes candidatos y decides. Sin compromisos previos, sin exclusividad. Antes de iniciar firmamos un acuerdo simple de confidencialidad.</p></div></div>
       <div class="faq-item"><button class="faq-trigger" onclick="toggleFaq(this)"><span>¿En qué ciudades operan?</span><span class="faq-icon">+</span></button><div class="faq-body"><p>Actualmente en Guadalajara, Ciudad de México y Monterrey, con reclutadores especializados en cada mercado.</p></div></div>
