@@ -2360,13 +2360,25 @@ function cerrarCodigo(){
 }
 function enviarCodigo(){
   var nombre = document.getElementById('inv-nombre').value.trim();
-  var codigo = document.getElementById('inv-codigo').value.trim();
+  var codigo = document.getElementById('inv-codigo').value.trim().toUpperCase();
   var especialidad = document.getElementById('inv-especialidad').value.trim();
+
+  /* Códigos válidos que abren el dashboard */
+  var codigosValidos = ['REC-GDL-001','REC-CDMX-001','REC-MTY-001','DEMO-100REC'];
+
   if(!nombre){ alert('¿Cuál es tu nombre?'); return; }
   if(!codigo){ alert('¿Cuál es tu código de invitación?'); return; }
-  var msg = 'Hola, quiero ingresar a 100 Reclutadores:\n\n👤 *Nombre:* '+nombre+'\n🔑 *Código:* '+codigo+'\n🏢 *Especialidad:* '+(especialidad||'No especificada');
-  window.open('https://wa.me/523320658076?text='+encodeURIComponent(msg),'_blank');
-  cerrarCodigo();
+
+  if(codigosValidos.indexOf(codigo) !== -1){
+    /* Código válido — ir al dashboard */
+    cerrarCodigo();
+    window.location.href = 'dashboard-reclutador.html';
+  } else {
+    /* Código no reconocido — mandar a WhatsApp para validación */
+    var msg = 'Hola, quiero ingresar a 100 Reclutadores:\n\n👤 *Nombre:* '+nombre+'\n🔑 *Código:* '+codigo+'\n🏢 *Especialidad:* '+(especialidad||'No especificada');
+    window.open('https://wa.me/523320658076?text='+encodeURIComponent(msg),'_blank');
+    cerrarCodigo();
+  }
 }
 
 function abrirFaqEmpresa(){

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Reclutadores — Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#B8962E;--gold-hi:#D4A84C;--gold-lo:rgba(184,150,46,0.5);
+  --ink:#E0DCC8;--ink-mid:#8A8A72;--ink-low:#4A4A38;
+  --bg:#0A0A08;--bg-2:#0E0E0C;--bg-3:#111110;--bg-4:#1A1A14;
+  --rule:#1E1E18;--green:#1A7A4A;--green-lo:rgba(26,122,74,0.15);
+}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
+
+/* ── LOGIN ── */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;padding:20px;
+  background:radial-gradient(ellipse at 30% 50%, rgba(184,150,46,0.04) 0%, transparent 60%);
+}
+.login-box{
+  max-width:420px;width:100%;text-align:center;
+}
+.login-logo{
+  font-family:'Cormorant Garamond',serif;
+  display:flex;align-items:baseline;justify-content:center;gap:8px;
+  margin-bottom:48px;
+}
+.login-logo-num{
+  font-size:48px;font-weight:300;color:transparent;
+  -webkit-text-stroke:1px var(--gold);letter-spacing:-0.02em;
+}
+.login-logo-word{
+  font-size:13px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--ink-low);font-family:'Jost',sans-serif;font-weight:300;
+}
+.login-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:300;color:var(--ink);
+  margin-bottom:8px;line-height:1.3;
+}
+.login-sub{
+  font-size:12px;color:var(--ink-low);letter-spacing:0.08em;
+  margin-bottom:40px;
+}
+.login-field{
+  display:flex;flex-direction:column;gap:8px;margin-bottom:16px;text-align:left;
+}
+.login-label{
+  font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold-lo);
+}
+.login-input{
+  background:var(--bg-2);border:1px solid var(--rule);
+  padding:16px 18px;font-size:14px;color:var(--ink);
+  font-family:'Jost',sans-serif;font-weight:300;
+  outline:none;letter-spacing:0.12em;text-transform:uppercase;
+  transition:border-color 0.25s;
+}
+.login-input:focus{border-color:var(--gold-lo);}
+.login-input::placeholder{color:var(--ink-low);text-transform:none;letter-spacing:0.04em;}
+.login-btn{
+  width:100%;padding:18px;margin-top:8px;
+  background:var(--gold);color:#0A0A08;
+  border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:0.28em;text-transform:uppercase;font-weight:500;
+  transition:background 0.25s;
+}
+.login-btn:hover{background:var(--gold-hi);}
+.login-error{
+  font-size:12px;color:#CC4444;margin-top:12px;
+  letter-spacing:0.06em;display:none;
+}
+.login-note{
+  font-size:11px;color:var(--ink-low);margin-top:24px;
+  letter-spacing:0.06em;line-height:1.7;
+}
+.login-note a{color:var(--gold-lo);text-decoration:none;}
+
+/* ── DASHBOARD ── */
+#dashboard{display:none;}
+
+/* NAV */
+.dash-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  border-bottom:1px solid var(--rule);
+  background:var(--bg);position:sticky;top:0;z-index:100;
+}
+.dash-logo{
+  font-family:'Cormorant Garamond',serif;
+  display:flex;align-items:baseline;gap:6px;
+}
+.dash-logo-num{font-size:22px;font-weight:300;color:transparent;-webkit-text-stroke:1px var(--gold);}
+.dash-logo-word{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-low);}
+.dash-user{display:flex;align-items:center;gap:16px;}
+.dash-user-name{font-size:12px;color:var(--ink-mid);letter-spacing:0.08em;}
+.dash-logout{
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink-low);background:none;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;transition:color 0.2s;padding:8px;
+}
+.dash-logout:hover{color:var(--gold);}
+
+/* MAIN */
+.dash-main{max-width:1100px;margin:0 auto;padding:48px 32px;}
+
+/* HEADER */
+.dash-header{margin-bottom:48px;}
+.dash-eyebrow{
+  font-size:10px;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--gold-lo);margin-bottom:12px;
+}
+.dash-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,4vw,40px);font-weight:300;
+  color:var(--ink);line-height:1.2;
+}
+.dash-title em{color:var(--gold);font-style:italic;}
+
+/* ÍNDICE */
+.indice-section{
+  display:grid;grid-template-columns:1fr 3fr;gap:32px;
+  margin-bottom:48px;
+}
+.indice-card{
+  background:var(--bg-2);border:1px solid var(--rule);
+  padding:32px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;position:relative;
+  overflow:hidden;
+}
+.indice-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%, rgba(184,150,46,0.06), transparent 70%);
+}
+.indice-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px;font-weight:300;color:var(--gold);
+  line-height:1;margin-bottom:4px;position:relative;
+}
+.indice-label{
+  font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--ink-low);position:relative;
+}
+.indice-bar-wrap{position:relative;}
+.indice-bar-bg{
+  height:4px;background:var(--rule);margin-bottom:24px;
+}
+.indice-bar-fill{
+  height:4px;background:var(--gold);width:0%;
+  transition:width 1.5s cubic-bezier(0.22,1,0.36,1);
+  position:relative;top:-4px;
+}
+
+/* STATS GRID */
+.stats-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--rule);
+}
+.stat-card{
+  background:var(--bg-2);padding:24px 28px;
+}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:300;color:var(--ink);margin-bottom:4px;
+}
+.stat-d{font-size:11px;color:var(--ink-low);letter-spacing:0.12em;text-transform:uppercase;}
+
+/* VACANTES */
+.section-title{
+  font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold-lo);margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.section-title::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+.vacante-list{display:flex;flex-direction:column;gap:2px;margin-bottom:48px;}
+.vacante-card{
+  background:var(--bg-2);border:none;padding:24px 28px;
+  display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+  transition:background 0.2s;cursor:pointer;
+}
+.vacante-card:hover{background:var(--bg-3);}
+.vacante-card.activa{border-left:2px solid var(--gold);}
+.vacante-card.nueva{border-left:2px solid var(--green);}
+.v-info{}
+.v-puesto{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:400;color:var(--ink);margin-bottom:4px;
+}
+.v-meta{font-size:12px;color:var(--ink-low);letter-spacing:0.06em;}
+.v-right{text-align:right;}
+.v-salario{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:300;color:var(--gold);margin-bottom:4px;
+}
+.v-badge{
+  display:inline-block;font-size:9px;letter-spacing:0.2em;
+  text-transform:uppercase;padding:4px 10px;
+}
+.v-badge.nueva{background:var(--green-lo);color:var(--green);}
+.v-badge.activa{background:rgba(184,150,46,0.08);color:var(--gold);}
+.v-badge.presentado{background:rgba(255,255,255,0.04);color:var(--ink-low);}
+
+/* PERFIL */
+.perfil-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  background:var(--rule);margin-bottom:48px;
+}
+.perfil-field{
+  background:var(--bg-2);padding:24px 28px;
+}
+.p-label{
+  font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--ink-low);margin-bottom:10px;
+}
+.p-input{
+  background:transparent;border:none;border-bottom:1px solid var(--rule);
+  padding:8px 0;font-size:14px;color:var(--ink);
+  font-family:'Jost',sans-serif;font-weight:300;width:100%;
+  outline:none;transition:border-color 0.2s;
+}
+.p-input:focus{border-color:var(--gold-lo);}
+.p-select{
+  background:var(--bg-3);border:1px solid var(--rule);
+  padding:10px 12px;font-size:13px;color:var(--ink);
+  font-family:'Jost',sans-serif;font-weight:300;width:100%;
+  outline:none;cursor:pointer;
+}
+.save-btn{
+  background:none;border:1px solid var(--rule);
+  padding:14px 32px;font-size:10px;letter-spacing:0.24em;
+  text-transform:uppercase;color:var(--ink-low);cursor:pointer;
+  font-family:'Jost',sans-serif;transition:all 0.25s;margin-top:16px;
+}
+.save-btn:hover{border-color:var(--gold-lo);color:var(--gold);}
+.save-ok{
+  font-size:11px;color:var(--green);letter-spacing:0.12em;
+  margin-left:16px;display:none;
+}
+
+/* EMPTY STATE */
+.empty-state{
+  text-align:center;padding:64px 32px;
+  border:1px dashed var(--rule);
+}
+.empty-icon{font-size:32px;margin-bottom:16px;opacity:0.3;}
+.empty-txt{font-size:13px;color:var(--ink-low);line-height:1.8;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .dash-nav{padding:0 20px;}
+  .dash-main{padding:32px 20px;}
+  .indice-section{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .perfil-grid{grid-template-columns:1fr;}
+  .vacante-card{grid-template-columns:1fr;}
+  .v-right{text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <span class="login-logo-num">100</span>
+      <span class="login-logo-word">Reclutadores</span>
+    </div>
+    <h1 class="login-title">Portal de<br>Reclutadores</h1>
+    <p class="login-sub">Acceso exclusivo · Solo por invitación</p>
+
+    <div class="login-field">
+      <label class="login-label">Tu código de invitación</label>
+      <input class="login-input" id="codigo-input" type="text" placeholder="Ej. REC-GDL-001" maxlength="20">
+    </div>
+    <button class="login-btn" onclick="validarCodigo()">Acceder →</button>
+    <p class="login-error" id="login-error">Código no válido. Verifica e intenta de nuevo.</p>
+    <p class="login-note">
+      ¿No tienes código? <a href="index.html">Solicita tu invitación</a><br>
+      o contáctanos por <a href="https://wa.me/523320658076">WhatsApp</a>
+    </p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+  <nav class="dash-nav">
+    <div class="dash-logo">
+      <span class="dash-logo-num">100</span>
+      <span class="dash-logo-word">Reclutadores</span>
+    </div>
+    <div class="dash-user">
+      <span class="dash-user-name" id="dash-nombre">—</span>
+      <button class="dash-logout" onclick="cerrarSesion()">Salir</button>
+    </div>
+  </nav>
+
+  <main class="dash-main">
+
+    <!-- HEADER -->
+    <div class="dash-header">
+      <div class="dash-eyebrow">Portal del Reclutador</div>
+      <h1 class="dash-title">Bienvenido, <em id="dash-nombre-title">—</em></h1>
+    </div>
+
+    <!-- ÍNDICE + STATS -->
+    <div class="indice-section">
+      <div class="indice-card">
+        <div class="indice-num" id="indice-val">—</div>
+        <div class="indice-label">Tu índice</div>
+        <div style="width:100%;margin-top:20px;">
+          <div class="indice-bar-bg">
+            <div class="indice-bar-fill" id="indice-bar"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-size:10px;color:var(--ink-low);">0</span>
+            <span style="font-size:10px;color:var(--ink-low);">100</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-n" id="stat-vacantes">0</div>
+          <div class="stat-d">Vacantes asignadas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-n" id="stat-activas">0</div>
+          <div class="stat-d">Procesos activos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-n" id="stat-colocaciones">0</div>
+          <div class="stat-d">Colocaciones exitosas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VACANTES -->
+    <div class="section-title">Vacantes asignadas</div>
+    <div class="vacante-list" id="vacante-list"></div>
+
+    <!-- PERFIL -->
+    <div class="section-title">Tu perfil</div>
+    <div class="perfil-grid">
+      <div class="perfil-field">
+        <div class="p-label">Nombre completo</div>
+        <input class="p-input" id="p-nombre" type="text">
+      </div>
+      <div class="perfil-field">
+        <div class="p-label">Ciudad</div>
+        <select class="p-select" id="p-ciudad">
+          <option>Guadalajara</option>
+          <option>Ciudad de México</option>
+          <option>Monterrey</option>
+          <option>Otra</option>
+        </select>
+      </div>
+      <div class="perfil-field">
+        <div class="p-label">Industria principal</div>
+        <select class="p-select" id="p-industria">
+          <option>Tecnología</option>
+          <option>Manufactura / Automotriz</option>
+          <option>Banca / Finanzas</option>
+          <option>Ventas / Comercial</option>
+          <option>Salud / Farma</option>
+          <option>Construcción</option>
+          <option>Marketing</option>
+          <option>Otra</option>
+        </select>
+      </div>
+      <div class="perfil-field">
+        <div class="p-label">Años de experiencia en reclutamiento</div>
+        <select class="p-select" id="p-experiencia">
+          <option>1-3 años</option>
+          <option>3-5 años</option>
+          <option>5-10 años</option>
+          <option>Más de 10 años</option>
+        </select>
+      </div>
+      <div class="perfil-field" style="grid-column:1/-1;">
+        <div class="p-label">LinkedIn</div>
+        <input class="p-input" id="p-linkedin" type="text" placeholder="linkedin.com/in/tu-perfil">
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;">
+      <button class="save-btn" onclick="guardarPerfil()">Guardar perfil</button>
+      <span class="save-ok" id="save-ok">✓ Guardado</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   CÓDIGOS DE ACCESO
+   Formato: CÓDIGO → datos del reclutador
+══════════════════════════════════════ */
+var CODIGOS = {
+  'REC-GDL-001': {
+    nombre: 'Reclutador',
+    ciudad: 'Guadalajara',
+    industria: 'Tecnología',
+    experiencia: '5-10 años',
+    indice: 0,
+    vacantes: [],
+    colocaciones: 0
+  },
+  'REC-CDMX-001': {
+    nombre: 'Reclutador',
+    ciudad: 'Ciudad de México',
+    industria: 'Banca / Finanzas',
+    experiencia: '3-5 años',
+    indice: 0,
+    vacantes: [],
+    colocaciones: 0
+  },
+  'REC-MTY-001': {
+    nombre: 'Reclutador',
+    ciudad: 'Monterrey',
+    industria: 'Manufactura / Automotriz',
+    experiencia: '5-10 años',
+    indice: 0,
+    vacantes: [],
+    colocaciones: 0
+  },
+  /* Demo con vacantes de ejemplo */
+  'DEMO-100REC': {
+    nombre: 'Demo',
+    ciudad: 'Guadalajara',
+    industria: 'Tecnología',
+    experiencia: '5-10 años',
+    indice: 72,
+    colocaciones: 3,
+    vacantes: [
+      {
+        puesto: 'Gerente de Desarrollo de Software',
+        industria: 'Tecnología · Fintech',
+        ciudad: 'Guadalajara',
+        salario: '$55,000',
+        status: 'nueva'
+      },
+      {
+        puesto: 'Especialista en Ventas B2B',
+        industria: 'Tecnología · SaaS',
+        ciudad: 'Ciudad de México',
+        salario: '$40,000',
+        status: 'activa'
+      },
+      {
+        puesto: 'Coordinador de Supply Chain',
+        industria: 'Manufactura · Industrial',
+        ciudad: 'Monterrey',
+        salario: '$35,000',
+        status: 'presentado'
+      }
+    ]
+  }
+};
+
+var reclutadorActual = null;
+
+function validarCodigo(){
+  var codigo = document.getElementById('codigo-input').value.trim().toUpperCase();
+  var error = document.getElementById('login-error');
+
+  if(CODIGOS[codigo]){
+    error.style.display = 'none';
+    reclutadorActual = Object.assign({}, CODIGOS[codigo], {codigo: codigo});
+    mostrarDashboard();
+  } else {
+    error.style.display = 'block';
+    document.getElementById('codigo-input').style.borderColor = '#CC4444';
+    setTimeout(function(){
+      document.getElementById('codigo-input').style.borderColor = '';
+    }, 1500);
+  }
+}
+
+document.getElementById('codigo-input').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') validarCodigo();
+});
+
+function mostrarDashboard(){
+  var r = reclutadorActual;
+
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+
+  /* Nombre */
+  document.getElementById('dash-nombre').textContent = r.nombre;
+  document.getElementById('dash-nombre-title').textContent = r.nombre;
+
+  /* Índice */
+  document.getElementById('indice-val').textContent = r.indice;
+  setTimeout(function(){
+    document.getElementById('indice-bar').style.width = r.indice + '%';
+  }, 300);
+
+  /* Stats */
+  var vacantes = r.vacantes || [];
+  document.getElementById('stat-vacantes').textContent = vacantes.length;
+  document.getElementById('stat-activas').textContent = vacantes.filter(function(v){ return v.status === 'activa'; }).length;
+  document.getElementById('stat-colocaciones').textContent = r.colocaciones || 0;
+
+  /* Vacantes */
+  var lista = document.getElementById('vacante-list');
+  if(vacantes.length === 0){
+    lista.innerHTML = '<div class="empty-state"><div class="empty-icon">◈</div><p class="empty-txt">Aún no tienes vacantes asignadas.<br>Las posiciones llegarán según tu industria y especialidad.<br>Mantén tu perfil actualizado.</p></div>';
+  } else {
+    lista.innerHTML = vacantes.map(function(v){
+      var badge = v.status === 'nueva' ? '<span class="v-badge nueva">Nueva</span>' :
+                  v.status === 'activa' ? '<span class="v-badge activa">En proceso</span>' :
+                  '<span class="v-badge presentado">Candidato presentado</span>';
+      return '<div class="vacante-card '+v.status+'">' +
+        '<div class="v-info">' +
+          '<div class="v-puesto">'+v.puesto+'</div>' +
+          '<div class="v-meta">'+v.industria+' · '+v.ciudad+'</div>' +
+        '</div>' +
+        '<div class="v-right">' +
+          '<div class="v-salario">'+v.salario+'/mes</div>' +
+          badge +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* Perfil */
+  document.getElementById('p-nombre').value = r.nombre !== 'Reclutador' && r.nombre !== 'Demo' ? r.nombre : '';
+  setSelect('p-ciudad', r.ciudad);
+  setSelect('p-industria', r.industria);
+  setSelect('p-experiencia', r.experiencia);
+}
+
+function setSelect(id, val){
+  var sel = document.getElementById(id);
+  for(var i=0;i<sel.options.length;i++){
+    if(sel.options[i].value === val || sel.options[i].text === val){
+      sel.selectedIndex = i; break;
+    }
+  }
+}
+
+function guardarPerfil(){
+  var ok = document.getElementById('save-ok');
+  ok.style.display = 'inline';
+  var nombre = document.getElementById('p-nombre').value;
+  if(nombre){
+    document.getElementById('dash-nombre').textContent = nombre;
+    document.getElementById('dash-nombre-title').textContent = nombre;
+  }
+  setTimeout(function(){ ok.style.display = 'none'; }, 2500);
+}
+
+function cerrarSesion(){
+  reclutadorActual = null;
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('codigo-input').value = '';
+}
+</script>
+</body>
+</html>
